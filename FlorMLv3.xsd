@@ -150,16 +150,15 @@
 		</xs:annotation>
 	</xs:element>
 	<xs:element name="feature">
+		<xs:annotation>
+			<xs:documentation>any feature (e.g. description, distribution, geography, ecology, notes, etc.)</xs:documentation>
+		</xs:annotation>
 		<xs:complexType>
 			<xs:choice maxOccurs="unbounded">
 				<xs:element ref="heading" minOccurs="0"/>
+				<xs:element ref="subHeading" minOccurs="0"/>
 				<xs:element ref="writer" minOccurs="0"/>
-				<xs:element ref="habitatList" minOccurs="0">
-					<xs:annotation>
-						<xs:documentation>list of habitats.
-Must only exist for features of class 'habitat', 'habitatecology' or 'ecology'</xs:documentation>
-					</xs:annotation>
-				</xs:element>
+				<xs:element ref="num" minOccurs="0" maxOccurs="unbounded"/>
 				<xs:element ref="char" minOccurs="0" maxOccurs="unbounded"/>
 				<xs:element ref="string" minOccurs="0"/>
 				<xs:element ref="figureRef" minOccurs="0" maxOccurs="unbounded"/>
@@ -186,6 +185,7 @@ Must only exist for features of class 'habitat', 'habitatecology' or 'ecology'</
 						<xs:enumeration value="introducedspecies"/>
 						<xs:enumeration value="lifehistory"/>
 						<xs:enumeration value="morphology"/>
+						<xs:enumeration value="notes"/>
 						<xs:enumeration value="palynology"/>
 						<xs:enumeration value="parasitism"/>
 						<xs:enumeration value="phytochemo"/>
@@ -197,6 +197,7 @@ Must only exist for features of class 'habitat', 'habitatecology' or 'ecology'</
 					</xs:restriction>
 				</xs:simpleType>
 			</xs:attribute>
+			<xs:attribute name="isNotes" type="xs:boolean" use="optional" default="false"/>
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="writer" type="writerType">
@@ -271,7 +272,7 @@ Must only exist for features of class 'habitat', 'habitatecology' or 'ecology'</
 		<xs:complexType mixed="true">
 			<xs:choice maxOccurs="unbounded">
 				<xs:element ref="heading" minOccurs="0"/>
-				<xs:element ref="taxontitle">
+				<xs:element ref="taxontitle" minOccurs="0">
 					<xs:annotation>
 						<xs:documentation>'title' of taxon treatment (e.g. family name, species, etc.)</xs:documentation>
 					</xs:annotation>
@@ -281,9 +282,10 @@ Must only exist for features of class 'habitat', 'habitatecology' or 'ecology'</
 				<xs:element ref="key" minOccurs="0" maxOccurs="unbounded"/>
 				<xs:element ref="nomenclature" maxOccurs="unbounded"/>
 				<xs:element ref="feature" minOccurs="0" maxOccurs="unbounded"/>
-				<xs:element ref="notes" minOccurs="0" maxOccurs="unbounded"/>
 				<xs:element ref="references" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="figureRef" minOccurs="0" maxOccurs="unbounded"/>
 				<xs:element ref="figure" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="footnoteRef" minOccurs="0" maxOccurs="unbounded"/>
 				<xs:element ref="footnote" minOccurs="0" maxOccurs="unbounded"/>
 			</xs:choice>
 			<xs:attribute name="class" use="optional">
@@ -319,7 +321,6 @@ Must only exist for features of class 'habitat', 'habitatecology' or 'ecology'</
 				<xs:element ref="nom" maxOccurs="unbounded"/>
 				<xs:element ref="nameType" minOccurs="0" maxOccurs="unbounded"/>
 				<xs:element ref="specimenType" minOccurs="0"/>
-				<xs:element ref="notes" minOccurs="0"/>
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
@@ -372,6 +373,7 @@ Must only exist for features of class 'habitat', 'habitatecology' or 'ecology'</
 		</xs:annotation>
 		<xs:complexType mixed="true">
 			<xs:sequence minOccurs="0" maxOccurs="unbounded">
+				<xs:element ref="footnoteRef" minOccurs="0" maxOccurs="unbounded"/>
 				<xs:element ref="footnote" minOccurs="0" maxOccurs="unbounded"/>
 				<xs:element ref="annotation" minOccurs="0" maxOccurs="unbounded"/>
 			</xs:sequence>
@@ -412,6 +414,7 @@ Must only exist for features of class 'habitat', 'habitatecology' or 'ecology'</
 		</xs:annotation>
 		<xs:complexType mixed="true">
 			<xs:choice minOccurs="0" maxOccurs="unbounded">
+				<xs:element ref="footnoteRef" minOccurs="0" maxOccurs="unbounded"/>
 				<xs:element ref="footnote" minOccurs="0" maxOccurs="unbounded"/>
 				<xs:element ref="annotation" minOccurs="0" maxOccurs="unbounded"/>
 			</xs:choice>
@@ -424,7 +427,7 @@ Must only exist for features of class 'habitat', 'habitatecology' or 'ecology'</
 	</xs:element>
 	<xs:element name="figureRef" type="figureRefType">
 		<xs:annotation>
-			<xs:documentation>figure</xs:documentation>
+			<xs:documentation>figure reference</xs:documentation>
 		</xs:annotation>
 	</xs:element>
 	<xs:element name="figureTitle">
@@ -445,6 +448,11 @@ Must only exist for features of class 'habitat', 'habitatecology' or 'ecology'</
 			<xs:choice maxOccurs="unbounded">
 				<xs:element ref="gathering" minOccurs="0" maxOccurs="unbounded"/>
 				<xs:element ref="fullName" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="footnoteRef" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>footnote reference number</xs:documentation>
+					</xs:annotation>
+				</xs:element>
 				<xs:element ref="footnote" minOccurs="0" maxOccurs="unbounded"/>
 				<xs:element ref="references" minOccurs="0" maxOccurs="unbounded"/>
 				<xs:element ref="annotation" minOccurs="0" maxOccurs="unbounded"/>
@@ -483,18 +491,13 @@ Must only exist for features of class 'habitat', 'habitatecology' or 'ecology'</
 	</xs:element>
 	<xs:element name="footnoteRef">
 		<xs:annotation>
-			<xs:documentation>footnote</xs:documentation>
+			<xs:documentation>footnote reference</xs:documentation>
 		</xs:annotation>
 		<xs:complexType>
 			<xs:complexContent>
 				<xs:extension base="footnoteTypeRef"/>
 			</xs:complexContent>
 		</xs:complexType>
-	</xs:element>
-	<xs:element name="notes" type="notesType">
-		<xs:annotation>
-			<xs:documentation>notes</xs:documentation>
-		</xs:annotation>
 	</xs:element>
 	<xs:element name="footnoteString" type="footnoteStringType">
 		<xs:annotation>
@@ -588,8 +591,53 @@ Must only exist for features of class 'habitat', 'habitatecology' or 'ecology'</
 	</xs:element>
 	<xs:element name="gathering" type="collectionType">
 		<xs:annotation>
+			<xs:documentation>gathering</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="collection">
+		<xs:annotation>
 			<xs:documentation>collection</xs:documentation>
 		</xs:annotation>
+		<xs:complexType>
+			<xs:choice>
+				<xs:element ref="collectionTypeStatus" minOccurs="0"/>
+				<xs:element ref="alternativeCollectionTypeStatus" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="subCollection" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:choice>
+			<xs:attribute name="status">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="epitype"/>
+						<xs:enumeration value="holotype"/>
+						<xs:enumeration value="iconotype"/>
+						<xs:enumeration value="isoepitype"/>
+						<xs:enumeration value="isolectotype"/>
+						<xs:enumeration value="isoneotype"/>
+						<xs:enumeration value="isosyntype"/>
+						<xs:enumeration value="isotype"/>
+						<xs:enumeration value="lectotype"/>
+						<xs:enumeration value="lectoholotype"/>
+						<xs:enumeration value="neotype"/>
+						<xs:enumeration value="original material"/>
+						<xs:enumeration value="paralectotype"/>
+						<xs:enumeration value="paraneotype"/>
+						<xs:enumeration value="paratype"/>
+						<xs:enumeration value="phototype"/>
+						<xs:enumeration value="second step lectotype"/>
+						<xs:enumeration value="second step neotype"/>
+						<xs:enumeration value="syntype"/>
+						<xs:enumeration value="uncertain"/>
+						<xs:enumeration value="unspecific"/>
+						<xs:enumeration value=""/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="notSeen" type="xs:boolean" default="false"/>
+			<xs:attribute name="unknown" type="xs:boolean" default="false"/>
+			<xs:attribute name="destroyed" type="xs:boolean" default="false"/>
+			<xs:attribute name="lost" type="xs:boolean" default="false"/>
+			<xs:attribute name="notFound" type="xs:boolean" default="false"/>
+		</xs:complexType>
 	</xs:element>
 	<xs:element name="collector">
 		<xs:annotation>
@@ -683,7 +731,7 @@ Must only exist for features of class 'habitat', 'habitatecology' or 'ecology'</
 	</xs:element>
 	<xs:element name="nom" type="nomType">
 		<xs:annotation>
-			<xs:documentation>nomenclature type</xs:documentation>
+			<xs:documentation>nomenclature</xs:documentation>
 		</xs:annotation>
 	</xs:element>
 	<xs:element name="name">
@@ -713,10 +761,10 @@ Must only exist for features of class 'habitat', 'habitatecology' or 'ecology'</
 						<xs:enumeration value="subvariety"/>
 						<xs:enumeration value="forma"/>
 						<xs:enumeration value="subforma"/>
-						<xs:enumeration value="paraut"/>
 						<xs:enumeration value="author"/>
-						<xs:enumeration value="infrparaut"/>
+						<xs:enumeration value="paraut"/>
 						<xs:enumeration value="infraut"/>
+						<xs:enumeration value="infrparaut"/>
 						<xs:enumeration value="status"/>
 						<xs:enumeration value="notes"/>
 					</xs:restriction>
@@ -769,7 +817,6 @@ Must only exist for features of class 'habitat', 'habitatecology' or 'ecology'</
 				<xs:element ref="originalDetermination" minOccurs="0"/>
 				<xs:element ref="specimenType" minOccurs="0"/>
 				<xs:element ref="citation" minOccurs="0" maxOccurs="unbounded"/>
-				<xs:element ref="notes" minOccurs="0" maxOccurs="unbounded"/>
 				<xs:element ref="annotation" minOccurs="0" maxOccurs="unbounded"/>
 			</xs:choice>
 			<xs:attribute name="notSeen" type="xs:boolean" default="false"/>
@@ -1007,7 +1054,6 @@ Must only exist for features of class 'habitat', 'habitatecology' or 'ecology'</
 	<xs:complexType name="headingType" mixed="true">
 		<xs:sequence>
 			<xs:element ref="footnoteRef" minOccurs="0"/>
-			<xs:element ref="footnote" minOccurs="0"/>
 		</xs:sequence>
 	</xs:complexType>
 	<xs:complexType name="writerType" mixed="true">
@@ -1017,7 +1063,7 @@ Must only exist for features of class 'habitat', 'habitatecology' or 'ecology'</
 	</xs:complexType>
 	<xs:complexType name="taxontitleType" mixed="true">
 		<xs:choice>
-			<xs:element ref="footnote" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="footnoteRef" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:choice>
 		<xs:attribute name="rank" use="optional">
 			<xs:simpleType>
@@ -1044,7 +1090,7 @@ Must only exist for features of class 'habitat', 'habitatecology' or 'ecology'</
 	</xs:complexType>
 	<xs:complexType name="subheadingType" mixed="true">
 		<xs:choice>
-			<xs:element ref="footnote" minOccurs="0"/>
+			<xs:element ref="footnoteRef" minOccurs="0"/>
 		</xs:choice>
 	</xs:complexType>
 	<xs:complexType name="referenceType">
@@ -1084,6 +1130,7 @@ Must only exist for features of class 'habitat', 'habitatecology' or 'ecology'</
 			<xs:element ref="b" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="i" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="annotation" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="footnoteRef" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="footnote" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:choice>
 		<xs:attribute name="class" use="required">
@@ -1099,9 +1146,11 @@ Must only exist for features of class 'habitat', 'habitatecology' or 'ecology'</
 					<xs:enumeration value="issue"/>
 					<xs:enumeration value="edition"/>
 					<xs:enumeration value="editors"/>
+					<xs:enumeration value="pages"/>
 					<xs:enumeration value="details"/>
 					<xs:enumeration value="year"/>
 					<xs:enumeration value="notes"/>
+					<xs:enumeration value="status"/>
 				</xs:restriction>
 			</xs:simpleType>
 		</xs:attribute>
@@ -1131,7 +1180,6 @@ Must only exist for features of class 'habitat', 'habitatecology' or 'ecology'</
 			<xs:element ref="citation" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="nameType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="specimenType" minOccurs="0"/>
-			<xs:element ref="notes" minOccurs="0"/>
 			<xs:element ref="gathering" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:choice>
 	</xs:complexType>
@@ -1139,15 +1187,19 @@ Must only exist for features of class 'habitat', 'habitatecology' or 'ecology'</
 		<xs:choice maxOccurs="unbounded">
 			<xs:element ref="collector"/>
 			<xs:element ref="alternativeCollector" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="collection" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>collection/institution</xs:documentation>
+				</xs:annotation>
+			</xs:element>
 			<xs:element ref="fieldNum"/>
 			<xs:element ref="alternativeFieldNum" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="locality" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="dates" minOccurs="0"/>
+			<xs:element ref="string" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="collectionTypeStatus" minOccurs="0"/>
 			<xs:element ref="alternativeCollectionTypeStatus" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="subCollection" minOccurs="0" maxOccurs="unbounded"/>
-			<xs:element ref="locality" minOccurs="0" maxOccurs="unbounded"/>
-			<xs:element ref="dates" minOccurs="0"/>
-			<xs:element ref="notes" minOccurs="0" maxOccurs="unbounded"/>
-			<xs:element ref="string" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:choice>
 	</xs:complexType>
 	<xs:complexType name="tableType">
@@ -1176,13 +1228,15 @@ Must only exist for features of class 'habitat', 'habitatecology' or 'ecology'</
 			<xs:element ref="heading" minOccurs="0"/>
 			<xs:element ref="subHeading" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="writer" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="footnoteRef" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="footnote" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="figureRef" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="figure" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="dates" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="gathering" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="references" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="annotation" minOccurs="0" maxOccurs="unbounded"/>
-			<xs:element ref="notes" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="feature" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="table" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="ol" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="ul" minOccurs="0" maxOccurs="unbounded"/>
@@ -1209,8 +1263,10 @@ Must only exist for features of class 'habitat', 'habitatecology' or 'ecology'</
 			<xs:element ref="references" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="annotation" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="distributionLocality" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="habitat" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="figureRef" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="figure" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="footnoteRef" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="footnote" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="writer" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="dates" minOccurs="0" maxOccurs="unbounded"/>
@@ -1244,9 +1300,11 @@ Must only exist for features of class 'habitat', 'habitatecology' or 'ecology'</
 		<xs:choice maxOccurs="unbounded">
 			<xs:element ref="heading"/>
 			<xs:element ref="writer" minOccurs="0"/>
+			<xs:element ref="footnoteRef" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="footnote" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="string"/>
 			<xs:element ref="references" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="figureRef" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="figure" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:choice>
 		<xs:attribute name="type">
@@ -1257,6 +1315,7 @@ Must only exist for features of class 'habitat', 'habitatecology' or 'ecology'</
 					<xs:enumeration value="biology theory"/>
 					<xs:enumeration value="general ecology"/>
 					<xs:enumeration value="biogeography"/>
+					<xs:enumeration value="notes"/>
 				</xs:restriction>
 			</xs:simpleType>
 		</xs:attribute>
@@ -1264,9 +1323,7 @@ Must only exist for features of class 'habitat', 'habitatecology' or 'ecology'</
 	<xs:complexType name="notesType">
 		<xs:sequence maxOccurs="unbounded">
 			<xs:element ref="heading" minOccurs="0"/>
-			<xs:element ref="subHeading" minOccurs="0"/>
 			<xs:element ref="writer" minOccurs="0"/>
-			<xs:element ref="num" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="string" maxOccurs="unbounded"/>
 			<xs:element ref="figure" minOccurs="0"/>
 		</xs:sequence>
@@ -1414,6 +1471,7 @@ Must only exist for features of class 'habitat', 'habitatecology' or 'ecology'</
 			<xs:element ref="heading" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="writer" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="subHeading" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="footnoteRef" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="footnote" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="biography" maxOccurs="unbounded"/>
 		</xs:choice>
@@ -1423,7 +1481,6 @@ Must only exist for features of class 'habitat', 'habitatecology' or 'ecology'</
 			<xs:element ref="fullName" minOccurs="0"/>
 			<xs:element ref="name" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="citation" minOccurs="0" maxOccurs="unbounded"/>
-			<xs:element ref="notes" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="annotation" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:choice>
 	</xs:complexType>
@@ -1446,7 +1503,6 @@ Must only exist for features of class 'habitat', 'habitatecology' or 'ecology'</
 			<xs:element ref="name" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="citation" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="homonym" minOccurs="0" maxOccurs="unbounded"/>
-			<xs:element ref="notes" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="annotation" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:choice>
 		<xs:attribute name="class" use="required">
@@ -1470,6 +1526,7 @@ Must only exist for features of class 'habitat', 'habitatecology' or 'ecology'</
 			<xs:element ref="heading" minOccurs="0"/>
 			<xs:element ref="subHeading" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="writer" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="footnoteRef" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="footnote" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="string" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="refNum" minOccurs="0" maxOccurs="unbounded"/>
@@ -1481,6 +1538,7 @@ Must only exist for features of class 'habitat', 'habitatecology' or 'ecology'</
 	<xs:complexType name="listItemType" mixed="true">
 		<xs:choice maxOccurs="unbounded">
 			<xs:element ref="fullName" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="footnoteRef" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="footnote" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="gathering" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="b" minOccurs="0" maxOccurs="unbounded"/>
@@ -1515,6 +1573,7 @@ Must only exist for features of class 'habitat', 'habitatecology' or 'ecology'</
 	<xs:complexType name="tableCellType" mixed="true">
 		<xs:choice maxOccurs="unbounded">
 			<xs:element ref="fullName" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="footnoteRef" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="footnote" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="gathering" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="i" minOccurs="0" maxOccurs="unbounded"/>
@@ -1549,6 +1608,7 @@ Must only exist for features of class 'habitat', 'habitatecology' or 'ecology'</
 	<xs:complexType name="thType">
 		<xs:choice maxOccurs="unbounded">
 			<xs:element ref="fullName" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="footnoteRef" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="footnote" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="gathering" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="i" minOccurs="0" maxOccurs="unbounded"/>
