@@ -269,13 +269,14 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 				<xs:element name="heading" type="headingType" minOccurs="0"/>
 				<xs:element name="writer" type="writerType" minOccurs="0"/>
 				<xs:element ref="num" minOccurs="0" maxOccurs="unbounded"/>
-				<xs:element name="habitatList" type="habitatListType" minOccurs="0"/>
 				<xs:element name="char" type="charType" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element name="habitatList" type="habitatListType" minOccurs="0"/>
 				<xs:element name="string" type="stringType" minOccurs="0"/>
 				<xs:element name="figureRef" type="figureRefType" minOccurs="0" maxOccurs="unbounded"/>
 				<xs:element name="figure" type="figureType" minOccurs="0" maxOccurs="unbounded"/>
 				<xs:element name="references" type="referencesType" minOccurs="0"/>
 			</xs:choice>
+			<xs:attribute name="isNotes" type="xs:boolean" default="false"/>
 			<xs:attribute name="class" use="required">
 				<xs:simpleType>
 					<xs:restriction base="xs:string">
@@ -397,6 +398,11 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 				<xs:element ref="altitude" minOccurs="0" maxOccurs="unbounded"/>
 				<xs:element ref="lifeCyclePeriods" minOccurs="0" maxOccurs="unbounded"/>
 			</xs:choice>
+			<xs:attribute name="extra" type="xs:boolean" default="false">
+				<xs:annotation>
+					<xs:documentation>True, if this habitat information has been added additionally to the text, indicating that the habitat text is not part of the original text. </xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="homotypes">
@@ -497,6 +503,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 						<xs:enumeration value="continent"/>
 						<xs:enumeration value="province"/>
 						<xs:enumeration value="region"/>
+						<xs:enumeration value="district"/>
 						<xs:enumeration value="locality"/>
 						<xs:enumeration value="county"/>
 						<xs:enumeration value="state"/>
@@ -534,6 +541,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 						<xs:enumeration value="tribus"/>
 						<xs:enumeration value="genus"/>
 						<xs:enumeration value="subgenus"/>
+						<xs:enumeration value="group"/>
 						<xs:enumeration value="section"/>
 						<xs:enumeration value="series"/>
 						<xs:enumeration value="subsection"/>
@@ -541,14 +549,16 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 						<xs:enumeration value="subspecies"/>
 						<xs:enumeration value="variety"/>
 						<xs:enumeration value="subvariety"/>
-						<xs:enumeration value="forma"/>
-						<xs:enumeration value="subforma"/>
+						<xs:enumeration value="form"/>
+						<xs:enumeration value="subform"/>
+						<xs:enumeration value="tribe"/>
 						<xs:enumeration value="author"/>
 						<xs:enumeration value="paraut"/>
 						<xs:enumeration value="infraut"/>
 						<xs:enumeration value="infrparaut"/>
 						<xs:enumeration value="status"/>
 						<xs:enumeration value="notes"/>
+						<xs:enumeration value="hybrid"/>
 					</xs:restriction>
 				</xs:simpleType>
 			</xs:attribute>
@@ -560,6 +570,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 		</xs:annotation>
 		<xs:complexType>
 			<xs:sequence>
+				<xs:element name="citation" type="citationType" minOccurs="0" maxOccurs="unbounded"/>
 				<xs:element name="nom" type="nomType"/>
 				<xs:element ref="acceptedName" minOccurs="0"/>
 			</xs:sequence>
@@ -641,6 +652,60 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 			<xs:documentation>reference number</xs:documentation>
 		</xs:annotation>
 	</xs:element>
+	<xs:element name="repositories">
+		<xs:annotation>
+			<xs:documentation>list of repositories</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="repository" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="repository">
+		<xs:annotation>
+			<xs:documentation>repository</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="repositoryTypeStatus" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute name="typeStatus">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="epitype"/>
+						<xs:enumeration value="holotype"/>
+						<xs:enumeration value="iconotype"/>
+						<xs:enumeration value="isoepitype"/>
+						<xs:enumeration value="isolectotype"/>
+						<xs:enumeration value="isoneotype"/>
+						<xs:enumeration value="isosyntype"/>
+						<xs:enumeration value="isotype"/>
+						<xs:enumeration value="lectotype"/>
+						<xs:enumeration value="lectoholotype"/>
+						<xs:enumeration value="neotype"/>
+						<xs:enumeration value="original material"/>
+						<xs:enumeration value="paralectotype"/>
+						<xs:enumeration value="paraneotype"/>
+						<xs:enumeration value="paratype"/>
+						<xs:enumeration value="phototype"/>
+						<xs:enumeration value="second step lectotype"/>
+						<xs:enumeration value="second step neotype"/>
+						<xs:enumeration value="syntype"/>
+						<xs:enumeration value="uncertain"/>
+						<xs:enumeration value="unspecific"/>
+						<xs:enumeration value=""/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="doubtful" type="xs:boolean" default="false"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="repositoryTypeStatus">
+		<xs:annotation>
+			<xs:documentation>typestatus of type present at repository</xs:documentation>
+		</xs:annotation>
+	</xs:element>
 	<xs:element name="specimenType">
 		<xs:annotation>
 			<xs:documentation>specimen type</xs:documentation>
@@ -659,6 +724,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 						<xs:documentation>Notes on the type or the type status. DON'T put nomenclatural notes in here!</xs:documentation>
 					</xs:annotation>
 				</xs:element>
+				<xs:element name="collectionAndType" minOccurs="0" maxOccurs="unbounded"/>
 			</xs:choice>
 			<xs:attribute name="notSeen" type="xs:boolean" default="false"/>
 			<xs:attribute name="unknown" type="xs:boolean" default="false"/>
@@ -685,6 +751,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 						<xs:enumeration value="second step lectotype"/>
 						<xs:enumeration value="second step neotype"/>
 						<xs:enumeration value="syntype"/>
+						<xs:enumeration value="synneotype"/>
 						<xs:enumeration value="uncertain"/>
 						<xs:enumeration value="unspecific"/>
 					</xs:restriction>
@@ -692,6 +759,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 			</xs:attribute>
 			<xs:attribute name="destroyed" type="xs:boolean" default="false"/>
 			<xs:attribute name="lost" type="xs:boolean" default="false"/>
+			<xs:attribute name="doubtful" type="xs:boolean" default="false"/>
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="subCollection">
@@ -953,6 +1021,9 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 		<xs:attribute name="class" use="required">
 			<xs:simpleType>
 				<xs:restriction base="xs:string">
+					<xs:enumeration value="acroscopic lobes"/>
+					<xs:enumeration value="acroscopic pinnules"/>
+					<xs:enumeration value="apical lobes"/>
 					<xs:enumeration value="anatomy"/>
 					<xs:enumeration value="androecium"/>
 					<xs:enumeration value="androgynophore"/>
@@ -960,8 +1031,22 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="annulus interior"/>
 					<xs:enumeration value="antherodes"/>
 					<xs:enumeration value="anthers"/>
+					<xs:enumeration value="apical lamina"/>
+					<xs:enumeration value="areoles"/>
 					<xs:enumeration value="bark"/>
+					<xs:enumeration value="basal acroscopic lobes"/>
+					<xs:enumeration value="basal acroscopic pinnules"/>
+					<xs:enumeration value="basal basiscopic lobes"/>
+					<xs:enumeration value="basal basiscopic pinnules"/>
+					<xs:enumeration value="basal basiscopic veins"/>
+					<xs:enumeration value="basal pinnae"/>
+					<xs:enumeration value="basal pinnules"/>
+					<xs:enumeration value="basal scales"/>
+					<xs:enumeration value="basal sterile pinnae"/>
+					<xs:enumeration value="basal veins"/>
 					<xs:enumeration value="base"/>
+					<xs:enumeration value="basiscopic lobes"/>
+					<xs:enumeration value="basiscopic pinnules"/>
 					<xs:enumeration value="bole"/>
 					<xs:enumeration value="bracteoles"/>
 					<xs:enumeration value="bracts"/>
@@ -973,27 +1058,41 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="calyx"/>
 					<xs:enumeration value="capsule"/>
 					<xs:enumeration value="carpels"/>
+					<xs:enumeration value="caudex"/>
 					<xs:enumeration value="chromosomes"/>
 					<xs:enumeration value="columella"/>
 					<xs:enumeration value="column"/>
 					<xs:enumeration value="corolla"/>
+					<xs:enumeration value="costae"/>
+					<xs:enumeration value="costal areoles"/>
+					<xs:enumeration value="costular areoles"/>
+					<xs:enumeration value="costules"/>
 					<xs:enumeration value="cotyledons"/>
+					<xs:enumeration value="cross-veins"/>
 					<xs:enumeration value="crown"/>
 					<xs:enumeration value="cymes"/>
 					<xs:enumeration value="cytology"/>
 					<xs:enumeration value="diaphragm"/>
 					<xs:enumeration value="disk"/>
+					<xs:enumeration value="distal pinnae"/>
+					<xs:enumeration value="distal adnate pinnae"/>
 					<xs:enumeration value="drupes"/>
 					<xs:enumeration value="embryo"/>
 					<xs:enumeration value="extrafloral nectaries"/>
 					<xs:enumeration value="false fruits"/>
 					<xs:enumeration value="female flowers"/>
 					<xs:enumeration value="female inflorescences"/>
+					<xs:enumeration value="fertile fronds"/>
+					<xs:enumeration value="fertile lamina"/>
+					<xs:enumeration value="fertile pinnae"/>
 					<xs:enumeration value="filaments"/>
-					<xs:enumeration value="flowers"/>
 					<xs:enumeration value="flower buds"/>
 					<xs:enumeration value="flower tube"/>
+					<xs:enumeration value="flowers"/>
 					<xs:enumeration value="foliage"/>
+					<xs:enumeration value="fourth pair of pinnae"/>
+					<xs:enumeration value="free pinnae"/>
+					<xs:enumeration value="fronds"/>
 					<xs:enumeration value="fruiting axes"/>
 					<xs:enumeration value="fruits"/>
 					<xs:enumeration value="germination"/>
@@ -1004,25 +1103,36 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="hairs"/>
 					<xs:enumeration value="hypanthium"/>
 					<xs:enumeration value="indumentum"/>
+					<xs:enumeration value="indusia"/>
 					<xs:enumeration value="inflorescences"/>
 					<xs:enumeration value="infructescences"/>
+					<xs:enumeration value="juvenile fronds"/>
+					<xs:enumeration value="juvenile lamina"/>
 					<xs:enumeration value="juvenile parts"/>
 					<xs:enumeration value="labellum"/>
 					<xs:enumeration value="lamina"/>
+					<xs:enumeration value="lateral veins"/>
 					<xs:enumeration value="latex"/>
 					<xs:enumeration value="leaves"/>
 					<xs:enumeration value="leaflets"/>
 					<xs:enumeration value="lifeform"/>
+					<xs:enumeration value="lobes"/>
 					<xs:enumeration value="locules"/>
+					<xs:enumeration value="lower surfaces"/>
+					<xs:enumeration value="main veins"/>
 					<xs:enumeration value="male flowers"/>
 					<xs:enumeration value="male inflorescences"/>
+					<xs:enumeration value="margins"/>
+					<xs:enumeration value="middle pinnae"/>
+					<xs:enumeration value="middle sterile pinnae"/>
 					<xs:enumeration value="note"/>
 					<xs:enumeration value="nutlets"/>
 					<xs:enumeration value="nuts"/>
-					<xs:enumeration value="other"/>
+					<xs:enumeration value="other pinnae"/>
 					<xs:enumeration value="ovary"/>
 					<xs:enumeration value="ovule"/>
 					<xs:enumeration value="panicles"/>
+					<xs:enumeration value="paraphyses"/>
 					<xs:enumeration value="pedicels"/>
 					<xs:enumeration value="peduncle"/>
 					<xs:enumeration value="perianth"/>
@@ -1030,37 +1140,64 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="perigone"/>
 					<xs:enumeration value="perigone lobes"/>
 					<xs:enumeration value="perigone tube"/>
+					<xs:enumeration value="perispores"/>
 					<xs:enumeration value="petals"/>
 					<xs:enumeration value="petiole"/>
 					<xs:enumeration value="petiolules"/>
+					<xs:enumeration value="pinna-lobes"/>
+					<xs:enumeration value="pinna-rachises"/>
+					<xs:enumeration value="pinnae"/>
+					<xs:enumeration value="pinnae apex"/>
+					<xs:enumeration value="pinnatifid pinnules"/>
+					<xs:enumeration value="pinnules"/>
 					<xs:enumeration value="pistil"/>
 					<xs:enumeration value="pods"/>
 					<xs:enumeration value="pollen"/>
 					<xs:enumeration value="processes"/>
 					<xs:enumeration value="racemes"/>
+					<xs:enumeration value="rachises"/>
 					<xs:enumeration value="ramenta"/>
 					<xs:enumeration value="receptacle"/>
 					<xs:enumeration value="retinacula"/>
 					<xs:enumeration value="roots"/>
 					<xs:enumeration value="scales"/>
+					<xs:enumeration value="second pair of pinnae"/>
 					<xs:enumeration value="seedlings"/>
 					<xs:enumeration value="seeds"/>
 					<xs:enumeration value="sepals"/>
 					<xs:enumeration value="shoots"/>
+					<xs:enumeration value="sinuses"/>
+					<xs:enumeration value="sinus-teeth"/>
+					<xs:enumeration value="sori"/>
 					<xs:enumeration value="spathe"/>
 					<xs:enumeration value="spikes"/>
+					<xs:enumeration value="sporangia"/>
+					<xs:enumeration value="spores"/>
 					<xs:enumeration value="stamens"/>
 					<xs:enumeration value="staminodes"/>
 					<xs:enumeration value="stems"/>
+					<xs:enumeration value="sterile fronds"/>
+					<xs:enumeration value="sterile lamina"/>
 					<xs:enumeration value="stigma"/>
+					<xs:enumeration value="stipes"/>
 					<xs:enumeration value="stipules"/>
 					<xs:enumeration value="style"/>
 					<xs:enumeration value="sulcus"/>
+					<xs:enumeration value="suprabasal pinnae"/>
+					<xs:enumeration value="suprabasal fertile pinnae"/>
+					<xs:enumeration value="surfaces"/>
 					<xs:enumeration value="tepals"/>
+					<xs:enumeration value="terminal lamina"/>
 					<xs:enumeration value="testa"/>
+					<xs:enumeration value="third pair of pinnae"/>
 					<xs:enumeration value="thyrses"/>
 					<xs:enumeration value="twigs"/>
+					<xs:enumeration value="upper lobes"/>
+					<xs:enumeration value="upper pinnae"/>
+					<xs:enumeration value="upper surfaces"/>
 					<xs:enumeration value="utricle"/>
+					<xs:enumeration value="vascular strands"/>
+					<xs:enumeration value="veins"/>
 					<xs:enumeration value="wood"/>
 				</xs:restriction>
 			</xs:simpleType>
@@ -1103,7 +1240,47 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 			<xs:element ref="collectionTypeStatus" minOccurs="0"/>
 			<xs:element ref="alternativeCollectionTypeStatus" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="subCollection" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="typeNotes" type="notesType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Notes on the type or the type status. DON'T put nomenclatural notes in here!</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="collectionAndType" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:choice>
+		<xs:attribute name="typeStatus">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="epitype"/>
+					<xs:enumeration value="holotype"/>
+					<xs:enumeration value="iconotype"/>
+					<xs:enumeration value="isoepitype"/>
+					<xs:enumeration value="isolectotype"/>
+					<xs:enumeration value="isoneotype"/>
+					<xs:enumeration value="isosyntype"/>
+					<xs:enumeration value="isotype"/>
+					<xs:enumeration value="lectotype"/>
+					<xs:enumeration value="lectoholotype"/>
+					<xs:enumeration value="neotype"/>
+					<xs:enumeration value="original material"/>
+					<xs:enumeration value="paralectotype"/>
+					<xs:enumeration value="paraneotype"/>
+					<xs:enumeration value="paratype"/>
+					<xs:enumeration value="phototype"/>
+					<xs:enumeration value="second step lectotype"/>
+					<xs:enumeration value="second step neotype"/>
+					<xs:enumeration value="syntype"/>
+					<xs:enumeration value="synneotype"/>
+					<xs:enumeration value="uncertain"/>
+					<xs:enumeration value="unspecific"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="notSeen" type="xs:boolean" default="false"/>
+		<xs:attribute name="unknown" type="xs:boolean" default="false"/>
+		<xs:attribute name="destroyed" type="xs:boolean" default="false"/>
+		<xs:attribute name="lost" type="xs:boolean" default="false"/>
+		<xs:attribute name="notFound" type="xs:boolean" default="false"/>
+		<xs:attribute name="doubtful" type="xs:boolean" default="false"/>
 	</xs:complexType>
 	<xs:complexType name="coordinatesType">
 		<xs:annotation>
@@ -1406,7 +1583,11 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:documentation>distribution locality. Only valid in feature[class="distribution"] context</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element ref="habitat" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="habitat" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>habitat. Only valid in feature[class="habitat"] context</xs:documentation>
+				</xs:annotation>
+			</xs:element>
 			<xs:element name="figureRef" type="figureRefType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="figure" type="figureType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="footnoteRef" type="footnoteTypeRef" minOccurs="0" maxOccurs="unbounded"/>
@@ -1506,7 +1687,8 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="entity"/>
 					<xs:enumeration value="family"/>
 					<xs:enumeration value="subfamily"/>
-					<xs:enumeration value="tribus"/>
+					<xs:enumeration value="tribe"/>
+					<xs:enumeration value="group"/>
 					<xs:enumeration value="genus"/>
 					<xs:enumeration value="section"/>
 					<xs:enumeration value="series"/>
@@ -1515,8 +1697,8 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="subspecies"/>
 					<xs:enumeration value="variety"/>
 					<xs:enumeration value="subvariety"/>
-					<xs:enumeration value="forma"/>
-					<xs:enumeration value="subforma"/>
+					<xs:enumeration value="form"/>
+					<xs:enumeration value="subform"/>
 					<xs:enumeration value="hybrid"/>
 				</xs:restriction>
 			</xs:simpleType>
