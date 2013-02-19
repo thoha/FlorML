@@ -541,7 +541,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 						<xs:enumeration value="tribus"/>
 						<xs:enumeration value="genus"/>
 						<xs:enumeration value="subgenus"/>
-						<xs:enumeration value="group"/>
+						<xs:enumeration value="species group"/>
 						<xs:enumeration value="section"/>
 						<xs:enumeration value="series"/>
 						<xs:enumeration value="subsection"/>
@@ -1688,7 +1688,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="family"/>
 					<xs:enumeration value="subfamily"/>
 					<xs:enumeration value="tribe"/>
-					<xs:enumeration value="group"/>
+					<xs:enumeration value="species group"/>
 					<xs:enumeration value="genus"/>
 					<xs:enumeration value="section"/>
 					<xs:enumeration value="series"/>
