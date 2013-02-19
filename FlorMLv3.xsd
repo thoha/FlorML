@@ -16,6 +16,7 @@
 				<xs:element ref="treatment" maxOccurs="unbounded"/>
 				<xs:element name="addenda" type="addendaType" minOccurs="0"/>
 			</xs:sequence>
+			<xs:attribute name="lang" type="xs:language" use="optional"/>
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="defaultMediaUrl">
@@ -276,11 +277,13 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 				<xs:element name="figure" type="figureType" minOccurs="0" maxOccurs="unbounded"/>
 				<xs:element name="references" type="referencesType" minOccurs="0"/>
 			</xs:choice>
+			<xs:attribute name="lang" type="xs:language"/>
 			<xs:attribute name="isNotes" type="xs:boolean" default="false"/>
 			<xs:attribute name="class" use="required">
 				<xs:simpleType>
 					<xs:restriction base="xs:string">
 						<xs:enumeration value="anatomy"/>
+						<xs:enumeration value="bark"/>
 						<xs:enumeration value="biogeography"/>
 						<xs:enumeration value="conservation"/>
 						<xs:enumeration value="cultivation"/>
@@ -296,6 +299,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 						<xs:enumeration value="history"/>
 						<xs:enumeration value="introducedspecies"/>
 						<xs:enumeration value="lifehistory"/>
+						<xs:enumeration value="material"/>
 						<xs:enumeration value="morphology"/>
 						<xs:enumeration value="notes"/>
 						<xs:enumeration value="palynology"/>
@@ -303,9 +307,11 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 						<xs:enumeration value="phytochemo"/>
 						<xs:enumeration value="phylogeny"/>
 						<xs:enumeration value="pollination"/>
+						<xs:enumeration value="specimens"/>
 						<xs:enumeration value="taxonomy"/>
 						<xs:enumeration value="uses"/>
 						<xs:enumeration value="vernacular"/>
+						<xs:enumeration value="wood"/>
 					</xs:restriction>
 				</xs:simpleType>
 			</xs:attribute>
@@ -366,13 +372,14 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:restriction base="xs:string">
 						<xs:enumeration value="family"/>
 						<xs:enumeration value="subfamily"/>
-						<xs:enumeration value="tribus"/>
+						<xs:enumeration value="tribe"/>
 						<xs:enumeration value="genus"/>
 						<xs:enumeration value="subgenus"/>
 						<xs:enumeration value="section"/>
 						<xs:enumeration value="series"/>
 						<xs:enumeration value="subsection"/>
 						<xs:enumeration value="species"/>
+						<xs:enumeration value="species group"/>
 						<xs:enumeration value="subspecies"/>
 						<xs:enumeration value="variety"/>
 						<xs:enumeration value="subvariety"/>
@@ -454,6 +461,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 				<xs:element name="footnoteRef" type="footnoteTypeRef" minOccurs="0" maxOccurs="unbounded"/>
 				<xs:element name="footnote" type="footnoteType" minOccurs="0" maxOccurs="unbounded"/>
 				<xs:element name="annotation" type="annotationType" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element name="figure" type="figureType" minOccurs="0" maxOccurs="unbounded"/>
 			</xs:choice>
 		</xs:complexType>
 	</xs:element>
@@ -538,7 +546,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 						<xs:enumeration value="entity"/>
 						<xs:enumeration value="family"/>
 						<xs:enumeration value="subfamily"/>
-						<xs:enumeration value="tribus"/>
+						<xs:enumeration value="tribe"/>
 						<xs:enumeration value="genus"/>
 						<xs:enumeration value="subgenus"/>
 						<xs:enumeration value="species group"/>
@@ -559,6 +567,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 						<xs:enumeration value="status"/>
 						<xs:enumeration value="notes"/>
 						<xs:enumeration value="hybrid"/>
+						<xs:enumeration value="vernacular name"/>
 					</xs:restriction>
 				</xs:simpleType>
 			</xs:attribute>
@@ -609,6 +618,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					</xs:annotation>
 				</xs:element>
 			</xs:sequence>
+			<xs:attribute name="lang" type="xs:language"/>
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="num">
@@ -760,6 +770,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 			<xs:attribute name="destroyed" type="xs:boolean" default="false"/>
 			<xs:attribute name="lost" type="xs:boolean" default="false"/>
 			<xs:attribute name="doubtful" type="xs:boolean" default="false"/>
+			<xs:attribute name="lang" type="xs:language"/>
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="subCollection">
@@ -800,6 +811,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 				<xs:element name="footnoteRef" type="footnoteTypeRef" minOccurs="0" maxOccurs="unbounded"/>
 				<xs:element name="footnote" type="footnoteType" minOccurs="0" maxOccurs="unbounded"/>
 			</xs:choice>
+			<xs:attribute name="lang" type="xs:language"/>
 			<xs:attribute name="class" use="optional">
 				<xs:simpleType>
 					<xs:restriction base="xs:string">
@@ -1225,14 +1237,14 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 			<xs:documentation>gathering</xs:documentation>
 		</xs:annotation>
 		<xs:choice maxOccurs="unbounded">
-			<xs:element ref="collector"/>
+			<xs:element ref="collector" minOccurs="0"/>
 			<xs:element ref="alternativeCollector" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="collection" minOccurs="0" maxOccurs="unbounded">
 				<xs:annotation>
 					<xs:documentation>collection/institution</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element ref="fieldNum"/>
+			<xs:element ref="fieldNum" minOccurs="0"/>
 			<xs:element ref="alternativeFieldNum" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="locality" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="dates" type="datesType" minOccurs="0"/>
@@ -1333,6 +1345,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 				</xs:restriction>
 			</xs:simpleType>
 		</xs:attribute>
+		<xs:attribute name="lang" type="xs:language"/>
 	</xs:complexType>
 	<xs:complexType name="footnoteStringType" mixed="true">
 		<xs:annotation>
@@ -1365,6 +1378,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 		<xs:sequence maxOccurs="unbounded">
 			<xs:element name="footnoteString" type="footnoteStringType" minOccurs="0"/>
 		</xs:sequence>
+		<xs:attribute name="lang" type="xs:language"/>
 		<xs:attribute name="id" type="xs:ID"/>
 	</xs:complexType>
 	<xs:complexType name="habitatListType">
@@ -1412,6 +1426,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 			<xs:element ref="keynotes" minOccurs="0"/>
 			<xs:element ref="couplet" maxOccurs="unbounded"/>
 		</xs:choice>
+		<xs:attribute name="lang" type="xs:language"/>
 		<xs:attribute name="id"/>
 		<xs:attribute name="isSpotcharacters" type="xs:boolean" default="false"/>
 	</xs:complexType>
@@ -1516,6 +1531,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 			<xs:element ref="refNum" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="reference" type="referenceType" maxOccurs="unbounded"/>
 		</xs:choice>
+		<xs:attribute name="lang" type="xs:language"/>
 		<xs:attribute name="bibliography" type="xs:boolean" use="optional"/>
 		<xs:attribute name="serialsAbbreviations" type="xs:boolean" use="optional"/>
 	</xs:complexType>
