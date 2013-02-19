@@ -156,9 +156,9 @@
 		<xs:complexType>
 			<xs:choice maxOccurs="unbounded">
 				<xs:element ref="heading" minOccurs="0"/>
-				<xs:element ref="subHeading" minOccurs="0"/>
 				<xs:element ref="writer" minOccurs="0"/>
 				<xs:element ref="num" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="habitatList" minOccurs="0"/>
 				<xs:element ref="char" minOccurs="0" maxOccurs="unbounded"/>
 				<xs:element ref="string" minOccurs="0"/>
 				<xs:element ref="figureRef" minOccurs="0" maxOccurs="unbounded"/>
@@ -197,7 +197,6 @@
 					</xs:restriction>
 				</xs:simpleType>
 			</xs:attribute>
-			<xs:attribute name="isNotes" type="xs:boolean" use="optional" default="false"/>
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="writer" type="writerType">
@@ -308,7 +307,16 @@
 		</xs:annotation>
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element ref="homotypes" maxOccurs="unbounded"/>
+				<xs:element ref="homotypes" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>homotypes; names and references to names that have the same (group of) type(s)</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="nomenclaturalNotes" type="notesType" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>This element should only be used for notes on the nomenclature in general, not for single names or homotypes. Example: 'For more complete synonymy and references, see Meijer and Veldkamp...'</xs:documentation>
+					</xs:annotation>
+				</xs:element>
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
@@ -566,6 +574,10 @@
 						<xs:enumeration value="state"/>
 						<xs:enumeration value="county"/>
 						<xs:enumeration value="town"/>
+						<xs:enumeration value="tdwg1"/>
+						<xs:enumeration value="tdwg2"/>
+						<xs:enumeration value="tdwg3"/>
+						<xs:enumeration value="tdwg4"/>
 						<xs:enumeration value="other"/>
 					</xs:restriction>
 				</xs:simpleType>
@@ -575,6 +587,10 @@
 					<xs:restriction base="xs:string">
 						<xs:enumeration value="cultivated"/>
 						<xs:enumeration value="endemic"/>
+						<xs:enumeration value="native"/>
+						<xs:enumeration value="naturalized"/>
+						<xs:enumeration value="introduced"/>
+						<xs:enumeration value="absent"/>
 					</xs:restriction>
 				</xs:simpleType>
 			</xs:attribute>
@@ -583,9 +599,20 @@
 					<xs:restriction base="xs:string">
 						<xs:enumeration value="extensive"/>
 						<xs:enumeration value="rare"/>
-						<xs:enumeration value="widely"/>
+						<xs:enumeration value="widespread"/>
 					</xs:restriction>
 				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="doubtful" type="xs:boolean">
+				<xs:annotation>
+					<xs:documentation>true if there is some doubt about the occurrence in this area or about the status. May also be indicated by using an ? in the distribution text. Example: "?Sumatra"</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="extra" type="xs:boolean">
+				<xs:annotation>
+					<xs:documentation>True, if this disbributionLocality has been added additionally to the text, indicating that the distribution text is not part of the original text. This is sometimes necessary if e.g. an area is mentioned only partly within an enumeration or the way how it needs to be parsed is not in accordance the original text. 
+Example: West, East and North Africa. If you want to markup West Africa as a separate region this is not possible, because "North" is not a unique area name. Instead you do: North <distribtuionLocality extra="true">North Africa</distribtuionLocality>, South ...</xs:documentation>
+				</xs:annotation>
 			</xs:attribute>
 		</xs:complexType>
 	</xs:element>
@@ -818,6 +845,11 @@
 				<xs:element ref="specimenType" minOccurs="0"/>
 				<xs:element ref="citation" minOccurs="0" maxOccurs="unbounded"/>
 				<xs:element ref="annotation" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element name="typeNotes" type="notesType" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Notes on the type or the type status. DON'T put nomenclatural notes in here!</xs:documentation>
+					</xs:annotation>
+				</xs:element>
 			</xs:choice>
 			<xs:attribute name="notSeen" type="xs:boolean" default="false"/>
 			<xs:attribute name="unknown" type="xs:boolean" default="false"/>
@@ -1262,7 +1294,11 @@
 			<xs:element ref="gathering" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="references" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="annotation" minOccurs="0" maxOccurs="unbounded"/>
-			<xs:element ref="distributionLocality" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="distributionLocality" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>distribution locality. Only valid in feature[class="distribution"] context</xs:documentation>
+				</xs:annotation>
+			</xs:element>
 			<xs:element ref="habitat" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="figureRef" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="figure" minOccurs="0" maxOccurs="unbounded"/>
@@ -1332,7 +1368,7 @@
 		<xs:choice maxOccurs="unbounded">
 			<xs:element ref="subHeading" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="gathering" minOccurs="0" maxOccurs="unbounded"/>
-			<xs:element ref="footnoteRef" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="footnoteRef" minOccurs="0"/>
 			<xs:element ref="footnote" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="annotation" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="br" minOccurs="0" maxOccurs="unbounded"/>
@@ -1490,6 +1526,7 @@
 			<xs:element ref="keynotes" minOccurs="0"/>
 			<xs:element ref="couplet" maxOccurs="unbounded"/>
 		</xs:choice>
+		<xs:attribute name="id"/>
 		<xs:attribute name="isSpotcharacters" type="xs:boolean" default="false"/>
 	</xs:complexType>
 	<xs:complexType name="nomType" mixed="true">
