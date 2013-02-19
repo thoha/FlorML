@@ -163,6 +163,7 @@ Must only exist for features of class 'habitat', 'habitatecology' or 'ecology'</
 				<xs:element ref="char" minOccurs="0" maxOccurs="unbounded"/>
 				<xs:element ref="string" minOccurs="0"/>
 				<xs:element ref="figureRef" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="figure" minOccurs="0" maxOccurs="unbounded"/>
 				<xs:element ref="references" minOccurs="0"/>
 			</xs:choice>
 			<xs:attribute name="class" use="required">
@@ -1005,6 +1006,7 @@ Must only exist for features of class 'habitat', 'habitatecology' or 'ecology'</
 	</xs:complexType>
 	<xs:complexType name="headingType" mixed="true">
 		<xs:sequence>
+			<xs:element ref="footnoteRef" minOccurs="0"/>
 			<xs:element ref="footnote" minOccurs="0"/>
 		</xs:sequence>
 	</xs:complexType>
@@ -1207,6 +1209,7 @@ Must only exist for features of class 'habitat', 'habitatecology' or 'ecology'</
 			<xs:element ref="references" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="annotation" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="distributionLocality" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="figureRef" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="figure" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="footnote" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="writer" minOccurs="0" maxOccurs="unbounded"/>
@@ -1272,6 +1275,7 @@ Must only exist for features of class 'habitat', 'habitatecology' or 'ecology'</
 		<xs:choice maxOccurs="unbounded">
 			<xs:element ref="subHeading" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="gathering" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="footnoteRef" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="footnote" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="annotation" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="br" minOccurs="0" maxOccurs="unbounded"/>
@@ -1279,6 +1283,7 @@ Must only exist for features of class 'habitat', 'habitatecology' or 'ecology'</
 			<xs:element ref="i" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="sub" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="sup" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="figureRef" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="figure" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:choice>
 		<xs:attribute name="class" use="required">
