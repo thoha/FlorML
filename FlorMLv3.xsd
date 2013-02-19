@@ -328,7 +328,8 @@
 		<xs:complexType mixed="true">
 			<xs:sequence>
 				<xs:element ref="nom" maxOccurs="unbounded"/>
-				<xs:element ref="typeRef"/>
+				<xs:element ref="nameType"/>
+				<xs:element ref="specimenType"/>
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
@@ -397,7 +398,7 @@
 		<xs:annotation>
 			<xs:documentation>goto taxon</xs:documentation>
 		</xs:annotation>
-		<xs:complexType>
+		<xs:complexType mixed="true">
 			<xs:attribute name="num" type="xs:string" use="optional"/>
 		</xs:complexType>
 	</xs:element>
@@ -405,7 +406,11 @@
 		<xs:annotation>
 			<xs:documentation>goto key</xs:documentation>
 		</xs:annotation>
-		<xs:complexType>
+		<xs:complexType mixed="true">
+			<xs:choice minOccurs="0">
+				<xs:element ref="toCouplet" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="toTaxon" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:choice>
 			<xs:attribute name="num" type="xs:string" use="optional"/>
 			<xs:attribute name="ref" type="xs:string" use="required"/>
 		</xs:complexType>
@@ -431,11 +436,6 @@
 			<xs:documentation>figure title</xs:documentation>
 		</xs:annotation>
 	</xs:element>
-	<xs:element name="figureType">
-		<xs:annotation>
-			<xs:documentation>figure type</xs:documentation>
-		</xs:annotation>
-	</xs:element>
 	<xs:element name="url">
 		<xs:annotation>
 			<xs:documentation>figure location URL</xs:documentation>
@@ -453,14 +453,14 @@
 				<xs:element ref="superscript" minOccurs="0" maxOccurs="unbounded"/>
 				<xs:element ref="lineBreak" minOccurs="0" maxOccurs="unbounded"/>
 				<xs:element ref="collector" minOccurs="0" maxOccurs="unbounded"/>
-				<xs:element ref="colnum" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="fieldNum" minOccurs="0" maxOccurs="unbounded"/>
 				<xs:element ref="footnote" minOccurs="0" maxOccurs="unbounded"/>
 				<xs:element ref="references" minOccurs="0" maxOccurs="unbounded"/>
 				<xs:element ref="annotation" minOccurs="0" maxOccurs="unbounded"/>
 			</xs:choice>
 		</xs:complexType>
 	</xs:element>
-	<xs:element name="legendstring">
+	<xs:element name="legendString">
 		<xs:annotation>
 			<xs:documentation>legend string</xs:documentation>
 		</xs:annotation>
@@ -472,7 +472,7 @@
 				<xs:element ref="superscript" minOccurs="0" maxOccurs="unbounded"/>
 				<xs:element ref="lineBreak" minOccurs="0" maxOccurs="unbounded"/>
 				<xs:element ref="collector" minOccurs="0" maxOccurs="unbounded"/>
-				<xs:element ref="colnum" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="fieldNum" minOccurs="0" maxOccurs="unbounded"/>
 				<xs:element ref="footnote" minOccurs="0" maxOccurs="unbounded"/>
 				<xs:element ref="references" minOccurs="0" maxOccurs="unbounded"/>
 				<xs:element ref="annotation" minOccurs="0" maxOccurs="unbounded"/>
@@ -494,14 +494,33 @@
 			<xs:documentation>footnote string</xs:documentation>
 		</xs:annotation>
 	</xs:element>
+	<xs:element name="lifeCyclePeriods">
+		<xs:annotation>
+			<xs:documentation>important periods in lifecycle</xs:documentation>
+		</xs:annotation>
+		<xs:complexType mixed="true">
+			<xs:choice>
+				<xs:element ref="dates"/>
+			</xs:choice>
+			<xs:attribute name="class" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="flowering"/>
+						<xs:enumeration value="fruiting"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
 	<xs:element name="habitat">
 		<xs:annotation>
 			<xs:documentation>habitat</xs:documentation>
 		</xs:annotation>
-		<xs:complexType>
-			<xs:sequence>
+		<xs:complexType mixed="true">
+			<xs:choice>
 				<xs:element ref="altitude" minOccurs="0" maxOccurs="unbounded"/>
-			</xs:sequence>
+				<xs:element ref="lifeCyclePeriods" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:choice>
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="habitatList" type="habitatListType">
@@ -523,7 +542,10 @@
 		<xs:annotation>
 			<xs:documentation>list item (locality) for distribution</xs:documentation>
 		</xs:annotation>
-		<xs:complexType>
+		<xs:complexType mixed="true">
+			<xs:sequence>
+				<xs:element ref="coordinates"/>
+			</xs:sequence>
 			<xs:attribute name="class" use="required">
 				<xs:simpleType>
 					<xs:restriction base="xs:string">
@@ -534,6 +556,7 @@
 						<xs:enumeration value="locality"/>
 						<xs:enumeration value="county"/>
 						<xs:enumeration value="state"/>
+						<xs:enumeration value="other"/>
 					</xs:restriction>
 				</xs:simpleType>
 			</xs:attribute>
@@ -544,17 +567,12 @@
 			<xs:documentation>collection</xs:documentation>
 		</xs:annotation>
 	</xs:element>
-	<xs:element name="place">
-		<xs:annotation>
-			<xs:documentation>collection place</xs:documentation>
-		</xs:annotation>
-	</xs:element>
 	<xs:element name="collector">
 		<xs:annotation>
 			<xs:documentation>collector</xs:documentation>
 		</xs:annotation>
 	</xs:element>
-	<xs:element name="colnum">
+	<xs:element name="fieldNum">
 		<xs:annotation>
 			<xs:documentation>collection number</xs:documentation>
 		</xs:annotation>
@@ -635,34 +653,10 @@
 			<xs:documentation>character description</xs:documentation>
 		</xs:annotation>
 	</xs:element>
-	<xs:element name="nom">
+	<xs:element name="nom" type="nomType">
 		<xs:annotation>
 			<xs:documentation>nomenclature type</xs:documentation>
 		</xs:annotation>
-		<xs:complexType mixed="true">
-			<xs:choice maxOccurs="unbounded">
-				<xs:element ref="fullName" minOccurs="0">
-					<xs:annotation>
-						<xs:documentation>unatomized name  (atomizing name is preferred)</xs:documentation>
-					</xs:annotation>
-				</xs:element>
-				<xs:element ref="num" minOccurs="0"/>
-				<xs:element ref="name" minOccurs="0" maxOccurs="unbounded"/>
-				<xs:element ref="acceptedName" minOccurs="0"/>
-				<xs:element ref="citation" minOccurs="0" maxOccurs="unbounded"/>
-				<xs:element ref="homonym" minOccurs="0" maxOccurs="unbounded"/>
-				<xs:element ref="notes" minOccurs="0" maxOccurs="unbounded"/>
-				<xs:element ref="annotation" minOccurs="0" maxOccurs="unbounded"/>
-			</xs:choice>
-			<xs:attribute name="class" use="required">
-				<xs:simpleType>
-					<xs:restriction base="xs:string">
-						<xs:enumeration value="accepted"/>
-						<xs:enumeration value="synonym"/>
-					</xs:restriction>
-				</xs:simpleType>
-			</xs:attribute>
-		</xs:complexType>
 	</xs:element>
 	<xs:element name="name">
 		<xs:annotation>
@@ -702,7 +696,7 @@
 			<xs:documentation>unatomized name (atomized name is preferred)</xs:documentation>
 		</xs:annotation>
 		<xs:complexType>
-			<xs:attribute name="class" use="required">
+			<xs:attribute name="rank" use="required">
 				<xs:simpleType>
 					<xs:restriction base="xs:string">
 						<xs:enumeration value="family"/>
@@ -728,29 +722,55 @@
 			<xs:documentation>homonym</xs:documentation>
 		</xs:annotation>
 	</xs:element>
-	<xs:element name="typeRef">
+	<xs:element name="specimenType">
 		<xs:annotation>
-			<xs:documentation>type reference</xs:documentation>
+			<xs:documentation>specimen type</xs:documentation>
 		</xs:annotation>
 		<xs:complexType mixed="true">
 			<xs:choice>
-				<xs:element ref="collector" minOccurs="0" maxOccurs="unbounded"/>
-				<xs:element ref="colnum" minOccurs="0" maxOccurs="unbounded"/>
-				<xs:element ref="latitude" minOccurs="0"/>
-				<xs:element ref="longitude" minOccurs="0"/>
-				<xs:element ref="country" minOccurs="0"/>
-				<xs:element ref="area" minOccurs="0">
-					<xs:annotation>
-						<xs:documentation>area other than country</xs:documentation>
-					</xs:annotation>
-				</xs:element>
-				<xs:element ref="dates" minOccurs="0"/>
+				<xs:element ref="fullType" minOccurs="0"/>
 				<xs:element ref="typeStatus" minOccurs="0"/>
-				<xs:element ref="acceptedName" minOccurs="0"/>
+				<xs:element ref="collection" minOccurs="0"/>
+				<xs:element ref="originalDetermination" minOccurs="0"/>
+				<xs:element ref="specimenType" minOccurs="0"/>
+				<xs:element ref="citation" minOccurs="0" maxOccurs="unbounded"/>
 				<xs:element ref="notes" minOccurs="0" maxOccurs="unbounded"/>
 				<xs:element ref="annotation" minOccurs="0" maxOccurs="unbounded"/>
 			</xs:choice>
+			<xs:attribute name="notSeen" type="xs:boolean" default="false"/>
+			<xs:attribute name="unknown" type="xs:boolean" default="false"/>
+			<xs:attribute name="notFound" type="xs:boolean" default="false"/>
+			<xs:attribute name="typeStatus">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="epitype"/>
+						<xs:enumeration value="holotype"/>
+						<xs:enumeration value="iconotype"/>
+						<xs:enumeration value="isoepitype"/>
+						<xs:enumeration value="isolectotype"/>
+						<xs:enumeration value="isoneotype"/>
+						<xs:enumeration value="isosyntype"/>
+						<xs:enumeration value="isotype"/>
+						<xs:enumeration value="lectotype"/>
+						<xs:enumeration value="neotype"/>
+						<xs:enumeration value="original material"/>
+						<xs:enumeration value="paralectotype"/>
+						<xs:enumeration value="paraneotype"/>
+						<xs:enumeration value="paratype"/>
+						<xs:enumeration value="phototype"/>
+						<xs:enumeration value="second step lectotype"/>
+						<xs:enumeration value="second step neotype"/>
+						<xs:enumeration value="syntype"/>
+						<xs:enumeration value="unspecific"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
 		</xs:complexType>
+	</xs:element>
+	<xs:element name="coordinates" type="coordinatesType">
+		<xs:annotation>
+			<xs:documentation>coordinates</xs:documentation>
+		</xs:annotation>
 	</xs:element>
 	<xs:element name="latitude">
 		<xs:annotation>
@@ -762,15 +782,91 @@
 			<xs:documentation>longitude</xs:documentation>
 		</xs:annotation>
 	</xs:element>
-	<xs:element name="country">
+	<xs:element name="locality">
 		<xs:annotation>
-			<xs:documentation>country</xs:documentation>
+			<xs:documentation>locality</xs:documentation>
+		</xs:annotation>
+		<xs:complexType mixed="true">
+			<xs:choice>
+				<xs:element ref="altitude" minOccurs="0"/>
+				<xs:element ref="coordinates" minOccurs="0"/>
+			</xs:choice>
+			<xs:attribute name="class">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="country"/>
+						<xs:enumeration value="continent"/>
+						<xs:enumeration value="province"/>
+						<xs:enumeration value="region"/>
+						<xs:enumeration value="locality"/>
+						<xs:enumeration value="county"/>
+						<xs:enumeration value="state"/>
+						<xs:enumeration value="other"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="subCollection">
+		<xs:annotation>
+			<xs:documentation>subcollection</xs:documentation>
 		</xs:annotation>
 	</xs:element>
-	<xs:element name="area">
+	<xs:element name="originalDetermination">
 		<xs:annotation>
-			<xs:documentation>area</xs:documentation>
+			<xs:documentation>original determination</xs:documentation>
 		</xs:annotation>
+	</xs:element>
+	<xs:element name="alternativeCollectionTypeStatus">
+		<xs:annotation>
+			<xs:documentation>alternative collection type status</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="collectionTypeStatus">
+		<xs:annotation>
+			<xs:documentation>collection type status</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="alternativeFieldNum">
+		<xs:annotation>
+			<xs:documentation>alternative number</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="alternativeCollector">
+		<xs:annotation>
+			<xs:documentation>alternative collector</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="fullType">
+		<xs:annotation>
+			<xs:documentation>unatomized type designation (atomization is preferred)</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="nameType">
+		<xs:annotation>
+			<xs:documentation>name type</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="nom"/>
+				<xs:element ref="acceptedName" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="typeStatus">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="automatic"/>
+						<xs:enumeration value="monotypy"/>
+						<xs:enumeration value="not applicable"/>
+						<xs:enumeration value="original designation"/>
+						<xs:enumeration value="present designation"/>
+						<xs:enumeration value="subsequent designation"/>
+						<xs:enumeration value="subsequent monotypy"/>
+						<xs:enumeration value="tautonymy"/>
+						<xs:enumeration value="lectotype"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
 	</xs:element>
 	<xs:element name="typeStatus">
 		<xs:annotation>
@@ -781,6 +877,11 @@
 		<xs:annotation>
 			<xs:documentation>accepted name</xs:documentation>
 		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="nom"/>
+			</xs:sequence>
+		</xs:complexType>
 	</xs:element>
 	<xs:complexType name="metaDataType">
 		<xs:choice>
@@ -809,12 +910,21 @@
 		<xs:choice maxOccurs="unbounded">
 			<xs:element ref="figureTitle" minOccurs="0"/>
 			<xs:element ref="num" minOccurs="0"/>
-			<xs:element ref="figureType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="url" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="figureLegend" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:choice>
 		<xs:attribute name="id" type="xs:ID"/>
 		<xs:attribute name="ref" type="xs:IDREF"/>
+		<xs:attribute name="type" use="required">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="photo"/>
+					<xs:enumeration value="lineart"/>
+					<xs:enumeration value="signature"/>
+					<xs:enumeration value="other"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
 	</xs:complexType>
 	<xs:complexType name="footnoteType">
 		<xs:sequence maxOccurs="unbounded">
@@ -861,7 +971,7 @@
 		<xs:sequence>
 			<xs:element ref="footnote" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
-		<xs:attribute name="class" use="optional">
+		<xs:attribute name="rank" use="optional">
 			<xs:simpleType>
 				<xs:restriction base="xs:string">
 					<xs:enumeration value="family"/>
@@ -955,8 +1065,9 @@
 		<xs:attribute name="class" use="required">
 			<xs:simpleType>
 				<xs:restriction base="xs:string">
-					<xs:enumeration value="pub"/>
+					<xs:enumeration value="publication"/>
 					<xs:enumeration value="usage"/>
+					<xs:enumeration value="type"/>
 				</xs:restriction>
 			</xs:simpleType>
 		</xs:attribute>
@@ -977,12 +1088,17 @@
 		</xs:sequence>
 	</xs:complexType>
 	<xs:complexType name="collectionType">
-		<xs:sequence>
+		<xs:choice>
 			<xs:element ref="collector"/>
-			<xs:element ref="colnum"/>
-			<xs:element ref="place"/>
-			<xs:element ref="year" minOccurs="0"/>
-		</xs:sequence>
+			<xs:element ref="alternativeCollector" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="fieldNum"/>
+			<xs:element ref="alternativeFieldNum" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="collectionTypeStatus" minOccurs="0"/>
+			<xs:element ref="alternativeCollectionTypeStatus" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="subCollection" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="locality" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="dates" minOccurs="0"/>
+		</xs:choice>
 	</xs:complexType>
 	<xs:complexType name="tableDataCellType" mixed="true">
 		<xs:choice maxOccurs="unbounded">
@@ -1133,6 +1249,7 @@
 					<xs:enumeration value="anatomy"/>
 					<xs:enumeration value="androecium"/>
 					<xs:enumeration value="anthers"/>
+					<xs:enumeration value="bark"/>
 					<xs:enumeration value="bracts"/>
 					<xs:enumeration value="calyx"/>
 					<xs:enumeration value="capsule"/>
@@ -1213,12 +1330,35 @@
 			<xs:element ref="keyTitle" minOccurs="0"/>
 			<xs:element ref="couplet" maxOccurs="unbounded"/>
 		</xs:sequence>
-		<xs:attribute name="class" use="optional">
+		<xs:attribute name="isSpotcharacters" type="xs:boolean" default="false"/>
+	</xs:complexType>
+	<xs:complexType name="nomType" mixed="true">
+		<xs:choice maxOccurs="unbounded">
+			<xs:element ref="fullName" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>unatomized name  (atomizing name is preferred)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="num" minOccurs="0"/>
+			<xs:element ref="name" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="citation" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="homonym" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="notes" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="annotation" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:choice>
+		<xs:attribute name="class" use="required">
 			<xs:simpleType>
 				<xs:restriction base="xs:string">
-					<xs:enumeration value="isSpotcharacter"/>
+					<xs:enumeration value="accepted"/>
+					<xs:enumeration value="synonym"/>
 				</xs:restriction>
 			</xs:simpleType>
 		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="coordinatesType">
+		<xs:sequence>
+			<xs:element ref="latitude" minOccurs="0"/>
+			<xs:element ref="longitude" minOccurs="0"/>
+		</xs:sequence>
 	</xs:complexType>
 </xs:schema>
