@@ -8,14 +8,14 @@
 			<xs:documentation>publication</xs:documentation>
 		</xs:annotation>
 		<xs:complexType>
-			<xs:choice maxOccurs="unbounded">
+			<xs:sequence maxOccurs="unbounded">
 				<xs:element ref="metaData"/>
-				<xs:element ref="treatment"/>
 				<xs:element ref="biographies" minOccurs="0"/>
 				<xs:element ref="references" minOccurs="0"/>
 				<xs:element ref="textSection" minOccurs="0"/>
+				<xs:element ref="treatment"/>
 				<xs:element ref="addenda" minOccurs="0"/>
-			</xs:choice>
+			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="metaData">
@@ -26,7 +26,7 @@
 			<xs:complexContent>
 				<xs:extension base="metaDataType">
 					<xs:choice maxOccurs="unbounded">
-						<xs:any namespace="http://www.loc.gov/standards/mods/v3/mods-3-3.xsd" maxOccurs="unbounded"/>
+						<xs:any namespace="http://www.loc.gov/standards/mods/v3/mods-3-3.xsd" minOccurs="0" maxOccurs="unbounded"/>
 						<xs:element ref="defaultMediaUrl"/>
 					</xs:choice>
 				</xs:extension>
@@ -182,6 +182,7 @@
 						<xs:enumeration value="lifehistory"/>
 						<xs:enumeration value="morphology"/>
 						<xs:enumeration value="palynology"/>
+						<xs:enumeration value="parasitism"/>
 						<xs:enumeration value="phytochemo"/>
 						<xs:enumeration value="phylogeny"/>
 						<xs:enumeration value="pollination"/>
@@ -440,6 +441,7 @@
 				<xs:element ref="footnote" minOccurs="0" maxOccurs="unbounded"/>
 				<xs:element ref="references" minOccurs="0" maxOccurs="unbounded"/>
 				<xs:element ref="annotation" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="figure" minOccurs="0" maxOccurs="unbounded"/>
 				<xs:element ref="italics" minOccurs="0" maxOccurs="unbounded"/>
 				<xs:element ref="subscript" minOccurs="0" maxOccurs="unbounded"/>
 				<xs:element ref="superscript" minOccurs="0" maxOccurs="unbounded"/>
@@ -505,7 +507,7 @@
 			<xs:documentation>habitat</xs:documentation>
 		</xs:annotation>
 		<xs:complexType mixed="true">
-			<xs:choice>
+			<xs:choice maxOccurs="unbounded">
 				<xs:element ref="altitude" minOccurs="0" maxOccurs="unbounded"/>
 				<xs:element ref="lifeCyclePeriods" minOccurs="0" maxOccurs="unbounded"/>
 			</xs:choice>
@@ -542,6 +544,7 @@
 						<xs:enumeration value="continent"/>
 						<xs:enumeration value="province"/>
 						<xs:enumeration value="region"/>
+						<xs:enumeration value="district"/>
 						<xs:enumeration value="locality"/>
 						<xs:enumeration value="county"/>
 						<xs:enumeration value="state"/>
@@ -565,6 +568,11 @@
 		<xs:annotation>
 			<xs:documentation>field number</xs:documentation>
 		</xs:annotation>
+		<xs:complexType mixed="true">
+			<xs:sequence minOccurs="0">
+				<xs:element ref="annotation" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
 	</xs:element>
 	<xs:element name="references" type="referencesType">
 		<xs:annotation>
@@ -658,12 +666,14 @@
 				<xs:simpleType>
 					<xs:restriction base="xs:string">
 						<xs:enumeration value="infrank"/>
+						<xs:enumeration value="entity"/>
 						<xs:enumeration value="family"/>
 						<xs:enumeration value="subfamily"/>
 						<xs:enumeration value="tribus"/>
 						<xs:enumeration value="genus"/>
 						<xs:enumeration value="subgenus"/>
 						<xs:enumeration value="section"/>
+						<xs:enumeration value="series"/>
 						<xs:enumeration value="subsection"/>
 						<xs:enumeration value="species"/>
 						<xs:enumeration value="subspecies"/>
@@ -698,6 +708,7 @@
 						<xs:enumeration value="genus"/>
 						<xs:enumeration value="subgenus"/>
 						<xs:enumeration value="section"/>
+						<xs:enumeration value="series"/>
 						<xs:enumeration value="subsection"/>
 						<xs:enumeration value="species"/>
 						<xs:enumeration value="subspecies"/>
@@ -705,6 +716,7 @@
 						<xs:enumeration value="subvariety"/>
 						<xs:enumeration value="forma"/>
 						<xs:enumeration value="subforma"/>
+						<xs:enumeration value="without rank"/>
 					</xs:restriction>
 				</xs:simpleType>
 			</xs:attribute>
@@ -745,6 +757,7 @@
 						<xs:enumeration value="isosyntype"/>
 						<xs:enumeration value="isotype"/>
 						<xs:enumeration value="lectotype"/>
+						<xs:enumeration value="lectoholotype"/>
 						<xs:enumeration value="neotype"/>
 						<xs:enumeration value="original material"/>
 						<xs:enumeration value="paralectotype"/>
@@ -967,10 +980,13 @@
 		<xs:attribute name="rank" use="optional">
 			<xs:simpleType>
 				<xs:restriction base="xs:string">
+					<xs:enumeration value="entity"/>
 					<xs:enumeration value="family"/>
 					<xs:enumeration value="subfamily"/>
 					<xs:enumeration value="tribus"/>
 					<xs:enumeration value="genus"/>
+					<xs:enumeration value="section"/>
+					<xs:enumeration value="series"/>
 					<xs:enumeration value="subgenus"/>
 					<xs:enumeration value="species"/>
 					<xs:enumeration value="subspecies"/>
@@ -1025,6 +1041,7 @@
 			<xs:element ref="bold" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="italics" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="annotation" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="footnote" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:choice>
 		<xs:attribute name="class" use="required">
 			<xs:simpleType>
@@ -1062,7 +1079,9 @@
 	</xs:complexType>
 	<xs:complexType name="annotationType" mixed="true">
 		<xs:choice maxOccurs="unbounded">
+			<xs:element ref="annotation" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="references" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="fullName" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="name" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="nom" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="acceptedName" minOccurs="0"/>
@@ -1085,6 +1104,7 @@
 			<xs:element ref="locality" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="dates" minOccurs="0"/>
 			<xs:element ref="notes" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="string" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:choice>
 	</xs:complexType>
 	<xs:complexType name="tableType">
@@ -1176,7 +1196,7 @@
 		</xs:attribute>
 	</xs:complexType>
 	<xs:complexType name="textSectionType">
-		<xs:choice>
+		<xs:choice maxOccurs="unbounded">
 			<xs:element ref="heading"/>
 			<xs:element ref="writer" minOccurs="0"/>
 			<xs:element ref="footnote" minOccurs="0" maxOccurs="unbounded"/>
@@ -1224,44 +1244,65 @@
 				<xs:restriction base="xs:string">
 					<xs:enumeration value="anatomy"/>
 					<xs:enumeration value="androecium"/>
+					<xs:enumeration value="androgynophore"/>
 					<xs:enumeration value="annulus"/>
 					<xs:enumeration value="annulus interior"/>
+					<xs:enumeration value="antherodes"/>
 					<xs:enumeration value="anthers"/>
 					<xs:enumeration value="bark"/>
+					<xs:enumeration value="base"/>
+					<xs:enumeration value="bole"/>
+					<xs:enumeration value="bracteoles"/>
 					<xs:enumeration value="bracts"/>
 					<xs:enumeration value="branches"/>
+					<xs:enumeration value="branchlets"/>
 					<xs:enumeration value="bristles"/>
 					<xs:enumeration value="buds"/>
+					<xs:enumeration value="buttresses"/>
 					<xs:enumeration value="calyx"/>
 					<xs:enumeration value="capsule"/>
 					<xs:enumeration value="carpels"/>
 					<xs:enumeration value="chromosomes"/>
+					<xs:enumeration value="columella"/>
 					<xs:enumeration value="column"/>
 					<xs:enumeration value="corolla"/>
+					<xs:enumeration value="cotyledons"/>
+					<xs:enumeration value="crown"/>
 					<xs:enumeration value="cymes"/>
 					<xs:enumeration value="cytology"/>
 					<xs:enumeration value="diaphragm"/>
 					<xs:enumeration value="disk"/>
 					<xs:enumeration value="drupes"/>
 					<xs:enumeration value="embryo"/>
+					<xs:enumeration value="extrafloral nectaries"/>
 					<xs:enumeration value="false fruits"/>
 					<xs:enumeration value="female flowers"/>
 					<xs:enumeration value="female inflorescences"/>
+					<xs:enumeration value="filaments"/>
 					<xs:enumeration value="flowers"/>
 					<xs:enumeration value="flower buds"/>
 					<xs:enumeration value="flower tube"/>
+					<xs:enumeration value="foliage"/>
 					<xs:enumeration value="fruiting axes"/>
 					<xs:enumeration value="fruits"/>
+					<xs:enumeration value="germination"/>
+					<xs:enumeration value="glands"/>
 					<xs:enumeration value="gynobasis"/>
 					<xs:enumeration value="gynoecium"/>
 					<xs:enumeration value="habit"/>
 					<xs:enumeration value="hairs"/>
+					<xs:enumeration value="hypanthium"/>
 					<xs:enumeration value="indumentum"/>
 					<xs:enumeration value="inflorescences"/>
+					<xs:enumeration value="infructescences"/>
 					<xs:enumeration value="juvenile parts"/>
+					<xs:enumeration value="labellum"/>
+					<xs:enumeration value="lamina"/>
+					<xs:enumeration value="latex"/>
 					<xs:enumeration value="leaves"/>
 					<xs:enumeration value="leaflets"/>
 					<xs:enumeration value="lifeform"/>
+					<xs:enumeration value="locules"/>
 					<xs:enumeration value="male flowers"/>
 					<xs:enumeration value="male inflorescences"/>
 					<xs:enumeration value="note"/>
@@ -1270,32 +1311,43 @@
 					<xs:enumeration value="other"/>
 					<xs:enumeration value="ovary"/>
 					<xs:enumeration value="ovule"/>
+					<xs:enumeration value="panicles"/>
 					<xs:enumeration value="pedicels"/>
 					<xs:enumeration value="peduncle"/>
 					<xs:enumeration value="perianth"/>
+					<xs:enumeration value="pericarp"/>
 					<xs:enumeration value="perigone"/>
 					<xs:enumeration value="perigone lobes"/>
 					<xs:enumeration value="perigone tube"/>
 					<xs:enumeration value="petals"/>
 					<xs:enumeration value="petiole"/>
+					<xs:enumeration value="petiolules"/>
 					<xs:enumeration value="pistil"/>
+					<xs:enumeration value="pods"/>
 					<xs:enumeration value="pollen"/>
 					<xs:enumeration value="processes"/>
+					<xs:enumeration value="racemes"/>
 					<xs:enumeration value="ramenta"/>
 					<xs:enumeration value="receptacle"/>
 					<xs:enumeration value="retinacula"/>
 					<xs:enumeration value="roots"/>
 					<xs:enumeration value="scales"/>
+					<xs:enumeration value="seedlings"/>
 					<xs:enumeration value="seeds"/>
 					<xs:enumeration value="sepals"/>
+					<xs:enumeration value="shoots"/>
 					<xs:enumeration value="spathe"/>
 					<xs:enumeration value="spikes"/>
 					<xs:enumeration value="stamens"/>
+					<xs:enumeration value="staminodes"/>
 					<xs:enumeration value="stems"/>
 					<xs:enumeration value="stigma"/>
+					<xs:enumeration value="stipules"/>
 					<xs:enumeration value="style"/>
 					<xs:enumeration value="sulcus"/>
 					<xs:enumeration value="tepals"/>
+					<xs:enumeration value="testa"/>
+					<xs:enumeration value="thyrses"/>
 					<xs:enumeration value="twigs"/>
 					<xs:enumeration value="utricle"/>
 					<xs:enumeration value="wood"/>
@@ -1329,11 +1381,11 @@
 		</xs:choice>
 	</xs:complexType>
 	<xs:complexType name="keyType">
-		<xs:sequence>
+		<xs:choice maxOccurs="unbounded">
 			<xs:element ref="keyTitle" minOccurs="0"/>
 			<xs:element ref="keynotes" minOccurs="0"/>
 			<xs:element ref="couplet" maxOccurs="unbounded"/>
-		</xs:sequence>
+		</xs:choice>
 		<xs:attribute name="isSpotcharacters" type="xs:boolean" default="false"/>
 	</xs:complexType>
 	<xs:complexType name="nomType" mixed="true">
