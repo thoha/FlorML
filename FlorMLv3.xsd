@@ -1,0 +1,1224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 rel. 3 sp1 (x64) (http://www.altova.com) by Thomas Hamann (NHN) -->
+<!-- Mit XMLSpy v2011 sp1 (http://www.altova.com) von Andreas Müller (BGBM) bearbeitet -->
+<!-- FlorML is licensed under a Creative Commons Attribution-ShareAlike 3.0 Unported license -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="publication">
+		<xs:annotation>
+			<xs:documentation>publication</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:choice maxOccurs="unbounded">
+				<xs:element ref="metaData"/>
+				<xs:element ref="treatment"/>
+				<xs:element ref="biogeography" minOccurs="0"/>
+				<xs:element ref="bibliography" minOccurs="0"/>
+				<xs:element ref="biography" minOccurs="0"/>
+				<xs:element ref="textSection" minOccurs="0"/>
+				<xs:element ref="addenda" minOccurs="0"/>
+			</xs:choice>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="metaData" type="metaDataType">
+		<xs:annotation>
+			<xs:documentation>metadata</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="defaultMediaUrl">
+		<xs:annotation>
+			<xs:documentation>base URL for illustrations</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="treatment">
+		<xs:annotation>
+			<xs:documentation>taxonomic treatment</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:choice maxOccurs="unbounded">
+				<xs:element ref="taxon" maxOccurs="unbounded"/>
+			</xs:choice>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="biogeography">
+		<xs:annotation>
+			<xs:documentation>biogeography</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:choice/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="textSection" type="textSectionType">
+		<xs:annotation>
+			<xs:documentation>other text sections</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="biography" type="biographyType">
+		<xs:annotation>
+			<xs:documentation>biographies</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="biographyAddenda" type="biographyAddendaType">
+		<xs:annotation>
+			<xs:documentation>addendas to biographies</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="biographyAddendum" type="biographyAddendumType">
+		<xs:annotation>
+			<xs:documentation>one addendum to a biography</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="table" type="tableType">
+		<xs:annotation>
+			<xs:documentation>table</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="tableRow">
+		<xs:annotation>
+			<xs:documentation>table row</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence maxOccurs="unbounded">
+				<xs:element ref="tableHeaderCell" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="tableDataCell" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="tableHeaderCell" type="tableHeaderCellType">
+		<xs:annotation>
+			<xs:documentation>table header</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="tableDataCell" type="tableDataCellType">
+		<xs:annotation>
+			<xs:documentation>table cell data</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="orderedList" type="orderedListType">
+		<xs:annotation>
+			<xs:documentation>ordered list</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="unorderedList" type="unorderedListType">
+		<xs:annotation>
+			<xs:documentation>unordered list</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="listItem" type="listItemType">
+		<xs:annotation>
+			<xs:documentation>list item</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="lineBreak">
+		<xs:annotation>
+			<xs:documentation>line break</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="superscript">
+		<xs:annotation>
+			<xs:documentation>superscript</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="subscript">
+		<xs:annotation>
+			<xs:documentation>subscript</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="bold">
+		<xs:annotation>
+			<xs:documentation>text in bold</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="italics">
+		<xs:annotation>
+			<xs:documentation>text in italics</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="heading" type="headingType">
+		<xs:annotation>
+			<xs:documentation>heading</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="subHeading" type="subheadingType">
+		<xs:annotation>
+			<xs:documentation>subheading</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="annotation" type="annotationType">
+		<xs:annotation>
+			<xs:documentation>annotations</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="string" type="stringType">
+		<xs:annotation>
+			<xs:documentation>text string</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="taxontype">
+		<xs:annotation>
+			<xs:documentation>For types mentioned outside of nomenclature</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="feature">
+		<xs:annotation>
+			<xs:documentation>other features, taxonomy, dispersal, etc.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="heading" minOccurs="0"/>
+				<xs:element ref="writer" minOccurs="0"/>
+				<xs:element ref="distributionList" minOccurs="0"/>
+				<xs:element ref="habitatList" minOccurs="0"/>
+				<xs:element ref="char" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="string" minOccurs="0"/>
+				<xs:element ref="figure" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="references" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="class" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="anatomy"/>
+						<xs:enumeration value="biogeography"/>
+						<xs:enumeration value="conservation"/>
+						<xs:enumeration value="cytology"/>
+						<xs:enumeration value="description"/>
+						<xs:enumeration value="dispersal"/>
+						<xs:enumeration value="distribution"/>
+						<xs:enumeration value="ecology"/>
+						<xs:enumeration value="fossils"/>
+						<xs:enumeration value="habitat"/>
+						<xs:enumeration value="habitatecology"/>
+						<xs:enumeration value="introducedspecies"/>
+						<xs:enumeration value="lifehistory"/>
+						<xs:enumeration value="morphology"/>
+						<xs:enumeration value="palynology"/>
+						<xs:enumeration value="phytochemo"/>
+						<xs:enumeration value="pollination"/>
+						<xs:enumeration value="taxonomy"/>
+						<xs:enumeration value="uses"/>
+						<xs:enumeration value="vernacular"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="writer" type="writerType">
+		<xs:annotation>
+			<xs:documentation>writer</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="taxontitle" type="taxontitleType">
+		<xs:annotation>
+			<xs:documentation>'title' of taxon (e.g. family name, species, etc.)</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="bibliography" type="bibliographyType">
+		<xs:annotation>
+			<xs:documentation>bibliography sections</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="biographyString" type="biographyStringType">
+		<xs:annotation>
+			<xs:documentation>biography text string</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="datepub">
+		<xs:annotation>
+			<xs:documentation>dates of publication</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence maxOccurs="unbounded">
+				<xs:element ref="string"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="addenda" type="addendaType">
+		<xs:annotation>
+			<xs:documentation>addenda, corrections, etc.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="addendaHeading">
+		<xs:annotation>
+			<xs:documentation>heading of addenda section</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="addendaWriter">
+		<xs:annotation>
+			<xs:documentation>author of addenda section</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="addendaIntroduction">
+		<xs:annotation>
+			<xs:documentation>introduction to addenda section</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="addendum" type="addendumType">
+		<xs:annotation>
+			<xs:documentation>one addendum</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="addendumFamily">
+		<xs:annotation>
+			<xs:documentation>to which family does the addendum belong?</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="addendumTaxon">
+		<xs:annotation>
+			<xs:documentation>to what taxon is this an addendum?</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="addendumVolume">
+		<xs:annotation>
+			<xs:documentation>to what volume is this an addendum?</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="addendumPage">
+		<xs:annotation>
+			<xs:documentation>to what page is this an addendum?</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="taxon">
+		<xs:annotation>
+			<xs:documentation>taxon</xs:documentation>
+		</xs:annotation>
+		<xs:complexType mixed="true">
+			<xs:choice maxOccurs="unbounded">
+				<xs:element ref="heading" minOccurs="0"/>
+				<xs:element ref="taxontitle">
+					<xs:annotation>
+						<xs:documentation>'title' of taxon treatment (e.g. family name, species, etc.)</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="writer" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="textSection" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="key" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="nomenclature" maxOccurs="unbounded"/>
+				<xs:element ref="feature" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="notes" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="references" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="figure" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:choice>
+			<xs:attribute name="class" use="optional">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="excluded"/>
+						<xs:enumeration value="dubious"/>
+						<xs:enumeration value="cultivated"/>
+						<xs:enumeration value="insufficient"/>
+						<xs:enumeration value="expected"/>
+						<xs:enumeration value="new"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="nomenclature">
+		<xs:annotation>
+			<xs:documentation>nomenclature</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="homotypes" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="homotypes">
+		<xs:annotation>
+			<xs:documentation>homotypes</xs:documentation>
+		</xs:annotation>
+		<xs:complexType mixed="true">
+			<xs:sequence>
+				<xs:element ref="nom" maxOccurs="unbounded"/>
+				<xs:element ref="typeRef"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="key" type="keyType">
+		<xs:annotation>
+			<xs:documentation>key</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="keyTitle">
+		<xs:annotation>
+			<xs:documentation>key title</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="couplet">
+		<xs:annotation>
+			<xs:documentation>couplet</xs:documentation>
+		</xs:annotation>
+		<xs:complexType mixed="true">
+			<xs:choice maxOccurs="unbounded">
+				<xs:element ref="question" maxOccurs="unbounded"/>
+				<xs:element ref="keynotes" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:choice>
+			<xs:attribute name="num" type="xs:string" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="question">
+		<xs:annotation>
+			<xs:documentation>question</xs:documentation>
+		</xs:annotation>
+		<xs:complexType mixed="true">
+			<xs:sequence>
+				<xs:element ref="text"/>
+				<xs:element ref="couplet" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="toCouplet" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="toTaxon" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="toKey" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute name="num" type="xs:string" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="num">
+		<xs:annotation>
+			<xs:documentation>number</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="text">
+		<xs:annotation>
+			<xs:documentation>question text</xs:documentation>
+		</xs:annotation>
+		<xs:complexType mixed="true">
+			<xs:sequence minOccurs="0" maxOccurs="unbounded">
+				<xs:element ref="footnote" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="annotation" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="toCouplet">
+		<xs:annotation>
+			<xs:documentation>goto couplet</xs:documentation>
+		</xs:annotation>
+		<xs:complexType mixed="true">
+			<xs:attribute name="num" type="xs:string" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="toTaxon">
+		<xs:annotation>
+			<xs:documentation>goto taxon</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="num" type="xs:string" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="toKey">
+		<xs:annotation>
+			<xs:documentation>goto key</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="num" type="xs:string" use="optional"/>
+			<xs:attribute name="ref" type="xs:string" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="keynotes">
+		<xs:annotation>
+			<xs:documentation>key-related notes</xs:documentation>
+		</xs:annotation>
+		<xs:complexType mixed="true">
+			<xs:choice minOccurs="0" maxOccurs="unbounded">
+				<xs:element ref="footnote" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="annotation" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:choice>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="figure" type="figureType">
+		<xs:annotation>
+			<xs:documentation>figure</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="figureTitle">
+		<xs:annotation>
+			<xs:documentation>figure title</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="figureType">
+		<xs:annotation>
+			<xs:documentation>figure type</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="url">
+		<xs:annotation>
+			<xs:documentation>figure location URL</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="figureLegend">
+		<xs:annotation>
+			<xs:documentation>figure legend</xs:documentation>
+		</xs:annotation>
+		<xs:complexType mixed="true">
+			<xs:choice maxOccurs="unbounded">
+				<xs:element ref="bold" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="italics" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="subscript" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="superscript" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="lineBreak" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="collector" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="colnum" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="footnote" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="references" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="annotation" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:choice>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="legendstring">
+		<xs:annotation>
+			<xs:documentation>legend string</xs:documentation>
+		</xs:annotation>
+		<xs:complexType mixed="true">
+			<xs:choice maxOccurs="unbounded">
+				<xs:element ref="bold" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="italics" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="subscript" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="superscript" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="lineBreak" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="collector" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="colnum" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="footnote" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="references" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="annotation" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:choice>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="footnote" type="footnoteType">
+		<xs:annotation>
+			<xs:documentation>footnote</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="notes" type="notesType">
+		<xs:annotation>
+			<xs:documentation>notes</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="footnoteString" type="footnoteStringType">
+		<xs:annotation>
+			<xs:documentation>footnote string</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="habitat">
+		<xs:annotation>
+			<xs:documentation>habitat</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="altitude" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="habitatList" type="habitatListType">
+		<xs:annotation>
+			<xs:documentation>list of habitats</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="altitude">
+		<xs:annotation>
+			<xs:documentation>altitude</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="distributionList" type="distributionListType">
+		<xs:annotation>
+			<xs:documentation>list of locations where a species occurs</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="distributionLocality">
+		<xs:annotation>
+			<xs:documentation>list item (locality) for distribution</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="class" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="country"/>
+						<xs:enumeration value="continent"/>
+						<xs:enumeration value="province"/>
+						<xs:enumeration value="region"/>
+						<xs:enumeration value="locality"/>
+						<xs:enumeration value="county"/>
+						<xs:enumeration value="state"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="collection" type="collectionType">
+		<xs:annotation>
+			<xs:documentation>collection</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="place">
+		<xs:annotation>
+			<xs:documentation>collection place</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="collector">
+		<xs:annotation>
+			<xs:documentation>collector</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="colnum">
+		<xs:annotation>
+			<xs:documentation>collection number</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="references" type="referencesType">
+		<xs:annotation>
+			<xs:documentation>references</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="reference" type="referenceType">
+		<xs:annotation>
+			<xs:documentation>individual reference</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="citation" type="citationType">
+		<xs:annotation>
+			<xs:documentation>citation (in nomenclature)</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="refNum">
+		<xs:annotation>
+			<xs:documentation>reference number</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="refPart" type="refPartType">
+		<xs:annotation>
+			<xs:documentation>reference atomization</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="typedSignature">
+		<xs:annotation>
+			<xs:documentation>for typed signatures</xs:documentation>
+		</xs:annotation>
+		<xs:complexType/>
+	</xs:element>
+	<xs:element name="dates" type="datesType">
+		<xs:annotation>
+			<xs:documentation>for dates</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="fullDate" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>freetext dates for dates that don't fit into the other types</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="day" type="xs:gDay">
+		<xs:annotation>
+			<xs:documentation>day date (DD)</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="month" type="xs:gMonth">
+		<xs:annotation>
+			<xs:documentation>month date (MM)</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="year" type="xs:gYear">
+		<xs:annotation>
+			<xs:documentation>year date (YYYY)</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="quotes" type="quotesType">
+		<xs:annotation>
+			<xs:documentation>for quotes</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="quotestring">
+		<xs:annotation>
+			<xs:documentation>quote string</xs:documentation>
+		</xs:annotation>
+		<xs:complexType mixed="true">
+			<xs:sequence>
+				<xs:element ref="lineBreak" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="char" type="charType">
+		<xs:annotation>
+			<xs:documentation>character description</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="nom">
+		<xs:annotation>
+			<xs:documentation>nomenclature type</xs:documentation>
+		</xs:annotation>
+		<xs:complexType mixed="true">
+			<xs:choice maxOccurs="unbounded">
+				<xs:element ref="fullName" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>unatomized name  (atomizing name is preferred)</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="num" minOccurs="0"/>
+				<xs:element ref="name" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="acceptedName" minOccurs="0"/>
+				<xs:element ref="citation" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="homonym" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="notes" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="annotation" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:choice>
+			<xs:attribute name="class" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="accepted"/>
+						<xs:enumeration value="synonym"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="name">
+		<xs:annotation>
+			<xs:documentation>nomenclature name parts</xs:documentation>
+		</xs:annotation>
+		<xs:complexType mixed="true">
+			<xs:attribute name="class" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="infrank"/>
+						<xs:enumeration value="family"/>
+						<xs:enumeration value="subfamily"/>
+						<xs:enumeration value="tribus"/>
+						<xs:enumeration value="genus"/>
+						<xs:enumeration value="subgenus"/>
+						<xs:enumeration value="section"/>
+						<xs:enumeration value="subsection"/>
+						<xs:enumeration value="species"/>
+						<xs:enumeration value="subspecies"/>
+						<xs:enumeration value="variety"/>
+						<xs:enumeration value="subvariety"/>
+						<xs:enumeration value="forma"/>
+						<xs:enumeration value="subforma"/>
+						<xs:enumeration value="paraut"/>
+						<xs:enumeration value="author"/>
+						<xs:enumeration value="infrparaut"/>
+						<xs:enumeration value="infraut"/>
+						<xs:enumeration value="status"/>
+						<xs:enumeration value="notes"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="fullName">
+		<xs:annotation>
+			<xs:documentation>unatomized name (atomized name is preferred)</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="class" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="family"/>
+						<xs:enumeration value="subfamily"/>
+						<xs:enumeration value="tribus"/>
+						<xs:enumeration value="genus"/>
+						<xs:enumeration value="subgenus"/>
+						<xs:enumeration value="section"/>
+						<xs:enumeration value="subsection"/>
+						<xs:enumeration value="species"/>
+						<xs:enumeration value="subspecies"/>
+						<xs:enumeration value="variety"/>
+						<xs:enumeration value="subvariety"/>
+						<xs:enumeration value="forma"/>
+						<xs:enumeration value="subforma"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="homonym" type="homonymType">
+		<xs:annotation>
+			<xs:documentation>homonym</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="typeRef">
+		<xs:annotation>
+			<xs:documentation>type reference</xs:documentation>
+		</xs:annotation>
+		<xs:complexType mixed="true">
+			<xs:choice>
+				<xs:element ref="collector" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="colnum" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="latitude" minOccurs="0"/>
+				<xs:element ref="longitude" minOccurs="0"/>
+				<xs:element ref="country" minOccurs="0"/>
+				<xs:element ref="area" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>area other than country</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="dates" minOccurs="0"/>
+				<xs:element ref="typeStatus" minOccurs="0"/>
+				<xs:element ref="acceptedName" minOccurs="0"/>
+				<xs:element ref="notes" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="annotation" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:choice>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="latitude">
+		<xs:annotation>
+			<xs:documentation>latitude</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="longitude">
+		<xs:annotation>
+			<xs:documentation>longitude</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="country">
+		<xs:annotation>
+			<xs:documentation>country</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="area">
+		<xs:annotation>
+			<xs:documentation>area</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="typeStatus">
+		<xs:annotation>
+			<xs:documentation>type status</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="acceptedName">
+		<xs:annotation>
+			<xs:documentation>accepted name</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="metaDataType">
+		<xs:choice>
+			<xs:any namespace="http://www.loc.gov/mods/v3"/>
+			<xs:element ref="defaultMediaUrl"/>
+		</xs:choice>
+	</xs:complexType>
+	<xs:complexType name="addendumType" mixed="true">
+		<xs:choice>
+			<xs:element ref="addendumFamily" minOccurs="0"/>
+			<xs:element ref="addendumTaxon"/>
+			<xs:element ref="addendumVolume"/>
+			<xs:element ref="addendumPage"/>
+			<xs:element ref="taxon"/>
+		</xs:choice>
+	</xs:complexType>
+	<xs:complexType name="addendaType">
+		<xs:sequence>
+			<xs:element ref="addendaHeading"/>
+			<xs:element ref="addendaWriter" minOccurs="0"/>
+			<xs:element ref="addendaIntroduction"/>
+			<xs:element ref="addendum" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="figureType" mixed="true">
+		<xs:choice maxOccurs="unbounded">
+			<xs:element ref="figureTitle" minOccurs="0"/>
+			<xs:element ref="num" minOccurs="0"/>
+			<xs:element ref="figureType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="url" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="figureLegend" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:choice>
+		<xs:attribute name="id" type="xs:ID"/>
+		<xs:attribute name="ref" type="xs:IDREF"/>
+	</xs:complexType>
+	<xs:complexType name="footnoteType">
+		<xs:sequence maxOccurs="unbounded">
+			<xs:element ref="footnoteString" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="id" type="xs:ID"/>
+		<xs:attribute name="href" type="xs:IDREF"/>
+	</xs:complexType>
+	<xs:complexType name="footnoteStringType" mixed="true">
+		<xs:choice maxOccurs="unbounded">
+			<xs:element ref="bold" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="italics" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="subscript" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="superscript" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="lineBreak" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:choice>
+	</xs:complexType>
+	<xs:complexType name="biographyAddendaType">
+		<xs:sequence>
+			<xs:element ref="addendaHeading"/>
+			<xs:element ref="addendaWriter"/>
+			<xs:element ref="addendaIntroduction"/>
+			<xs:element ref="biographyAddendum"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="biographyAddendumType">
+		<xs:sequence>
+			<xs:element ref="addendumVolume"/>
+			<xs:element ref="addendumPage"/>
+			<xs:element ref="biographyString"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="headingType" mixed="true">
+		<xs:sequence>
+			<xs:element ref="footnote" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="writerType" mixed="true">
+		<xs:sequence>
+			<xs:element ref="footnote" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="taxontitleType" mixed="true">
+		<xs:sequence>
+			<xs:element ref="footnote" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="class" use="optional">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="family"/>
+					<xs:enumeration value="subfamily"/>
+					<xs:enumeration value="tribus"/>
+					<xs:enumeration value="genus"/>
+					<xs:enumeration value="subgenus"/>
+					<xs:enumeration value="species"/>
+					<xs:enumeration value="subspecies"/>
+					<xs:enumeration value="variety"/>
+					<xs:enumeration value="subvariety"/>
+					<xs:enumeration value="forma"/>
+					<xs:enumeration value="subforma"/>
+					<xs:enumeration value="hybrid"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="subheadingType" mixed="true">
+		<xs:choice>
+			<xs:element ref="footnote" minOccurs="0"/>
+		</xs:choice>
+	</xs:complexType>
+	<xs:complexType name="referencesType" mixed="true">
+		<xs:choice maxOccurs="unbounded">
+			<xs:element ref="heading" minOccurs="0"/>
+			<xs:element ref="writer" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="subHeading" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="refNum" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="reference"/>
+			<xs:element ref="typedSignature" minOccurs="0"/>
+		</xs:choice>
+	</xs:complexType>
+	<xs:complexType name="referenceType">
+		<xs:sequence>
+			<xs:element ref="refPart" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="introductionType">
+		<xs:choice maxOccurs="unbounded">
+			<xs:element ref="heading"/>
+			<xs:element ref="writer" minOccurs="0"/>
+			<xs:element ref="string"/>
+			<xs:element ref="references" minOccurs="0"/>
+			<xs:element ref="figure" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:choice>
+	</xs:complexType>
+	<xs:complexType name="distributionListType">
+		<xs:sequence>
+			<xs:element ref="distributionLocality" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="habitatListType">
+		<xs:choice maxOccurs="unbounded">
+			<xs:element ref="habitat" maxOccurs="unbounded"/>
+		</xs:choice>
+	</xs:complexType>
+	<xs:complexType name="datesType">
+		<xs:sequence>
+			<xs:element ref="fullDate" minOccurs="0"/>
+			<xs:element ref="day" minOccurs="0"/>
+			<xs:element ref="month" minOccurs="0"/>
+			<xs:element ref="year" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="refPartType" mixed="true">
+		<xs:choice maxOccurs="unbounded">
+			<xs:element ref="bold" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="italics" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:choice>
+		<xs:attribute name="class" use="required">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="author"/>
+					<xs:enumeration value="pubtitle"/>
+					<xs:enumeration value="pubname"/>
+					<xs:enumeration value="pubtype"/>
+					<xs:enumeration value="volume"/>
+					<xs:enumeration value="edition"/>
+					<xs:enumeration value="details"/>
+					<xs:enumeration value="year"/>
+					<xs:enumeration value="notes"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="citationType">
+		<xs:sequence>
+			<xs:element ref="refPart" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="class" use="required">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="pub"/>
+					<xs:enumeration value="usage"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="annotationType" mixed="true">
+		<xs:choice maxOccurs="unbounded">
+			<xs:element ref="references" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="name" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="nom" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="acceptedName" minOccurs="0"/>
+			<xs:element ref="citation" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:choice>
+	</xs:complexType>
+	<xs:complexType name="quotesType">
+		<xs:sequence>
+			<xs:element ref="quotestring"/>
+			<xs:element ref="typedSignature" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="collectionType">
+		<xs:sequence>
+			<xs:element ref="collector"/>
+			<xs:element ref="colnum"/>
+			<xs:element ref="place"/>
+			<xs:element ref="year" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="tableDataCellType" mixed="true">
+		<xs:choice maxOccurs="unbounded">
+			<xs:element ref="italics" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="subscript" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="superscript" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="lineBreak" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="bold" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:choice>
+	</xs:complexType>
+	<xs:complexType name="tableHeaderCellType">
+		<xs:choice maxOccurs="unbounded">
+			<xs:element ref="italics" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="subscript" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="superscript" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="lineBreak" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="bold" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:choice>
+	</xs:complexType>
+	<xs:complexType name="tableType">
+		<xs:sequence>
+			<xs:element ref="tableRow" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="orderedListType">
+		<xs:choice>
+			<xs:element ref="listItem" maxOccurs="unbounded"/>
+			<xs:element ref="orderedList" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="unorderedList" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:choice>
+	</xs:complexType>
+	<xs:complexType name="unorderedListType">
+		<xs:choice maxOccurs="unbounded">
+			<xs:element ref="listItem" maxOccurs="unbounded"/>
+			<xs:element ref="unorderedList" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="orderedList" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:choice>
+	</xs:complexType>
+	<xs:complexType name="listItemType" mixed="true">
+		<xs:choice maxOccurs="unbounded">
+			<xs:element ref="bold" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="italics" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="lineBreak" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="subscript" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="superscript" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:choice>
+	</xs:complexType>
+	<xs:complexType name="biographyStringType" mixed="true">
+		<xs:choice maxOccurs="unbounded">
+			<xs:element ref="footnote" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="figure" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="typedSignature" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="dates" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="collection" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="lineBreak" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="bold" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="italics" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="subscript" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="superscript" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="table" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="orderedList" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="unorderedList" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="references" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="annotation" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:choice>
+	</xs:complexType>
+	<xs:complexType name="stringType" mixed="true">
+		<xs:choice maxOccurs="unbounded">
+			<xs:element ref="subHeading" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="quotes" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="taxontype" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="bold" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="italics" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="collection" minOccurs="0"/>
+			<xs:element ref="lineBreak" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="superscript" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="subscript" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="orderedList" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="unorderedList" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="table" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="references" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="annotation" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="figure" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="footnote" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="typedSignature" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="dates" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:choice>
+		<xs:attribute name="class" use="optional">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="preface"/>
+					<xs:enumeration value="dedication"/>
+					<xs:enumeration value="abbr"/>
+					<xs:enumeration value="biblio"/>
+					<xs:enumeration value="serials"/>
+					<xs:enumeration value="introduction"/>
+					<xs:enumeration value="genkey"/>
+					<xs:enumeration value="datepub"/>
+					<xs:enumeration value="specdelim"/>
+					<xs:enumeration value="notes"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="textSectionType">
+		<xs:choice>
+			<xs:element ref="heading"/>
+			<xs:element ref="writer" minOccurs="0"/>
+			<xs:element ref="string"/>
+			<xs:element ref="references" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="figure" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:choice>
+		<xs:attribute name="type">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="introduction"/>
+					<xs:enumeration value="preface"/>
+					<xs:enumeration value="biology theory"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="notesType">
+		<xs:sequence maxOccurs="unbounded">
+			<xs:element ref="heading" minOccurs="0"/>
+			<xs:element ref="subHeading" minOccurs="0"/>
+			<xs:element ref="writer" minOccurs="0"/>
+			<xs:element ref="num" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="string" maxOccurs="unbounded"/>
+			<xs:element ref="figure" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="charType" mixed="true">
+		<xs:choice maxOccurs="unbounded">
+			<xs:element ref="subHeading" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="lineBreak" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="bold" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="italics" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="subscript" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="superscript" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="collection" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="footnote" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="annotation" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:choice>
+		<xs:attribute name="class" use="required">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="anatomy"/>
+					<xs:enumeration value="androecium"/>
+					<xs:enumeration value="anthers"/>
+					<xs:enumeration value="bracts"/>
+					<xs:enumeration value="calyx"/>
+					<xs:enumeration value="capsule"/>
+					<xs:enumeration value="carpels"/>
+					<xs:enumeration value="corolla"/>
+					<xs:enumeration value="cytology"/>
+					<xs:enumeration value="disc"/>
+					<xs:enumeration value="embryo"/>
+					<xs:enumeration value="false fruits"/>
+					<xs:enumeration value="female flowers"/>
+					<xs:enumeration value="flowers"/>
+					<xs:enumeration value="fruits"/>
+					<xs:enumeration value="gynoecium"/>
+					<xs:enumeration value="habit"/>
+					<xs:enumeration value="hairs"/>
+					<xs:enumeration value="indumentum"/>
+					<xs:enumeration value="inflorescences"/>
+					<xs:enumeration value="leaves"/>
+					<xs:enumeration value="leaflets"/>
+					<xs:enumeration value="lifeform"/>
+					<xs:enumeration value="male flowers"/>
+					<xs:enumeration value="nuts"/>
+					<xs:enumeration value="ovary"/>
+					<xs:enumeration value="ovule"/>
+					<xs:enumeration value="peduncle"/>
+					<xs:enumeration value="perianth"/>
+					<xs:enumeration value="petals"/>
+					<xs:enumeration value="petiole"/>
+					<xs:enumeration value="pistil"/>
+					<xs:enumeration value="pollen"/>
+					<xs:enumeration value="retinacula"/>
+					<xs:enumeration value="roots"/>
+					<xs:enumeration value="scales"/>
+					<xs:enumeration value="seeds"/>
+					<xs:enumeration value="sepals"/>
+					<xs:enumeration value="spathe"/>
+					<xs:enumeration value="spikes"/>
+					<xs:enumeration value="stamens"/>
+					<xs:enumeration value="stems"/>
+					<xs:enumeration value="stigma"/>
+					<xs:enumeration value="tepals"/>
+					<xs:enumeration value="twigs"/>
+					<xs:enumeration value="utricle"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="bibliographyType">
+		<xs:sequence maxOccurs="unbounded">
+			<xs:element ref="heading"/>
+			<xs:element ref="string" minOccurs="0"/>
+			<xs:element ref="references" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="biographyType">
+		<xs:choice>
+			<xs:element ref="heading"/>
+			<xs:element ref="writer" minOccurs="0"/>
+			<xs:element ref="subHeading" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="quotes" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="biographyString" maxOccurs="unbounded"/>
+			<xs:element ref="references" minOccurs="0"/>
+			<xs:element ref="figure" minOccurs="0"/>
+			<xs:element ref="biographyAddenda" minOccurs="0"/>
+		</xs:choice>
+	</xs:complexType>
+	<xs:complexType name="homonymType">
+		<xs:choice>
+			<xs:element ref="fullName" minOccurs="0"/>
+			<xs:element ref="name" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="citation" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="notes" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="annotation" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:choice>
+	</xs:complexType>
+	<xs:complexType name="keyType">
+		<xs:sequence>
+			<xs:element ref="keyTitle" minOccurs="0"/>
+			<xs:element ref="couplet" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="class" use="optional">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="isSpotcharacter"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+</xs:schema>
