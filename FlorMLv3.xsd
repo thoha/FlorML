@@ -2138,6 +2138,11 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:documentation>used for taxa that are not classified for some reason</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
+			<xs:attribute name="inGeoScope" type="xs:boolean" default="true">
+				<xs:annotation>
+					<xs:documentation>Set to false if taxon does not occur in target geographical area</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="text">
@@ -3390,12 +3395,22 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 			<xs:element ref="collectionTypeStatus" minOccurs="0"/>
 			<xs:element ref="alternativeCollectionTypeStatus" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="subCollection" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="subGathering" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>e.g. flowers, fruits, buds, leaves, often followed by a dat</xs:documentation>
+				</xs:annotation>
+			</xs:element>
 			<xs:element name="typeNotes" type="notesType" minOccurs="0">
 				<xs:annotation>
 					<xs:documentation>Notes on the type or the type status. DON'T put nomenclatural notes in here!</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="collectionAndType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="unhandled" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>for text in atomised data for which it is doubtful how it has to be handled - use when you are intentionally not marking up a piece of text</xs:documentation>
+				</xs:annotation>
+			</xs:element>
 		</xs:choice>
 		<xs:attribute name="iconoType" type="xs:boolean"/>
 		<xs:attribute name="typeStatus">
@@ -4005,6 +4020,11 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 			<xs:element ref="sup" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="sub" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="toKey" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="unhandled" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>for text in atomised data for which it is doubtful how it has to be handled - use when you are intentionally not marking up a piece of text</xs:documentation>
+				</xs:annotation>
+			</xs:element>
 		</xs:choice>
 		<xs:attribute name="class" use="optional">
 			<xs:simpleType>
