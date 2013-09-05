@@ -122,6 +122,18 @@
 		<xs:annotation>
 			<xs:documentation>altitude</xs:documentation>
 		</xs:annotation>
+		<xs:complexType mixed="true">
+			<xs:attribute name="estimate" type="xs:boolean">
+				<xs:annotation>
+					<xs:documentation>if altitude is explicitly indicated to be estimate, set to true.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="range" type="xs:boolean">
+				<xs:annotation>
+					<xs:documentation>set to true if instead of a single value a range is given</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
 	</xs:element>
 	<xs:element name="b">
 		<xs:annotation>
@@ -1691,7 +1703,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 			<xs:documentation>locality</xs:documentation>
 		</xs:annotation>
 		<xs:complexType mixed="true">
-			<xs:choice>
+			<xs:choice maxOccurs="unbounded">
 				<xs:element ref="altitude" minOccurs="0"/>
 				<xs:element name="coordinates" type="coordinatesType" minOccurs="0">
 					<xs:annotation>
@@ -4423,6 +4435,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 		<xs:choice minOccurs="0" maxOccurs="unbounded">
 			<xs:element name="annotation" type="annotationType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="footnoteRef" type="footnoteTypeRef" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="figureRef" type="figureRefType" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:choice>
 		<xs:attribute name="num" type="xs:string" use="optional">
 			<xs:annotation>
