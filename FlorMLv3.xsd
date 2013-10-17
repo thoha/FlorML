@@ -39,6 +39,11 @@
 			<xs:documentation>base URL for illustrations</xs:documentation>
 		</xs:annotation>
 	</xs:element>
+	<xs:element name="defaultMeasurementSystem">
+		<xs:annotation>
+			<xs:documentation>SI, Imperial, etc.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
 	<xs:element name="metaData">
 		<xs:annotation>
 			<xs:documentation>metadata</xs:documentation>
@@ -48,6 +53,11 @@
 				<xs:extension base="metaDataType">
 					<xs:choice maxOccurs="unbounded">
 						<xs:element ref="defaultMediaUrl"/>
+						<xs:element ref="defaultMeasurementSystem" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Use to define a default measurement system as used throughout the publication. SI, Imperial, etc.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
 						<xs:any namespace="http://www.loc.gov/mods/v3"/>
 					</xs:choice>
 				</xs:extension>
@@ -124,6 +134,9 @@
 			<xs:documentation>altitude</xs:documentation>
 		</xs:annotation>
 		<xs:complexType mixed="true">
+			<xs:sequence>
+				<xs:element ref="value" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
 			<xs:attribute name="estimate" type="xs:boolean">
 				<xs:annotation>
 					<xs:documentation>if altitude is explicitly indicated to be estimate, set to true.</xs:documentation>
@@ -133,6 +146,23 @@
 				<xs:annotation>
 					<xs:documentation>set to true if instead of a single value a range is given</xs:documentation>
 				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="value">
+		<xs:annotation>
+			<xs:documentation>for numerical values in altitudes, characters</xs:documentation>
+		</xs:annotation>
+		<xs:complexType mixed="true">
+			<xs:attribute name="class">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="mininum"/>
+						<xs:enumeration value="average"/>
+						<xs:enumeration value="median"/>
+						<xs:enumeration value="maximum"/>
+					</xs:restriction>
+				</xs:simpleType>
 			</xs:attribute>
 		</xs:complexType>
 	</xs:element>
@@ -249,6 +279,16 @@
 				<xs:element name="figureRef" type="figureRefType" minOccurs="0" maxOccurs="unbounded"/>
 				<xs:element name="figure" type="figureType" minOccurs="0" maxOccurs="unbounded"/>
 				<xs:element name="references" type="referencesType" minOccurs="0"/>
+				<xs:element name="nom" type="nomType" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>name parts, citations, homonyms, and basionyms, also author comments</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="subChar" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>subcharacter</xs:documentation>
+					</xs:annotation>
+				</xs:element>
 			</xs:choice>
 			<xs:attribute name="class">
 				<xs:simpleType>
@@ -1635,6 +1675,51 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 			</xs:attribute>
 		</xs:complexType>
 	</xs:element>
+	<xs:element name="distributionScope">
+		<xs:annotation>
+			<xs:documentation>for scopes in distributions containing one or more distribution localities</xs:documentation>
+		</xs:annotation>
+		<xs:complexType mixed="true">
+			<xs:sequence>
+				<xs:element ref="distributionLocality" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>distribution locality. Only valid in feature[class="distribution"] context</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="class" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="world"/>
+						<xs:enumeration value="continent"/>
+						<xs:enumeration value="oceanic region"/>
+						<xs:enumeration value="continental region"/>
+						<xs:enumeration value="country"/>
+						<xs:enumeration value="department"/>
+						<xs:enumeration value="province"/>
+						<xs:enumeration value="subprovince"/>
+						<xs:enumeration value="region"/>
+						<xs:enumeration value="district"/>
+						<xs:enumeration value="subdistrict"/>
+						<xs:enumeration value="locality"/>
+						<xs:enumeration value="state"/>
+						<xs:enumeration value="county"/>
+						<xs:enumeration value="town"/>
+						<xs:enumeration value="tdwg1"/>
+						<xs:enumeration value="tdwg2"/>
+						<xs:enumeration value="tdwg3"/>
+						<xs:enumeration value="tdwg4"/>
+						<xs:enumeration value="other"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="doubtful" type="xs:boolean">
+				<xs:annotation>
+					<xs:documentation>true if there is some doubt about the occurrence in this area or about the status. May also be indicated by using an ? in the distribution text. Example: "?Sumatra"</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
 	<xs:element name="feature">
 		<xs:annotation>
 			<xs:documentation>any feature (e.g. description, distribution, geography, ecology, notes, etc.)</xs:documentation>
@@ -1882,6 +1967,11 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 		<xs:complexType mixed="true">
 			<xs:choice>
 				<xs:element name="references" type="referencesType" minOccurs="0"/>
+				<xs:element name="nom" type="nomType" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>name parts, citations, homonyms, and basionyms, also author comments</xs:documentation>
+					</xs:annotation>
+				</xs:element>
 			</xs:choice>
 		</xs:complexType>
 	</xs:element>
@@ -2407,7 +2497,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 			</xs:attribute>
 			<xs:attribute name="ref" type="xs:IDREFS">
 				<xs:annotation>
-					<xs:documentation>reference to taxon for use in addenda etc.</xs:documentation>
+					<xs:documentation>reference to taxon for use in addenda, excluded taxa etc.</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
 			<xs:attribute name="inClassification" type="xs:boolean" default="true">
@@ -2432,6 +2522,11 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 				<xs:element name="footnote" type="footnoteType" minOccurs="0" maxOccurs="unbounded"/>
 				<xs:element name="annotation" type="annotationType" minOccurs="0" maxOccurs="unbounded"/>
 				<xs:element name="figureRef" type="figureRefType" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element name="nom" type="nomType" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>name parts, citations, homonyms, and basionyms, also author comments</xs:documentation>
+					</xs:annotation>
+				</xs:element>
 			</xs:choice>
 		</xs:complexType>
 	</xs:element>
@@ -2624,6 +2719,11 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 			<xs:element name="figureRef" type="figureRefType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="figure" type="figureType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="references" type="referencesType" minOccurs="0"/>
+			<xs:element name="nom" type="nomType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>name parts, citations, homonyms, and basionyms, also author comments</xs:documentation>
+				</xs:annotation>
+			</xs:element>
 		</xs:choice>
 		<xs:attribute name="class">
 			<xs:simpleType>
@@ -4094,6 +4194,11 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:documentation>actual table</xs:documentation>
 				</xs:annotation>
 			</xs:element>
+			<xs:element name="nom" type="nomType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>name parts, citations, homonyms, and basionyms, also author comments</xs:documentation>
+				</xs:annotation>
+			</xs:element>
 		</xs:choice>
 	</xs:complexType>
 	<xs:complexType name="footnoteTypeRef" mixed="true">
@@ -4183,7 +4288,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 				<xs:documentation>language of key</xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="id">
+		<xs:attribute name="id" type="xs:ID">
 			<xs:annotation>
 				<xs:documentation>key ID</xs:documentation>
 			</xs:annotation>
@@ -4220,6 +4325,11 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 			<xs:element name="figureRef" type="figureRefType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="ol" type="orderedListType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="ul" type="unorderedListType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="nom" type="nomType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>name parts, citations, homonyms, and basionyms, also author comments</xs:documentation>
+				</xs:annotation>
+			</xs:element>
 		</xs:choice>
 		<xs:attribute name="type" use="optional">
 			<xs:annotation>
@@ -4286,13 +4396,14 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 		</xs:choice>
 		<xs:attribute name="class" use="required">
 			<xs:annotation>
-				<xs:documentation>use nametype in nameType only</xs:documentation>
+				<xs:documentation>Notes: 1) use nametype in nameType only, 2) use freetextName in areas outside nomenclature only</xs:documentation>
 			</xs:annotation>
 			<xs:simpleType>
 				<xs:restriction base="xs:string">
 					<xs:enumeration value="accepted"/>
 					<xs:enumeration value="synonym"/>
 					<xs:enumeration value="nametype"/>
+					<xs:enumeration value="freetextName"/>
 				</xs:restriction>
 			</xs:simpleType>
 		</xs:attribute>
@@ -4513,6 +4624,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:documentation>distribution locality. Only valid in feature[class="distribution"] context</xs:documentation>
 				</xs:annotation>
 			</xs:element>
+			<xs:element ref="distributionScope" minOccurs="0"/>
 			<xs:element ref="habitat" minOccurs="0" maxOccurs="unbounded">
 				<xs:annotation>
 					<xs:documentation>habitat. Only valid in feature[class="habitat"] context</xs:documentation>
@@ -4550,6 +4662,11 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 			<xs:element name="key" type="keyType" minOccurs="0" maxOccurs="unbounded">
 				<xs:annotation>
 					<xs:documentation>one key</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="nom" type="nomType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>name parts, citations, homonyms, and basionyms, also author comments</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 		</xs:choice>
@@ -4616,6 +4733,11 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 				</xs:annotation>
 			</xs:element>
 			<xs:element ref="literatureRef" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="nom" type="nomType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>name parts, citations, homonyms, and basionyms, also author comments</xs:documentation>
+				</xs:annotation>
+			</xs:element>
 		</xs:choice>
 		<xs:attribute name="colspan" type="xs:integer"/>
 		<xs:attribute name="type" use="optional">
@@ -4743,6 +4865,11 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 			<xs:element name="annotation" type="annotationType" minOccurs="0" maxOccurs="unbounded">
 				<xs:annotation>
 					<xs:documentation>comment by treatment author</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="nom" type="nomType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>name parts, citations, homonyms, and basionyms, also author comments</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 		</xs:choice>
@@ -4902,6 +5029,11 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 			<xs:element ref="sub" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="sup" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="br" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="nom" type="nomType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>name parts, citations, homonyms, and basionyms, also author comments</xs:documentation>
+				</xs:annotation>
+			</xs:element>
 		</xs:choice>
 	</xs:complexType>
 	<xs:complexType name="keynotesType" mixed="true">
@@ -4926,6 +5058,11 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 			<xs:element ref="br" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="table" type="tableType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="references" type="referencesType" minOccurs="0"/>
+			<xs:element name="nom" type="nomType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>name parts, citations, homonyms, and basionyms, also author comments</xs:documentation>
+				</xs:annotation>
+			</xs:element>
 		</xs:choice>
 	</xs:complexType>
 	<xs:complexType name="trType">
@@ -4946,6 +5083,11 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 		<xs:sequence minOccurs="0">
 			<xs:element name="annotation" type="annotationType" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
+		<xs:attribute name="keyRef" type="xs:IDREFS">
+			<xs:annotation>
+				<xs:documentation>Used when linking to another couplet in another key than the current one.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
 		<xs:attribute name="num" type="xs:string" use="required">
 			<xs:annotation>
 				<xs:documentation>target couplet number</xs:documentation>
@@ -4988,7 +5130,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 				<xs:documentation>target key number (if present)</xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="ref" type="xs:string" use="required">
+		<xs:attribute name="ref" type="xs:IDREFS" use="required">
 			<xs:annotation>
 				<xs:documentation>key ID</xs:documentation>
 			</xs:annotation>
