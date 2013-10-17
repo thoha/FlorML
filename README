@@ -1,0 +1,23 @@
+FlorML is an XML schema for marking up legacy and modern taxonomic works, such as floras and faunas.
+
+
+MANUAL:
+Documentation is available on request. Basic instructions are included in the XML schema.
+
+
+AUTHORS:
+Thomas Hamann
+Andreas Müller
+
+CITATION:
+Please cite this work appropriately if you use it for scientific purposes:
+
+Hamann, T., Müller, A., Roos, M.C., Sosef, M. & E. Smets. Detailed mark-up of semi-monographic legacy taxonomic works using FlorML. In review. 
+
+
+LICENSE:
+FlorML is licensed under a Creative Commons Attribution-ShareAlike 3.0 Unported license.
+
+
+COPYRIGHT:
+Copyright Thomas Hamann 2010-2013. 
