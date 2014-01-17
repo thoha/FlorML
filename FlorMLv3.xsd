@@ -291,6 +291,7 @@
 						<xs:documentation>subcharacter</xs:documentation>
 					</xs:annotation>
 				</xs:element>
+				<xs:element ref="toKey" minOccurs="0" maxOccurs="unbounded"/>
 			</xs:choice>
 			<xs:attribute name="class">
 				<xs:simpleType>
@@ -303,6 +304,7 @@
 						<xs:enumeration value="abnormal small leaves"/>
 						<xs:enumeration value="aborted anthers"/>
 						<xs:enumeration value="aborted capsules"/>
+						<xs:enumeration value="aborted flowers"/>
 						<xs:enumeration value="aborted locules"/>
 						<xs:enumeration value="aborted male flower ovary"/>
 						<xs:enumeration value="accessory bundles"/>
@@ -471,6 +473,7 @@
 						<xs:enumeration value="calyx lobes"/>
 						<xs:enumeration value="calyx remains"/>
 						<xs:enumeration value="cambium"/>
+						<xs:enumeration value="canals"/>
 						<xs:enumeration value="capitulum"/>
 						<xs:enumeration value="capsules"/>
 						<xs:enumeration value="carina"/>
@@ -541,6 +544,7 @@
 						<xs:enumeration value="costular areoles"/>
 						<xs:enumeration value="costules"/>
 						<xs:enumeration value="cotyledons"/>
+						<xs:enumeration value="cotyledonated part"/>
 						<xs:enumeration value="cracks"/>
 						<xs:enumeration value="cristates"/>
 						<xs:enumeration value="cross veins"/>
@@ -558,6 +562,7 @@
 						<xs:enumeration value="deciduous parts"/>
 						<xs:enumeration value="deciduous sepals"/>
 						<xs:enumeration value="dehiscence"/>
+						<xs:enumeration value="denticles"/>
 						<xs:enumeration value="development"/>
 						<xs:enumeration value="diameter"/>
 						<xs:enumeration value="diaphragm"/>
@@ -566,6 +571,7 @@
 						<xs:enumeration value="dimorphous plants"/>
 						<xs:enumeration value="dimples"/>
 						<xs:enumeration value="disk"/>
+						<xs:enumeration value="disk and pistil"/>
 						<xs:enumeration value="dissected fronds"/>
 						<xs:enumeration value="distal adnate pinnae"/>
 						<xs:enumeration value="distal pinnae"/>
@@ -692,6 +698,7 @@
 						<xs:enumeration value="floral bract stipules"/>
 						<xs:enumeration value="floral bracts"/>
 						<xs:enumeration value="floral buds"/>
+						<xs:enumeration value="floral characters"/>
 						<xs:enumeration value="floral leaves"/>
 						<xs:enumeration value="floral scapes"/>
 						<xs:enumeration value="floration"/>
@@ -730,6 +737,7 @@
 						<xs:enumeration value="fourth cycle"/>
 						<xs:enumeration value="fourth flower"/>
 						<xs:enumeration value="fourth pair of pinnae"/>
+						<xs:enumeration value="foveoles"/>
 						<xs:enumeration value="free part of interfloral bracts"/>
 						<xs:enumeration value="free part of the apex"/>
 						<xs:enumeration value="free part of the drupe"/>
@@ -791,11 +799,14 @@
 						<xs:enumeration value="glumes"/>
 						<xs:enumeration value="glumes and lemmas"/>
 						<xs:enumeration value="grain"/>
+						<xs:enumeration value="green parts"/>
 						<xs:enumeration value="groove"/>
 						<xs:enumeration value="ground tissue"/>
 						<xs:enumeration value="growth"/>
 						<xs:enumeration value="growth rings"/>
 						<xs:enumeration value="gutter"/>
+						<xs:enumeration value="gynandroecium"/>
+						<xs:enumeration value="gynandrophore"/>
 						<xs:enumeration value="gynobasis"/>
 						<xs:enumeration value="gynoecium"/>
 						<xs:enumeration value="gynophore"/>
@@ -807,6 +818,7 @@
 						<xs:enumeration value="head"/>
 						<xs:enumeration value="heartwood"/>
 						<xs:enumeration value="height"/>
+						<xs:enumeration value="heliophile lamina"/>
 						<xs:enumeration value="hemicapsules"/>
 						<xs:enumeration value="herbaceous habit"/>
 						<xs:enumeration value="hermaphrodite flowers"/>
@@ -1109,6 +1121,7 @@
 						<xs:enumeration value="male synflorescences"/>
 						<xs:enumeration value="marginal edges"/>
 						<xs:enumeration value="marginal false veins"/>
+						<xs:enumeration value="marginal strips"/>
 						<xs:enumeration value="marginal veins"/>
 						<xs:enumeration value="margins"/>
 						<xs:enumeration value="margins and veins"/>
@@ -1186,6 +1199,7 @@
 						<xs:enumeration value="non-fleshy parts"/>
 						<xs:enumeration value="notches"/>
 						<xs:enumeration value="note"/>
+						<xs:enumeration value="number"/>
 						<xs:enumeration value="number of flowers"/>
 						<xs:enumeration value="number of folioles"/>
 						<xs:enumeration value="number of follicles"/>
@@ -1261,6 +1275,7 @@
 						<xs:enumeration value="pennate veins"/>
 						<xs:enumeration value="perianth"/>
 						<xs:enumeration value="perianth divisions"/>
+						<xs:enumeration value="perianth parts"/>
 						<xs:enumeration value="pericarp"/>
 						<xs:enumeration value="periderm"/>
 						<xs:enumeration value="perigone"/>
@@ -1272,6 +1287,7 @@
 						<xs:enumeration value="peristome"/>
 						<xs:enumeration value="persistance"/>
 						<xs:enumeration value="persistent base fronds"/>
+						<xs:enumeration value="persistent parts"/>
 						<xs:enumeration value="petal shape"/>
 						<xs:enumeration value="petals"/>
 						<xs:enumeration value="petiolated leaves"/>
@@ -1313,6 +1329,7 @@
 						<xs:enumeration value="plank buttresses"/>
 						<xs:enumeration value="plant sexuality"/>
 						<xs:enumeration value="plant size"/>
+						<xs:enumeration value="plumules"/>
 						<xs:enumeration value="plurilocular ovary"/>
 						<xs:enumeration value="pneumatophore roots"/>
 						<xs:enumeration value="podogynium"/>
@@ -1381,6 +1398,8 @@
 						<xs:enumeration value="receptacle-tube"/>
 						<xs:enumeration value="receptacular paraphyses"/>
 						<xs:enumeration value="reduced leaves"/>
+						<xs:enumeration value="rehydrated flowers"/>
+						<xs:enumeration value="rehydrated tissues"/>
 						<xs:enumeration value="replaced fronds"/>
 						<xs:enumeration value="replum"/>
 						<xs:enumeration value="resiniferous network"/>
@@ -1397,6 +1416,7 @@
 						<xs:enumeration value="rhytidome"/>
 						<xs:enumeration value="ribs"/>
 						<xs:enumeration value="ridges"/>
+						<xs:enumeration value="rigidity"/>
 						<xs:enumeration value="roots"/>
 						<xs:enumeration value="rosettes"/>
 						<xs:enumeration value="rostrum"/>
@@ -1413,6 +1433,7 @@
 						<xs:enumeration value="scaly leaves"/>
 						<xs:enumeration value="scarious flaps"/>
 						<xs:enumeration value="scars"/>
+						<xs:enumeration value="sciaphile lamina"/>
 						<xs:enumeration value="sclerenchyma"/>
 						<xs:enumeration value="sclerenchyma strands"/>
 						<xs:enumeration value="sclerified sheath"/>
@@ -1553,6 +1574,7 @@
 						<xs:enumeration value="strength"/>
 						<xs:enumeration value="strobili"/>
 						<xs:enumeration value="style"/>
+						<xs:enumeration value="style and filaments"/>
 						<xs:enumeration value="style hairs"/>
 						<xs:enumeration value="style head"/>
 						<xs:enumeration value="style remains"/>
@@ -1637,6 +1659,7 @@
 						<xs:enumeration value="ultimate branching"/>
 						<xs:enumeration value="ultimate branching lateral leaves"/>
 						<xs:enumeration value="ultimate leaflets"/>
+						<xs:enumeration value="ultimate ramification"/>
 						<xs:enumeration value="ultimate ramules"/>
 						<xs:enumeration value="ultimate segments"/>
 						<xs:enumeration value="umbels"/>
@@ -1696,12 +1719,14 @@
 						<xs:enumeration value="vertical shoots"/>
 						<xs:enumeration value="vertical wings"/>
 						<xs:enumeration value="vessels"/>
+						<xs:enumeration value="villi"/>
 						<xs:enumeration value="wall"/>
 						<xs:enumeration value="warts"/>
 						<xs:enumeration value="whorls"/>
 						<xs:enumeration value="width"/>
 						<xs:enumeration value="wings"/>
 						<xs:enumeration value="wood"/>
+						<xs:enumeration value="wood section"/>
 						<xs:enumeration value="wood structure"/>
 						<xs:enumeration value="woody cylinder"/>
 						<xs:enumeration value="woody plants"/>
@@ -1993,6 +2018,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 						<xs:enumeration value="fruit anatomy"/>
 						<xs:enumeration value="fruits"/>
 						<xs:enumeration value="fruits and seeds"/>
+						<xs:enumeration value="galls"/>
 						<xs:enumeration value="gametophyte morphology"/>
 						<xs:enumeration value="geography"/>
 						<xs:enumeration value="germination"/>
@@ -2074,10 +2100,17 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 			<xs:documentation>figure title</xs:documentation>
 		</xs:annotation>
 	</xs:element>
-	<xs:element name="fullDate" type="xs:string">
+	<xs:element name="fullDate">
 		<xs:annotation>
 			<xs:documentation>freetext dates for dates that don't fit into the other types</xs:documentation>
 		</xs:annotation>
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:string">
+					<xs:attribute name="doubtful" type="xs:boolean"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
 	</xs:element>
 	<xs:element name="fullName">
 		<xs:annotation>
@@ -2929,6 +2962,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:documentation>name parts, citations, homonyms, and basionyms, also author comments</xs:documentation>
 				</xs:annotation>
 			</xs:element>
+			<xs:element ref="toKey" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:choice>
 		<xs:attribute name="class">
 			<xs:simpleType>
@@ -2941,6 +2975,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="abnormal small leaves"/>
 					<xs:enumeration value="aborted anthers"/>
 					<xs:enumeration value="aborted capsules"/>
+					<xs:enumeration value="aborted flowers"/>
 					<xs:enumeration value="aborted locules"/>
 					<xs:enumeration value="aborted male flower ovary"/>
 					<xs:enumeration value="accessory bundles"/>
@@ -3109,6 +3144,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="calyx lobes"/>
 					<xs:enumeration value="calyx remains"/>
 					<xs:enumeration value="cambium"/>
+					<xs:enumeration value="canals"/>
 					<xs:enumeration value="capitulum"/>
 					<xs:enumeration value="capsules"/>
 					<xs:enumeration value="carina"/>
@@ -3179,6 +3215,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="costular areoles"/>
 					<xs:enumeration value="costules"/>
 					<xs:enumeration value="cotyledons"/>
+					<xs:enumeration value="cotyledonated part"/>
 					<xs:enumeration value="cracks"/>
 					<xs:enumeration value="cristates"/>
 					<xs:enumeration value="cross veins"/>
@@ -3196,6 +3233,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="deciduous parts"/>
 					<xs:enumeration value="deciduous sepals"/>
 					<xs:enumeration value="dehiscence"/>
+					<xs:enumeration value="denticles"/>
 					<xs:enumeration value="development"/>
 					<xs:enumeration value="diameter"/>
 					<xs:enumeration value="diaphragm"/>
@@ -3204,6 +3242,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="dimorphous plants"/>
 					<xs:enumeration value="dimples"/>
 					<xs:enumeration value="disk"/>
+					<xs:enumeration value="disk and pistil"/>
 					<xs:enumeration value="dissected fronds"/>
 					<xs:enumeration value="distal adnate pinnae"/>
 					<xs:enumeration value="distal pinnae"/>
@@ -3330,6 +3369,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="floral bract stipules"/>
 					<xs:enumeration value="floral bracts"/>
 					<xs:enumeration value="floral buds"/>
+					<xs:enumeration value="floral characters"/>
 					<xs:enumeration value="floral leaves"/>
 					<xs:enumeration value="floral scapes"/>
 					<xs:enumeration value="floration"/>
@@ -3368,6 +3408,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="fourth cycle"/>
 					<xs:enumeration value="fourth flower"/>
 					<xs:enumeration value="fourth pair of pinnae"/>
+					<xs:enumeration value="foveoles"/>
 					<xs:enumeration value="free part of interfloral bracts"/>
 					<xs:enumeration value="free part of the apex"/>
 					<xs:enumeration value="free part of the drupe"/>
@@ -3429,11 +3470,14 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="glumes"/>
 					<xs:enumeration value="glumes and lemmas"/>
 					<xs:enumeration value="grain"/>
+					<xs:enumeration value="green parts"/>
 					<xs:enumeration value="groove"/>
 					<xs:enumeration value="ground tissue"/>
 					<xs:enumeration value="growth"/>
 					<xs:enumeration value="growth rings"/>
 					<xs:enumeration value="gutter"/>
+					<xs:enumeration value="gynandroecium"/>
+					<xs:enumeration value="gynandrophore"/>
 					<xs:enumeration value="gynobasis"/>
 					<xs:enumeration value="gynoecium"/>
 					<xs:enumeration value="gynophore"/>
@@ -3445,6 +3489,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="head"/>
 					<xs:enumeration value="heartwood"/>
 					<xs:enumeration value="height"/>
+					<xs:enumeration value="heliophile lamina"/>
 					<xs:enumeration value="hemicapsules"/>
 					<xs:enumeration value="herbaceous habit"/>
 					<xs:enumeration value="hermaphrodite flowers"/>
@@ -3747,6 +3792,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="male synflorescences"/>
 					<xs:enumeration value="marginal edges"/>
 					<xs:enumeration value="marginal false veins"/>
+					<xs:enumeration value="marginal strips"/>
 					<xs:enumeration value="marginal veins"/>
 					<xs:enumeration value="margins"/>
 					<xs:enumeration value="margins and veins"/>
@@ -3824,6 +3870,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="non-fleshy parts"/>
 					<xs:enumeration value="notches"/>
 					<xs:enumeration value="note"/>
+					<xs:enumeration value="number"/>
 					<xs:enumeration value="number of flowers"/>
 					<xs:enumeration value="number of folioles"/>
 					<xs:enumeration value="number of follicles"/>
@@ -3899,6 +3946,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="pennate veins"/>
 					<xs:enumeration value="perianth"/>
 					<xs:enumeration value="perianth divisions"/>
+					<xs:enumeration value="perianth parts"/>
 					<xs:enumeration value="pericarp"/>
 					<xs:enumeration value="periderm"/>
 					<xs:enumeration value="perigone"/>
@@ -3910,6 +3958,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="peristome"/>
 					<xs:enumeration value="persistance"/>
 					<xs:enumeration value="persistent base fronds"/>
+					<xs:enumeration value="persistent parts"/>
 					<xs:enumeration value="petal shape"/>
 					<xs:enumeration value="petals"/>
 					<xs:enumeration value="petiolated leaves"/>
@@ -3951,6 +4000,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="plank buttresses"/>
 					<xs:enumeration value="plant sexuality"/>
 					<xs:enumeration value="plant size"/>
+					<xs:enumeration value="plumules"/>
 					<xs:enumeration value="plurilocular ovary"/>
 					<xs:enumeration value="pneumatophore roots"/>
 					<xs:enumeration value="podogynium"/>
@@ -4019,6 +4069,8 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="receptacle-tube"/>
 					<xs:enumeration value="receptacular paraphyses"/>
 					<xs:enumeration value="reduced leaves"/>
+					<xs:enumeration value="rehydrated flowers"/>
+					<xs:enumeration value="rehydrated tissues"/>
 					<xs:enumeration value="replaced fronds"/>
 					<xs:enumeration value="replum"/>
 					<xs:enumeration value="resiniferous network"/>
@@ -4035,6 +4087,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="rhytidome"/>
 					<xs:enumeration value="ribs"/>
 					<xs:enumeration value="ridges"/>
+					<xs:enumeration value="rigidity"/>
 					<xs:enumeration value="roots"/>
 					<xs:enumeration value="rosettes"/>
 					<xs:enumeration value="rostrum"/>
@@ -4051,6 +4104,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="scaly leaves"/>
 					<xs:enumeration value="scarious flaps"/>
 					<xs:enumeration value="scars"/>
+					<xs:enumeration value="sciaphile lamina"/>
 					<xs:enumeration value="sclerenchyma"/>
 					<xs:enumeration value="sclerenchyma strands"/>
 					<xs:enumeration value="sclerified sheath"/>
@@ -4191,6 +4245,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="strength"/>
 					<xs:enumeration value="strobili"/>
 					<xs:enumeration value="style"/>
+					<xs:enumeration value="style and filaments"/>
 					<xs:enumeration value="style hairs"/>
 					<xs:enumeration value="style head"/>
 					<xs:enumeration value="style remains"/>
@@ -4275,6 +4330,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="ultimate branching"/>
 					<xs:enumeration value="ultimate branching lateral leaves"/>
 					<xs:enumeration value="ultimate leaflets"/>
+					<xs:enumeration value="ultimate ramification"/>
 					<xs:enumeration value="ultimate ramules"/>
 					<xs:enumeration value="ultimate segments"/>
 					<xs:enumeration value="umbels"/>
@@ -4334,12 +4390,14 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="vertical shoots"/>
 					<xs:enumeration value="vertical wings"/>
 					<xs:enumeration value="vessels"/>
+					<xs:enumeration value="villi"/>
 					<xs:enumeration value="wall"/>
 					<xs:enumeration value="warts"/>
 					<xs:enumeration value="whorls"/>
 					<xs:enumeration value="width"/>
 					<xs:enumeration value="wings"/>
 					<xs:enumeration value="wood"/>
+					<xs:enumeration value="wood section"/>
 					<xs:enumeration value="wood structure"/>
 					<xs:enumeration value="woody cylinder"/>
 					<xs:enumeration value="woody plants"/>

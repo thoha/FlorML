@@ -1,5 +1,9 @@
 FlorML is an XML schema for marking up legacy and modern taxonomic works, such as floras and faunas.
 
+AVAILABILITY:
+FlorML can be downloaded from these two Github repos:
+https://github.com/thoha/FlorML
+https://github.com/naturalis/FlorML
 
 MANUAL:
 Documentation is available on request. Basic instructions are included in the XML schema.
@@ -20,4 +24,4 @@ FlorML is licensed under a Creative Commons Attribution-ShareAlike 3.0 Unported 
 
 
 COPYRIGHT:
-Copyright Thomas Hamann 2010-2013. 
+Copyright Thomas Hamann 2010-2014. 
