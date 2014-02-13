@@ -383,6 +383,7 @@
 						<xs:enumeration value="appendages"/>
 						<xs:enumeration value="areoles"/>
 						<xs:enumeration value="aril"/>
+						<xs:enumeration value="arillodes"/>
 						<xs:enumeration value="aroma"/>
 						<xs:enumeration value="arrangement"/>
 						<xs:enumeration value="articles"/>
@@ -539,6 +540,7 @@
 						<xs:enumeration value="cores"/>
 						<xs:enumeration value="cork"/>
 						<xs:enumeration value="cork warts"/>
+						<xs:enumeration value="corms"/>
 						<xs:enumeration value="corolla"/>
 						<xs:enumeration value="corolla lobes"/>
 						<xs:enumeration value="corona"/>
@@ -832,6 +834,7 @@
 						<xs:enumeration value="hemicapsules"/>
 						<xs:enumeration value="herbaceous habit"/>
 						<xs:enumeration value="hermaphrodite flowers"/>
+						<xs:enumeration value="hermaphrodite inflorescences"/>
 						<xs:enumeration value="heteromorphy"/>
 						<xs:enumeration value="heterophylly"/>
 						<xs:enumeration value="heterostyly"/>
@@ -1223,6 +1226,7 @@
 						<xs:enumeration value="number of petals"/>
 						<xs:enumeration value="number of pinnae"/>
 						<xs:enumeration value="number of stamens"/>
+						<xs:enumeration value="number of tepals"/>
 						<xs:enumeration value="nutlets"/>
 						<xs:enumeration value="nuts"/>
 						<xs:enumeration value="ochrea"/>
@@ -1453,6 +1457,7 @@
 						<xs:enumeration value="scaly leaves"/>
 						<xs:enumeration value="scarious flaps"/>
 						<xs:enumeration value="scars"/>
+						<xs:enumeration value="schizocarps"/>
 						<xs:enumeration value="sciaphile lamina"/>
 						<xs:enumeration value="sclerenchyma"/>
 						<xs:enumeration value="sclerenchyma strands"/>
@@ -1601,6 +1606,7 @@
 						<xs:enumeration value="style hairs"/>
 						<xs:enumeration value="style head"/>
 						<xs:enumeration value="style remains"/>
+						<xs:enumeration value="stylopodia"/>
 						<xs:enumeration value="subepidermal bundles"/>
 						<xs:enumeration value="subfloral peduncle"/>
 						<xs:enumeration value="submarginal veins"/>
@@ -1907,6 +1913,7 @@
 						<xs:enumeration value="rare"/>
 						<xs:enumeration value="common"/>
 						<xs:enumeration value="extensive"/>
+						<xs:enumeration value="uncommon"/>
 						<xs:enumeration value="widespread"/>
 					</xs:restriction>
 				</xs:simpleType>
@@ -3082,6 +3089,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="appendages"/>
 					<xs:enumeration value="areoles"/>
 					<xs:enumeration value="aril"/>
+					<xs:enumeration value="arillodes"/>
 					<xs:enumeration value="aroma"/>
 					<xs:enumeration value="arrangement"/>
 					<xs:enumeration value="articles"/>
@@ -3238,6 +3246,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="cores"/>
 					<xs:enumeration value="cork"/>
 					<xs:enumeration value="cork warts"/>
+					<xs:enumeration value="corms"/>
 					<xs:enumeration value="corolla"/>
 					<xs:enumeration value="corolla lobes"/>
 					<xs:enumeration value="corona"/>
@@ -3531,6 +3540,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="hemicapsules"/>
 					<xs:enumeration value="herbaceous habit"/>
 					<xs:enumeration value="hermaphrodite flowers"/>
+					<xs:enumeration value="hermaphrodite inflorescences"/>
 					<xs:enumeration value="heteromorphy"/>
 					<xs:enumeration value="heterophylly"/>
 					<xs:enumeration value="heterostyly"/>
@@ -3922,6 +3932,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="number of petals"/>
 					<xs:enumeration value="number of pinnae"/>
 					<xs:enumeration value="number of stamens"/>
+					<xs:enumeration value="number of tepals"/>
 					<xs:enumeration value="nutlets"/>
 					<xs:enumeration value="nuts"/>
 					<xs:enumeration value="ochrea"/>
@@ -4152,6 +4163,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="scaly leaves"/>
 					<xs:enumeration value="scarious flaps"/>
 					<xs:enumeration value="scars"/>
+					<xs:enumeration value="schizocarps"/>
 					<xs:enumeration value="sciaphile lamina"/>
 					<xs:enumeration value="sclerenchyma"/>
 					<xs:enumeration value="sclerenchyma strands"/>
@@ -4300,6 +4312,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="style hairs"/>
 					<xs:enumeration value="style head"/>
 					<xs:enumeration value="style remains"/>
+					<xs:enumeration value="stylopodia"/>
 					<xs:enumeration value="subepidermal bundles"/>
 					<xs:enumeration value="subfloral peduncle"/>
 					<xs:enumeration value="submarginal veins"/>
@@ -4895,8 +4908,16 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:documentation>name citations</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element name="homonym" type="homonymType" minOccurs="0" maxOccurs="unbounded"/>
-			<xs:element name="basionym" type="basionymType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="homonym" type="homonymType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>deprecated, use nom class="homonym" instead</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="basionym" type="basionymType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>deprecated, use nom class="basionym" instead</xs:documentation>
+				</xs:annotation>
+			</xs:element>
 			<xs:element name="annotation" type="annotationType" minOccurs="0" maxOccurs="unbounded">
 				<xs:annotation>
 					<xs:documentation>annotation by treatment author</xs:documentation>
@@ -5028,6 +5049,8 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 			</xs:element>
 			<xs:element name="footnoteRef" type="footnoteTypeRef" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="footnote" type="footnoteType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="sup" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="sub" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:choice>
 		<xs:attribute name="class" use="required">
 			<xs:annotation>
