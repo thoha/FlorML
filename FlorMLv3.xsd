@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- FlorML -->
 <!-- edited with XMLSpy v2011 rel. 3 sp1 (x64) (http://www.altova.com) by Thomas Hamann (NHN) -->
 <!-- Mit XMLSpy v2011 sp1 (http://www.altova.com) von Andreas Müller (BGBM) bearbeitet -->
 <!-- FlorML is licensed under a Creative Commons Attribution-ShareAlike 3.0 Unported license -->
@@ -134,9 +135,6 @@
 			<xs:documentation>altitude</xs:documentation>
 		</xs:annotation>
 		<xs:complexType mixed="true">
-			<xs:sequence>
-				<xs:element ref="value" minOccurs="0" maxOccurs="unbounded"/>
-			</xs:sequence>
 			<xs:attribute name="estimate" type="xs:boolean">
 				<xs:annotation>
 					<xs:documentation>if altitude is explicitly indicated to be estimate, set to true.</xs:documentation>
@@ -190,10 +188,14 @@
 				<xs:element name="refPart" type="refPartType" minOccurs="0" maxOccurs="unbounded"/>
 				<xs:element ref="name" maxOccurs="unbounded">
 					<xs:annotation>
-						<xs:documentation>name parts</xs:documentation>
+						<xs:documentation>in this location always use with class="vernacular", one set of tags for each vernacular name.</xs:documentation>
 					</xs:annotation>
 				</xs:element>
-				<xs:element ref="localLanguage" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="localLanguage" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>local language (for vernacular names). One set of tags per local language.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
 				<xs:element ref="translation" minOccurs="0" maxOccurs="unbounded"/>
 				<xs:element ref="locality" minOccurs="0" maxOccurs="unbounded"/>
 				<xs:element name="annotation" type="annotationType" minOccurs="0" maxOccurs="unbounded">
@@ -230,8 +232,6 @@
 		</xs:annotation>
 		<xs:complexType mixed="true">
 			<xs:choice maxOccurs="unbounded">
-				<xs:element ref="b" minOccurs="0" maxOccurs="unbounded"/>
-				<xs:element ref="i" minOccurs="0" maxOccurs="unbounded"/>
 				<xs:element name="annotation" type="annotationType" minOccurs="0" maxOccurs="unbounded">
 					<xs:annotation>
 						<xs:documentation>annotation by the treatment's author</xs:documentation>
@@ -263,8 +263,6 @@
 		</xs:annotation>
 		<xs:complexType mixed="true">
 			<xs:choice maxOccurs="unbounded">
-				<xs:element ref="childChar" minOccurs="0"/>
-				<xs:element ref="charClass" minOccurs="0"/>
 				<xs:element name="subHeading" type="subheadingType" minOccurs="0" maxOccurs="unbounded"/>
 				<xs:element name="gathering" type="gatheringType" minOccurs="0" maxOccurs="unbounded"/>
 				<xs:element name="footnoteRef" type="footnoteTypeRef" minOccurs="0"/>
@@ -289,6 +287,12 @@
 				<xs:element ref="subChar" minOccurs="0" maxOccurs="unbounded">
 					<xs:annotation>
 						<xs:documentation>subcharacter</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="childChar" minOccurs="0"/>
+				<xs:element ref="charClass" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>for any character classes not included in elements char and subChar, only use when for some reason you cannot or do not want to update the XML schema with additional character classes.</xs:documentation>
 					</xs:annotation>
 				</xs:element>
 				<xs:element ref="toKey" minOccurs="0" maxOccurs="unbounded"/>
@@ -1899,7 +1903,6 @@
 		<xs:complexType mixed="true">
 			<xs:sequence>
 				<xs:element name="coordinates" type="coordinatesType" minOccurs="0"/>
-				<xs:element ref="distributionLocality" minOccurs="0" maxOccurs="unbounded"/>
 			</xs:sequence>
 			<xs:attribute name="class" use="required">
 				<xs:simpleType>
@@ -2506,7 +2509,11 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 						<xs:documentation>name parts</xs:documentation>
 					</xs:annotation>
 				</xs:element>
-				<xs:element ref="acceptedName" minOccurs="0"/>
+				<xs:element ref="acceptedName" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>deprecated. Use nom class="basionym" instead.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
 				<xs:element name="typeNotes" type="notesType" minOccurs="0">
 					<xs:annotation>
 						<xs:documentation>Notes on the type or the type status. DON'T put nomenclatural notes in here!</xs:documentation>
@@ -2618,10 +2625,18 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 		<xs:complexType mixed="true">
 			<xs:choice maxOccurs="unbounded">
 				<xs:element ref="fullType" minOccurs="0"/>
-				<xs:element ref="typeStatus" minOccurs="0"/>
+				<xs:element ref="typeStatus" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>deprecated, use collectionAndType instead.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
 				<xs:element name="gathering" type="gatheringType" minOccurs="0"/>
 				<xs:element ref="originalDetermination" minOccurs="0"/>
-				<xs:element ref="specimenType" minOccurs="0"/>
+				<xs:element ref="specimenType" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Do not use in this location</xs:documentation>
+					</xs:annotation>
+				</xs:element>
 				<xs:element name="citation" type="citationType" minOccurs="0" maxOccurs="unbounded">
 					<xs:annotation>
 						<xs:documentation>one citation</xs:documentation>
@@ -2999,7 +3014,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 			<xs:element ref="childChar" minOccurs="0"/>
 			<xs:element ref="charClass" minOccurs="0">
 				<xs:annotation>
-					<xs:documentation>for any character classes not included in elements char and subChar, only use when you cannot update the XML schema with additional character classes.</xs:documentation>
+					<xs:documentation>for any character classes not included in elements char and subChar, only use when for some reason you cannot or do not want to update the XML schema with additional character classes.</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="subHeading" type="subheadingType" minOccurs="0" maxOccurs="unbounded"/>
@@ -4599,18 +4614,38 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 			</xs:element>
 			<xs:element name="collectionAndType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="fieldNum" minOccurs="0" maxOccurs="unbounded"/>
-			<xs:element ref="alternativeFieldNum" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="alternativeFieldNum" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>alternative number, use only for actual alternative numbers.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
 			<xs:element ref="fullName" minOccurs="0"/>
 			<xs:element ref="locality" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="dates" type="datesType" minOccurs="0"/>
 			<xs:element name="string" type="stringType" minOccurs="0" maxOccurs="unbounded"/>
-			<xs:element ref="collectionStatus" minOccurs="0"/>
-			<xs:element ref="collectionTypeStatus" minOccurs="0"/>
-			<xs:element ref="alternativeCollectionTypeStatus" minOccurs="0" maxOccurs="unbounded"/>
-			<xs:element ref="subCollection" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="collectionStatus" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>deprecated, use collectionAndType instead. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="collectionTypeStatus" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>deprecated, use collectionAndType instead.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="alternativeCollectionTypeStatus" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>deprecated, use collectionAndType instead.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="subCollection" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>subcollection, e.g. flowers, fruits, buds, leaves</xs:documentation>
+				</xs:annotation>
+			</xs:element>
 			<xs:element name="subGathering" minOccurs="0" maxOccurs="unbounded">
 				<xs:annotation>
-					<xs:documentation>e.g. flowers, fruits, buds, leaves, often followed by a dat</xs:documentation>
+					<xs:documentation>e.g. flowers, fruits, buds, leaves, often followed by a date. Deprecated, use subCollection instead and atomize the date.</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="typeNotes" type="notesType" minOccurs="0">
@@ -4715,7 +4750,11 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 			<xs:documentation>figure</xs:documentation>
 		</xs:annotation>
 		<xs:choice maxOccurs="unbounded">
-			<xs:element ref="figureTitle" minOccurs="0"/>
+			<xs:element ref="figureTitle" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>deprecated - use figureLegend instead</xs:documentation>
+				</xs:annotation>
+			</xs:element>
 			<xs:element ref="num" minOccurs="0">
 				<xs:annotation>
 					<xs:documentation>figure number</xs:documentation>
@@ -4999,7 +5038,6 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:documentation>annotation by treatment author</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element ref="vernacularNames" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="nomenclaturalNotes" type="notesType" minOccurs="0" maxOccurs="unbounded">
 				<xs:annotation>
 					<xs:documentation>This element should only be used for notes on the nomenclature in general, not for single names or homotypes. Example: 'For more complete synonymy and references, see Meijer and Veldkamp...'</xs:documentation>
@@ -5116,8 +5154,6 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 			<xs:documentation>reference atomization</xs:documentation>
 		</xs:annotation>
 		<xs:choice maxOccurs="unbounded">
-			<xs:element ref="b" minOccurs="0" maxOccurs="unbounded"/>
-			<xs:element ref="i" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="annotation" type="annotationType" minOccurs="0" maxOccurs="unbounded">
 				<xs:annotation>
 					<xs:documentation>annotation by the treatment's author</xs:documentation>
@@ -5125,6 +5161,8 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 			</xs:element>
 			<xs:element name="footnoteRef" type="footnoteTypeRef" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="footnote" type="footnoteType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="b" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="i" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="sup" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="sub" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:choice>
@@ -5244,7 +5282,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 			<xs:element ref="distributionScope" minOccurs="0"/>
 			<xs:element ref="habitat" minOccurs="0" maxOccurs="unbounded">
 				<xs:annotation>
-					<xs:documentation>habitat. Only valid in feature[class="habitat"] context</xs:documentation>
+					<xs:documentation>habitat. Only valid in feature class "habitat", "habitatecology" or "ecology" context</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="figureRef" type="figureRefType" minOccurs="0" maxOccurs="unbounded"/>
@@ -5851,7 +5889,11 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 	</xs:complexType>
 	<xs:complexType name="vernacularNamesType">
 		<xs:choice maxOccurs="unbounded">
-			<xs:element ref="vernacularName" maxOccurs="unbounded"/>
+			<xs:element ref="vernacularName" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>one set of synonymous vernacular names shared in one of more languages</xs:documentation>
+				</xs:annotation>
+			</xs:element>
 		</xs:choice>
 	</xs:complexType>
 	<xs:complexType name="childCharType" mixed="true">
