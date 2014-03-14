@@ -1829,9 +1829,18 @@
 		</xs:annotation>
 		<xs:complexType mixed="true">
 			<xs:choice>
-				<xs:element ref="collectionTypeStatus" minOccurs="0"/>
-				<xs:element ref="alternativeCollectionTypeStatus" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="collectionTypeStatus" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>deprecated, use collectionAndType instead. </xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="alternativeCollectionTypeStatus" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>deprecated, use collectionAndType instead. </xs:documentation>
+					</xs:annotation>
+				</xs:element>
 				<xs:element ref="subCollection" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element name="collectionAndType" minOccurs="0" maxOccurs="unbounded"/>
 			</xs:choice>
 			<xs:attribute name="status">
 				<xs:simpleType>
