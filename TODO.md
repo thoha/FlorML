@@ -40,14 +40,14 @@ with perlcritic, and documentation validity and code coverage tests.
 
 FOLDER STRUCTURE
 ================
-`/lib
-    /Bio
-        /Flora
-              /Model/ (modules for the Model layer)
-              /View/ (modules for the View layer)
-              /Controller/ (modules for the Controller layer)
-/script (simple driver scripts)
-/t (unit tests)
-/templates (templating input files)
-/data (input OCR)
-/conf (configuration files)`
+    /lib
+        /Bio
+            /Flora
+                  /Model/ (modules for the Model layer)
+                  /View/ (modules for the View layer)
+                  /Controller/ (modules for the Controller layer)
+    /script (simple driver scripts)
+    /t (unit tests)
+    /templates (templating input files)
+    /data (input OCR)
+    /conf (configuration files)
