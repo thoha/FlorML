@@ -13,19 +13,19 @@ FlorML or whichever other representation is needed. The basic idea
 is that in the end statements such as the following become possible
 in the template:
 
-    `<feature class="[% feature.class %]">
-        <heading>[% feature.heading %]</heading>
-        <string>[% feature.string %]</string>
-        <references>
-            <subHeading>References:</subHeading><reference>
+    &lt;feature class="[% feature.class %]">
+        &lt;heading>[% feature.heading %]&lt;/heading>
+        &lt;string>[% feature.string %]&lt;/string>
+        &lt;references>
+            &lt;subHeading>References:&lt;/subHeading>
             [% FOREACH ref = feature.references %]
-                <reference>
-                    <refPart class="author">[% ref.author %]</refPart>
-                    <!-- etc. -->
-                </reference>
+                &lt;reference>
+                    &lt;refPart class="author">[% ref.author %]&lt;/refPart>
+                    &lt;!-- etc. -->
+                &lt;/reference>
             [% END %]
-        </references>
-    </feature>`
+        &lt;/references>
+    &lt;/feature>
 
 To orchestrate and enable the pipeline to go from raw OCR text to valid
 FlorML as generated through the API, the Controller layer 
