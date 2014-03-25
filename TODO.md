@@ -13,7 +13,7 @@ FlorML or whichever other representation is needed. The basic idea
 is that in the end statements such as the following become possible
 in the template:
 
-    <feature class="[% feature.class %]">
+    `<feature class="[% feature.class %]">
         <heading>[% feature.heading %]</heading>
         <string>[% feature.string %]</string>
         <references>
@@ -25,7 +25,7 @@ in the template:
                 </reference>
             [% END %]
         </references>
-    </feature>
+    </feature>`
 
 To orchestrate and enable the pipeline to go from raw OCR text to valid
 FlorML as generated through the API, the Controller layer 
