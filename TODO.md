@@ -17,19 +17,19 @@ is needed.
 The basic idea is that in the end statements such as the following 
 become possible in the template:
 
-    &lt;feature class="[% feature.class %]">
-        &lt;heading>[% feature.heading %]&lt;/heading>
-        &lt;string>[% feature.string %]&lt;/string>
-        &lt;references>
-            &lt;subHeading>References:&lt;/subHeading>
+    <feature class="[% feature.class %]">
+        <heading>[% feature.heading %]</heading>
+        <string>[% feature.string %]</string>
+        <references>
+            <subHeading>References:</subHeading>
             [% FOREACH ref = feature.references %]
-                &lt;reference>
-                    &lt;refPart class="author">[% ref.author %]&lt;/refPart>
-                    &lt;!-- etc. -->
-                &lt;/reference>
+                <reference>
+                    <refPart class="author">[% ref.author %]</refPart>
+                    <!-- etc. -->
+                </reference>
             [% END %]
-        &lt;/references>
-    &lt;/feature>
+        </references>
+    </feature>
 
 To orchestrate and enable the pipeline to go from raw OCR text to valid
 FlorML as generated through the API, the Controller layer 
