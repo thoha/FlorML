@@ -9,12 +9,30 @@ objects (more deeply nested elements) instantiating the appropriate
 contained objects as needed. This gives the advantage that the Model
 can be manipulated and traversed from within the View layer, 
 (Bio::Flora::View) which should use a templating system to generate
-FlorML or whichever other representation is needed.
+FlorML or whichever other representation is needed. The basic idea
+is that in the end statements such as the following become possible
+in the template:
+
+    <!-- earlier processing here -->
+    <feature class="[% feature.class %]">
+        <heading>[% feature.heading %]</heading>
+        <string>[% feature.string %]</string>
+        <references>
+            <subHeading>References:</subHeading><reference>
+            [% FOREACH ref = feature.references %]
+                <reference>
+                    <refPart class="author">[% ref.author %]</refPart>
+                    <!-- etc. -->
+                </reference>
+            [% END %]
+        </references>
+    </feature>
+    <!-- more processing here -->
 
 To orchestrate and enable the pipeline to go from raw OCR text to valid
-FlorML, the Controller layer (Bio::Flora::Controller) performs pre-
-processing and data extraction. At least the following services should
-be provided:
+FlorML as generated through the API, the Controller layer 
+(Bio::Flora::Controller) performs pre-processing and data extraction. 
+At least the following services should be provided:
 
 1. OCRCleaner - has a stream-based interface to correct frequently-
 encountered mistakes in optical character recognition.
