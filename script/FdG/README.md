@@ -27,21 +27,25 @@ Running order for Flore du Gabon scripts
 
 This was the running order for the Perl scripts for Flore du Gabon:
 
-# `nettoyeur.plx` (clean-up)
-# `reparocr.plx` (OCR fixing). At this point, insert empty lines between taxa.
-# `pubtags_fr.plx` (first and last publication and taxon tags, metadata base tags)
-# `taxontags_fr.plx` (other taxon tags)
-# `clestags.plx` (keys)
-# `planches.plx` (figures)
-# `notesbaspages.plx` (footnotes)
-# At this point, manually insert tags for tables, lists and line breaks and remove newlines after line breaks in descriptions and distributions.
-# `featuresfr.plx` (basic feature tags) 
-# (If many descriptions are missed by the previous script, consider adding the basic description mark-up before running the next script)
-# `nomenclaturefr.plx` (nomenclature, types)
-# At this point, manually insert other feature tags including string tags and headings , etc.
-# `atomiseur.plx` (atomisation, step 1: nomenclature, types, distribution data, vernacular names, descriptions, etc.)
-# `annotationsfr.plx` (annotations)
-# `entities.plx` (special symbols)
+1. `nettoyeur.plx` (clean-up)
+2. `reparocr.plx` (OCR fixing). At this point, insert empty lines between taxa.
+3. `pubtags_fr.plx` (first and last publication and taxon tags, metadata base tags)
+4. `taxontags_fr.plx` (other taxon tags)
+5. `clestags.plx` (keys)
+6. `planches.plx` (figures)
+7. `notesbaspages.plx` (footnotes)
+    At this point, manually insert tags for tables, lists and line breaks and remove
+    newlines after line breaks in descriptions and distributions.
+8. `featuresfr.plx` (basic feature tags) 
+    (If many descriptions are missed by the previous script, consider adding the basic
+    description mark-up before running the next script)
+9. `nomenclaturefr.plx` (nomenclature, types)
+    At this point, manually insert other feature tags including string tags and headings,
+    etc.
+10. `atomiseur.plx` (atomisation, step 1: nomenclature, types, distribution data, 
+    vernacular names, descriptions, etc.)
+11. `annotationsfr.plx` (annotations)
+12. `entities.plx` (special symbols)
 
 Additional scripts
 ======================
