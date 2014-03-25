@@ -40,7 +40,7 @@ with perlcritic, and documentation validity and code coverage tests.
 
 FOLDER STRUCTURE
 ================
-/lib
+`/lib
     /Bio
         /Flora
               /Model/ (modules for the Model layer)
@@ -50,4 +50,4 @@ FOLDER STRUCTURE
 /t (unit tests)
 /templates (templating input files)
 /data (input OCR)
-/conf (configuration files)
+/conf (configuration files)`
