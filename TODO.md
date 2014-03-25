@@ -3,15 +3,19 @@ SEPARATION OF CONCERNS
 The suggested replacement API follows roughly the MVC design pattern
 (http://en.wikipedia.org/wiki/Model-view-controller). The Model
 layer (Bio::Flora::Model) contains object representations of the 
-complex types in the FlorML schema. Instances of these objects will
-be streamed through lazy evaluation from the input data, with container
-objects (more deeply nested elements) instantiating the appropriate
-contained objects as needed. This gives the advantage that the Model
-can be manipulated and traversed from within the View layer, 
-(Bio::Flora::View) which should use a templating system to generate
-FlorML or whichever other representation is needed. The basic idea
-is that in the end statements such as the following become possible
-in the template:
+complex types in the FlorML schema. 
+
+Instances of these objects will be streamed through lazy evaluation from the 
+input data, with container objects (more deeply nested elements) instantiating 
+the appropriate contained objects as needed. 
+
+This gives the advantage that the Model can be manipulated and traversed 
+from within the View layer, (Bio::Flora::View) which should use a 
+templating system to generate FlorML or whichever other representation 
+is needed. 
+
+The basic idea is that in the end statements such as the following 
+become possible in the template:
 
     &lt;feature class="[% feature.class %]">
         &lt;heading>[% feature.heading %]&lt;/heading>
