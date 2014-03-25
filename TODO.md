@@ -1,5 +1,5 @@
-DESIGN PATTERN
-==============
+SEPARATION OF CONCERNS
+======================
 The suggested replacement API follows roughly the MVC design pattern
 (http://en.wikipedia.org/wiki/Model-view-controller). The Model
 layer (Bio::Flora::Model) contains object representations of the 
