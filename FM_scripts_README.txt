@@ -1,7 +1,8 @@
 ﻿README for Flora Malesiana scripts
+==================================
 
-================================================================================
 CONTENTS:
+=========
 
 I. Introduction
 II. Requirements and syntax used
@@ -9,18 +10,15 @@ III. Running order for Flora Malesiana scripts
 IV. Additional script
 V. Licensing
 
-================================================================================
-
 I. Introduction
+===============
 
-The FM_scripts.zip ZIP file contains the Perl scripts that were used to add 
+This folder contains the Perl scripts that were used to add 
 mark-up to Flora Malesiana. These scripts were created while doing the actual 
 production work for Flora Malesiana, and so evolved along the way.
 
-
-================================================================================
-
 II. Requirements and syntax used
+================================
 
 The scripts are written in the Perl language and make liberal use of Perl's 
 regular expression capabilities. They require a recent version of Perl 5 with 
@@ -29,12 +27,10 @@ Unicode support (version 5.16 or later should work).
 Scripts are run from the Windows Command Prompt (or Mac OS X Terminal or 
 whatever Unix/Linux shell you wish to use) using the following syntax:
 
-perl [script name] [input XML file] [output XML file]
-
-
-================================================================================
+ `perl <script name> <input XML file> <output XML file>`
 
 II. Running order for Flora Malesiana scripts
+=============================================
 
 This was the running order for the Perl scripts for Flora Malesiana:
 
@@ -62,25 +58,16 @@ remove newlines after line breaks in descriptions and distributions.
 15)	annotations.plx (author comments/annotations)
 16)	entities.plx (special symbols)
 
-
-================================================================================
-
 IV. Additional script
+=====================
 
 figurl_fr.plx (adds figure URLs to a mostly marked up file)
 
-
-================================================================================
-
 V. Licensing
+============
 
 The Flora Malesiana mark-up scripts and this README are licensed under a 
 Creative Commons Attribution-ShareAlike 3.0 Unported license.
 
 
 Copyright Thomas Hamann 2014
-
-================================================================================
-
-
-
