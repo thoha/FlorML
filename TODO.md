@@ -37,7 +37,7 @@ become possible in the [template](http://www.template-toolkit.org/):
             <!-- Bio::FlorML::Model::Feature object instantiates
                  Bio::FlorML::Model::Reference objects as they are 
                  read from the cleaned, tokenized data stream -->
-            [% WHILE ref = feature.next_reference %]
+            [% WHILE (ref = feature.next_reference) %]
                 <reference>
                     <refPart class="author">[% ref.author %]</refPart>
                     <!-- etc. -->
