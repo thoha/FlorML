@@ -12,7 +12,9 @@ the appropriate contained objects as needed.
 This gives the advantage that the Model can be manipulated and traversed 
 from within the View layer, (Bio::FlorML::View) which should use a 
 templating system to generate FlorML or whichever other representation 
-is needed. 
+is needed. An example of a different view, made possible by traversing the
+same model objects in a different template, might be to export selected
+data to (*.obo)[http://www.geneontology.org/GO.format.obo-1_2.shtml] format.
 
 The basic idea is that in the end statements such as the following 
 become possible in the template:
