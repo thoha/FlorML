@@ -12,14 +12,17 @@ the appropriate contained objects as needed.
 This gives the advantage that the Model can be manipulated and traversed 
 from within the View layer, (Bio::FlorML::View) which should use a 
 templating system to generate FlorML or whichever other representation 
-is needed. An example of a different view, made possible by traversing the
-same model objects in a different template, might be to export selected
-data to [*.obo](http://www.geneontology.org/GO.format.obo-1_2.shtml) format
+is needed. 
+
+An example of a different view, made possible by traversing the same model 
+objects in a different template, might be to export selected data to
+[*.obo](http://www.geneontology.org/GO.format.obo-1_2.shtml) format
 for further refinement in an ontology editor such as 
 [Protege](http://protege.stanford.edu/).
 
 The basic idea is that in the end statements such as the following 
 become possible in the [template](http://www.template-toolkit.org/):
+
 
     <!-- here the template manipulates a Bio::FlorML::Model::Feature 
          object to insert properties of the object (the class name,
@@ -34,7 +37,7 @@ become possible in the [template](http://www.template-toolkit.org/):
             <!-- Bio::FlorML::Model::Feature object instantiates
                  Bio::FlorML::Model::Reference objects as they are 
                  read from the cleaned, tokenized data stream -->
-            [% FOREACH ref = feature.references %]
+            [% WHILE ref = feature.next_reference %]
                 <reference>
                     <refPart class="author">[% ref.author %]</refPart>
                     <!-- etc. -->
