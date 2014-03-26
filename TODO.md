@@ -2,7 +2,7 @@ SEPARATION OF CONCERNS
 ======================
 The suggested replacement API follows roughly the MVC design pattern
 (http://en.wikipedia.org/wiki/Model-view-controller). The Model
-layer (Bio::Flora::Model) contains object representations of the 
+layer (Bio::FlorML::Model) contains object representations of the 
 complex types in the FlorML schema. 
 
 Instances of these objects will be streamed through lazy evaluation from the 
@@ -10,7 +10,7 @@ input data, with container objects (more deeply nested elements) instantiating
 the appropriate contained objects as needed. 
 
 This gives the advantage that the Model can be manipulated and traversed 
-from within the View layer, (Bio::Flora::View) which should use a 
+from within the View layer, (Bio::FlorML::View) which should use a 
 templating system to generate FlorML or whichever other representation 
 is needed. 
 
@@ -33,7 +33,7 @@ become possible in the template:
 
 To orchestrate and enable the pipeline to go from raw OCR text to valid
 FlorML as generated through the API, the Controller layer 
-(Bio::Flora::Controller) performs pre-processing and data extraction. 
+(Bio::FlorML::Controller) performs pre-processing and data extraction. 
 At least the following services should be provided:
 
 1. OCRCleaner - has a stream-based interface to correct frequently-
@@ -62,7 +62,7 @@ FOLDER STRUCTURE
 ================
     /lib
         /Bio
-            /Flora
+            /FlorML
                   /Model/ (modules for the Model layer)
                   /View/ (modules for the View layer)
                   /Controller/ (modules for the Controller layer)
