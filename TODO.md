@@ -14,16 +14,26 @@ from within the View layer, (Bio::FlorML::View) which should use a
 templating system to generate FlorML or whichever other representation 
 is needed. An example of a different view, made possible by traversing the
 same model objects in a different template, might be to export selected
-data to (*.obo)[http://www.geneontology.org/GO.format.obo-1_2.shtml] format.
+data to [*.obo](http://www.geneontology.org/GO.format.obo-1_2.shtml) format
+for further refinement in an ontology editor such as 
+[Protege](http://protege.stanford.edu/).
 
 The basic idea is that in the end statements such as the following 
-become possible in the template:
+become possible in the [template](http://www.template-toolkit.org/):
 
+    <!-- here the template manipulates a Bio::FlorML::Model::Feature 
+         object to insert properties of the object (the class name,
+         the heading, the description string into FlorML attributes 
+         and text nodes -->
     <feature class="[% feature.class %]">
         <heading>[% feature.heading %]</heading>
         <string>[% feature.string %]</string>
         <references>
             <subHeading>References:</subHeading>
+            
+            <!-- Bio::FlorML::Model::Feature object instantiates
+                 Bio::FlorML::Model::Reference objects as they are 
+                 read from the cleaned, tokenized data stream -->
             [% FOREACH ref = feature.references %]
                 <reference>
                     <refPart class="author">[% ref.author %]</refPart>
