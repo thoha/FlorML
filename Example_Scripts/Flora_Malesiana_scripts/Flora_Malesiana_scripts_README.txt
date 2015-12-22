@@ -1,4 +1,5 @@
-﻿README for Flora Malesiana scripts
+﻿README for Flora Malesiana scripts (updated scripts will be added at the end of 
+March 2016)
 
 ================================================================================
 CONTENTS:
@@ -13,8 +14,8 @@ V. Licensing
 
 I. Introduction
 
-The FM_scripts.zip ZIP file contains the Perl scripts that were used to add 
-mark-up to Flora Malesiana. These scripts were created while doing the actual 
+The Flora_Malesiana_scripts.zip ZIP file contains the Perl scripts that were used 
+to add mark-up to Flora Malesiana. These scripts were created while doing the actual 
 production work for Flora Malesiana, and so evolved along the way.
 
 
@@ -81,6 +82,3 @@ Creative Commons Attribution-ShareAlike 3.0 Unported license.
 Copyright Thomas Hamann 2014
 
 ================================================================================
-
-
-
