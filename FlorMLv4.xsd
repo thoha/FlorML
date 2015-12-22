@@ -528,6 +528,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 				</xs:annotation>
 				<xs:simpleType>
 					<xs:restriction base="xs:string">
+						<xs:enumeration value="acknowledgements"/>
 						<xs:enumeration value="abbreviations"/>
 						<xs:enumeration value="alternate description"/>
 						<xs:enumeration value="anatomy"/>
@@ -675,6 +676,11 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 			<xs:documentation>unatomized name (atomized name is preferred)</xs:documentation>
 		</xs:annotation>
 		<xs:complexType mixed="true">
+			<xs:attribute name="freetextName" type="xs:boolean">
+				<xs:annotation>
+					<xs:documentation>set to true for names in free text areas</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
 			<xs:attribute name="rank" use="required">
 				<xs:annotation>
 					<xs:documentation>taxonomic rank</xs:documentation>
@@ -777,6 +783,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 						<xs:enumeration value="french guiana"/>
 						<xs:enumeration value="guyana"/>
 						<xs:enumeration value="guyana or brazil"/>
+						<xs:enumeration value="guyana-venezuela border area"/>
 						<xs:enumeration value="jamaica"/>
 						<xs:enumeration value="peru"/>
 						<xs:enumeration value="suriname"/>
@@ -1588,6 +1595,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="abaxial bracts"/>
 					<xs:enumeration value="abaxial lip"/>
 					<xs:enumeration value="abaxial petals"/>
+					<xs:enumeration value="abaxial surfaces"/>
 					<xs:enumeration value="abnormal small leaves"/>
 					<xs:enumeration value="aborted anthers"/>
 					<xs:enumeration value="aborted capsules"/>
@@ -1611,6 +1619,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="adaxial lip"/>
 					<xs:enumeration value="adaxial petals"/>
 					<xs:enumeration value="adaxial spathe-bracts"/>
+					<xs:enumeration value="adaxial surfaces"/>
 					<xs:enumeration value="additional bracts"/>
 					<xs:enumeration value="additional flower number"/>
 					<xs:enumeration value="additional glands"/>
@@ -1649,6 +1658,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="another-cells"/>
 					<xs:enumeration value="anterior and lateral lobes"/>
 					<xs:enumeration value="anterior bracts"/>
+					<xs:enumeration value="anterior inner sepals"/>
 					<xs:enumeration value="anterior lips"/>
 					<xs:enumeration value="anterior lobes"/>
 					<xs:enumeration value="anterior pair of stamens"/>
@@ -1669,6 +1679,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="antipetalous corona lobes"/>
 					<xs:enumeration value="ants"/>
 					<xs:enumeration value="ant-swellings"/>
+					<xs:enumeration value="anthesis"/>
 					<xs:enumeration value="aperture number"/>
 					<xs:enumeration value="apertures"/>
 					<xs:enumeration value="apex"/>
@@ -1733,6 +1744,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="axillary peduncles"/>
 					<xs:enumeration value="axillary shoots"/>
 					<xs:enumeration value="axillary spikes"/>
+					<xs:enumeration value="axillary thyrses"/>
 					<xs:enumeration value="axil leaves"/>
 					<xs:enumeration value="axils"/>
 					<xs:enumeration value="baculae"/>
@@ -1846,6 +1858,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="calyx lamina"/>
 					<xs:enumeration value="calyx lobes"/>
 					<xs:enumeration value="calyx remains"/>
+					<xs:enumeration value="calyx wings"/>
 					<xs:enumeration value="cambium"/>
 					<xs:enumeration value="canals"/>
 					<xs:enumeration value="cap"/>
@@ -1875,6 +1888,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="cavities"/>
 					<xs:enumeration value="cells"/>
 					<xs:enumeration value="cellular anatomy"/>
+					<xs:enumeration value="central appendages"/>
 					<xs:enumeration value="central cavity"/>
 					<xs:enumeration value="central column"/>
 					<xs:enumeration value="central cylinder"/>
@@ -1904,6 +1918,9 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="clinandrium"/>
 					<xs:enumeration value="clusters"/>
 					<xs:enumeration value="coastal biome"/>
+					<xs:enumeration value="cocci"/>
+					<xs:enumeration value="coccus number"/>
+					<xs:enumeration value="coccus number per fruit"/>
 					<xs:enumeration value="coenosori"/>
 					<xs:enumeration value="coleoptiles"/>
 					<xs:enumeration value="collars"/>
@@ -1931,11 +1948,13 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="cone scales"/>
 					<xs:enumeration value="cones"/>
 					<xs:enumeration value="connate part of the peduncle"/>
+					<xs:enumeration value="connation"/>
 					<xs:enumeration value="connecting veins"/>
 					<xs:enumeration value="connectival horn length"/>
 					<xs:enumeration value="connectival horns"/>
 					<xs:enumeration value="connectival outgrowths"/>
 					<xs:enumeration value="connective"/>
+					<xs:enumeration value="connective apex"/>
 					<xs:enumeration value="constriction"/>
 					<xs:enumeration value="continuation shoot"/>
 					<xs:enumeration value="contours"/>
@@ -1945,7 +1964,10 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="cork warts"/>
 					<xs:enumeration value="corms"/>
 					<xs:enumeration value="corolla"/>
+					<xs:enumeration value="corolla and androecium"/>
 					<xs:enumeration value="corolla and stamens"/>
+					<xs:enumeration value="corolla bud"/>
+					<xs:enumeration value="corolla bud apex"/>
 					<xs:enumeration value="corolla limb"/>
 					<xs:enumeration value="corolla lobes"/>
 					<xs:enumeration value="corona"/>
@@ -2001,6 +2023,8 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="diaphragm"/>
 					<xs:enumeration value="dichasia"/>
 					<xs:enumeration value="dichasia per axil"/>
+					<xs:enumeration value="dichasial branching point number"/>
+					<xs:enumeration value="dichasium number"/>
 					<xs:enumeration value="dilated frond bases"/>
 					<xs:enumeration value="dilated parts"/>
 					<xs:enumeration value="dimensions"/>
@@ -2016,11 +2040,17 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="dissected fronds"/>
 					<xs:enumeration value="dissection pattern"/>
 					<xs:enumeration value="distal adnate pinnae"/>
+					<xs:enumeration value="distal and medial leaflets"/>
 					<xs:enumeration value="distal bracts"/>
+					<xs:enumeration value="distal dichasia"/>
 					<xs:enumeration value="distal glands"/>
 					<xs:enumeration value="distal internodes"/>
+					<xs:enumeration value="distal leaflets"/>
 					<xs:enumeration value="distal part"/>
+					<xs:enumeration value="distal petiolule"/>
 					<xs:enumeration value="distal pinnae"/>
+					<xs:enumeration value="distal processes"/>
+					<xs:enumeration value="distal thyrses"/>
 					<xs:enumeration value="differential distance"/>
 					<xs:enumeration value="divergence"/>
 					<xs:enumeration value="division"/>
@@ -2237,6 +2267,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="flower number per bract"/>
 					<xs:enumeration value="flower number per bracteole"/>
 					<xs:enumeration value="flower number per branch"/>
+					<xs:enumeration value="flower number per cincinni"/>
 					<xs:enumeration value="flower number per cluster"/>
 					<xs:enumeration value="flower number per cyme"/>
 					<xs:enumeration value="flower number per cymule"/>
@@ -2276,6 +2307,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="foliole base"/>
 					<xs:enumeration value="foliole dimensions"/>
 					<xs:enumeration value="foliole length"/>
+					<xs:enumeration value="foliole number"/>
 					<xs:enumeration value="foliole texture"/>
 					<xs:enumeration value="folioles"/>
 					<xs:enumeration value="foliolules"/>
@@ -2290,6 +2322,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="free part of interfloral bracts"/>
 					<xs:enumeration value="free part of lower petals"/>
 					<xs:enumeration value="free part of the apex"/>
+					<xs:enumeration value="free part of the appendage"/>
 					<xs:enumeration value="free part of the drupe"/>
 					<xs:enumeration value="free part of the filaments"/>
 					<xs:enumeration value="free part of the large petals"/>
@@ -2346,6 +2379,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="funicles"/>
 					<xs:enumeration value="furrows"/>
 					<xs:enumeration value="fused flowers"/>
+					<xs:enumeration value="fusion"/>
 					<xs:enumeration value="gall-bearing flowers"/>
 					<xs:enumeration value="gall-bearing fruits"/>
 					<xs:enumeration value="galls"/>
@@ -2359,6 +2393,8 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="gland number"/>
 					<xs:enumeration value="gland number per patch"/>
 					<xs:enumeration value="glands"/>
+					<xs:enumeration value="glandular mark number"/>
+					<xs:enumeration value="glandular marks"/>
 					<xs:enumeration value="glochidium number"/>
 					<xs:enumeration value="glomerules"/>
 					<xs:enumeration value="glume arrangement"/>
@@ -2430,6 +2466,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="hypodermis"/>
 					<xs:enumeration value="hypogynium"/>
 					<xs:enumeration value="immature fruits"/>
+					<xs:enumeration value="immature mericarps"/>
 					<xs:enumeration value="immature pollen"/>
 					<xs:enumeration value="immature pollen cones"/>
 					<xs:enumeration value="immature seeds"/>
@@ -2623,6 +2660,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="later leaves"/>
 					<xs:enumeration value="lateral and upper petals"/>
 					<xs:enumeration value="lateral anthers"/>
+					<xs:enumeration value="lateral appendages"/>
 					<xs:enumeration value="lateral auxiliary buds"/>
 					<xs:enumeration value="lateral axes"/>
 					<xs:enumeration value="lateral bracts"/>
@@ -2639,6 +2677,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="lateral leaf apex"/>
 					<xs:enumeration value="lateral leaflets"/>
 					<xs:enumeration value="lateral leaves"/>
+					<xs:enumeration value="lateral lobe number"/>
 					<xs:enumeration value="lateral lobes"/>
 					<xs:enumeration value="lateral nectaries"/>
 					<xs:enumeration value="lateral nerves"/>
@@ -2693,6 +2732,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="leaf symmetry"/>
 					<xs:enumeration value="leaf texture"/>
 					<xs:enumeration value="leaf twigs"/>
+					<xs:enumeration value="leaflet number"/>
 					<xs:enumeration value="leaflet pair number"/>
 					<xs:enumeration value="leaflets"/>
 					<xs:enumeration value="leafy stems"/>
@@ -2749,6 +2789,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="long stamens"/>
 					<xs:enumeration value="longer anther pair"/>
 					<xs:enumeration value="longer buds"/>
+					<xs:enumeration value="longer filaments"/>
 					<xs:enumeration value="longer pair"/>
 					<xs:enumeration value="longer stamen pair"/>
 					<xs:enumeration value="longer stamens"/>
@@ -2759,6 +2800,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="longest pinnae"/>
 					<xs:enumeration value="longest pinnules"/>
 					<xs:enumeration value="longitudinal nerves"/>
+					<xs:enumeration value="longitudinal ridges"/>
 					<xs:enumeration value="longitudinal vein number"/>
 					<xs:enumeration value="longitudinal veins"/>
 					<xs:enumeration value="lower and intermediate pitchers"/>
@@ -2789,6 +2831,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="lower lateral petiolule"/>
 					<xs:enumeration value="lower lateral raceme number"/>
 					<xs:enumeration value="lower leaf blades"/>
+					<xs:enumeration value="lower leaflets"/>
 					<xs:enumeration value="lower leaves"/>
 					<xs:enumeration value="lower lemma"/>
 					<xs:enumeration value="lower lip"/>
@@ -2822,9 +2865,11 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="lower teeth"/>
 					<xs:enumeration value="lower tepals"/>
 					<xs:enumeration value="lower thecae"/>
+					<xs:enumeration value="lower vein axils"/>
 					<xs:enumeration value="lowermost bracts"/>
 					<xs:enumeration value="lowermost leaves"/>
 					<xs:enumeration value="lowest internodes of lateral shoots"/>
+					<xs:enumeration value="lowest leaf pair"/>
 					<xs:enumeration value="lowest lobe"/>
 					<xs:enumeration value="lowest node"/>
 					<xs:enumeration value="lowest pedicels"/>
@@ -2874,6 +2919,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="male structures"/>
 					<xs:enumeration value="male synflorescences"/>
 					<xs:enumeration value="margin type"/>
+					<xs:enumeration value="marginal appendages"/>
 					<xs:enumeration value="marginal cell number"/>
 					<xs:enumeration value="marginal cells"/>
 					<xs:enumeration value="marginal edges"/>
@@ -2940,6 +2986,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="mature rhytidome"/>
 					<xs:enumeration value="mature seed-bearing structures"/>
 					<xs:enumeration value="mature seeds"/>
+					<xs:enumeration value="medial leaflets"/>
 					<xs:enumeration value="median sepals"/>
 					<xs:enumeration value="median teeth"/>
 					<xs:enumeration value="median tepals"/>
@@ -2953,6 +3000,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="mentum"/>
 					<xs:enumeration value="mesophyll"/>
 					<xs:enumeration value="mesopygeum"/>
+					<xs:enumeration value="mericarp number"/>
 					<xs:enumeration value="mericarps"/>
 					<xs:enumeration value="merosity"/>
 					<xs:enumeration value="mesocarps"/>
@@ -2982,12 +3030,16 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="minuscule petals"/>
 					<xs:enumeration value="modified flowers"/>
 					<xs:enumeration value="monads"/>
+					<xs:enumeration value="monocarp number"/>
+					<xs:enumeration value="monocarps"/>
+					<xs:enumeration value="monochasial branch number"/>
 					<xs:enumeration value="monopodial rhizome"/>
 					<xs:enumeration value="morphology"/>
 					<xs:enumeration value="morphs"/>
 					<xs:enumeration value="mouth"/>
 					<xs:enumeration value="mucilage"/>
 					<xs:enumeration value="mucrons"/>
+					<xs:enumeration value="muri"/>
 					<xs:enumeration value="narrow-winged fruits"/>
 					<xs:enumeration value="narrower scales"/>
 					<xs:enumeration value="narrower wings"/>
@@ -3068,6 +3120,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="other shapes"/>
 					<xs:enumeration value="other spikes"/>
 					<xs:enumeration value="other wings"/>
+					<xs:enumeration value="outer and posterior sepals"/>
 					<xs:enumeration value="outer bark"/>
 					<xs:enumeration value="outer bracts"/>
 					<xs:enumeration value="outer cycle"/>
@@ -3136,6 +3189,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="pedicel-like region"/>
 					<xs:enumeration value="pedicel-like lower region"/>
 					<xs:enumeration value="pedicel-like upper region"/>
+					<xs:enumeration value="pedicel base"/>
 					<xs:enumeration value="pedicel spikelets"/>
 					<xs:enumeration value="pedicels"/>
 					<xs:enumeration value="pedoconnective"/>
@@ -3160,6 +3214,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="perigone lobes"/>
 					<xs:enumeration value="perigone tube"/>
 					<xs:enumeration value="perigone tube remains"/>
+					<xs:enumeration value="peripheral vascular cylinder number"/>
 					<xs:enumeration value="perisperm"/>
 					<xs:enumeration value="perispermatic canal"/>
 					<xs:enumeration value="perispores"/>
@@ -3168,6 +3223,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="persistent base fronds"/>
 					<xs:enumeration value="persistent disk"/>
 					<xs:enumeration value="persistent parts"/>
+					<xs:enumeration value="petal appendages"/>
 					<xs:enumeration value="petal interior"/>
 					<xs:enumeration value="petal lobes"/>
 					<xs:enumeration value="petal number"/>
@@ -3182,6 +3238,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="petiole and peduncle"/>
 					<xs:enumeration value="petiole and petiolules"/>
 					<xs:enumeration value="petiole and rachis"/>
+					<xs:enumeration value="petiole plus rachis"/>
 					<xs:enumeration value="petiole bases"/>
 					<xs:enumeration value="petiole glands"/>
 					<xs:enumeration value="petiole length"/>
@@ -3219,6 +3276,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="pits"/>
 					<xs:enumeration value="placenta"/>
 					<xs:enumeration value="placental masses"/>
+					<xs:enumeration value="placenta number"/>
 					<xs:enumeration value="placentation"/>
 					<xs:enumeration value="plank buttresses"/>
 					<xs:enumeration value="plant sexuality"/>
@@ -3251,7 +3309,9 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="position"/>
 					<xs:enumeration value="posterior bracts"/>
 					<xs:enumeration value="posterior lips"/>
+					<xs:enumeration value="posterior lobe number"/>
 					<xs:enumeration value="posterior lobes"/>
+					<xs:enumeration value="posterior petal appendages"/>
 					<xs:enumeration value="posterior segments"/>
 					<xs:enumeration value="posterior sepals"/>
 					<xs:enumeration value="posterior stamen thecae"/>
@@ -3289,12 +3349,14 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="probracts"/>
 					<xs:enumeration value="processes"/>
 					<xs:enumeration value="projection"/>
+					<xs:enumeration value="projection number"/>
 					<xs:enumeration value="prominent longitudinal veins"/>
 					<xs:enumeration value="prophyllum number"/>
 					<xs:enumeration value="prophyllum"/>
 					<xs:enumeration value="protandry"/>
 					<xs:enumeration value="protective bulbcoat-leaves"/>
 					<xs:enumeration value="prothallium"/>
+					<xs:enumeration value="proximal dichasia"/>
 					<xs:enumeration value="pseudanthia"/>
 					<xs:enumeration value="pseudoaxillary inflorescences"/>
 					<xs:enumeration value="pseudobulbs"/>
@@ -3322,6 +3384,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="quaternary veins"/>
 					<xs:enumeration value="raceme base"/>
 					<xs:enumeration value="raceme peduncle"/>
+					<xs:enumeration value="raceme number"/>
 					<xs:enumeration value="raceme rachises"/>
 					<xs:enumeration value="raceme shoots"/>
 					<xs:enumeration value="racemes"/>
@@ -3355,6 +3418,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="relative distance"/>
 					<xs:enumeration value="remaining flowers"/>
 					<xs:enumeration value="remaining lobes"/>
+					<xs:enumeration value="remaining sepals"/>
 					<xs:enumeration value="replaced fronds"/>
 					<xs:enumeration value="replum"/>
 					<xs:enumeration value="reproductive structures"/>
@@ -3397,9 +3461,12 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="rudimentary androecium"/>
 					<xs:enumeration value="rudimentary anthers"/>
 					<xs:enumeration value="rudimentary carpels"/>
+					<xs:enumeration value="rudimentary coccus number per fruit"/>
 					<xs:enumeration value="rudimentary flower number"/>
 					<xs:enumeration value="rudimentary flowers"/>
 					<xs:enumeration value="rudimentary folioles"/>
+					<xs:enumeration value="rudimentary leaflets"/>
+					<xs:enumeration value="rudimentary locules"/>
 					<xs:enumeration value="rudimentary ovary"/>
 					<xs:enumeration value="rudimentary petals"/>
 					<xs:enumeration value="rudimentary pinnae"/>
@@ -3412,6 +3479,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="sarcocarp"/>
 					<xs:enumeration value="sarcotesta"/>
 					<xs:enumeration value="scale leaves"/>
+					<xs:enumeration value="scale number"/>
 					<xs:enumeration value="scales"/>
 					<xs:enumeration value="scaly leaves"/>
 					<xs:enumeration value="scaly shoots"/>
@@ -3450,6 +3518,8 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="secondary pollen cone buds"/>
 					<xs:enumeration value="secondary racemes"/>
 					<xs:enumeration value="secondary scales"/>
+					<xs:enumeration value="secondary vein axils"/>
+					<xs:enumeration value="secondary vein number"/>
 					<xs:enumeration value="secondary vein pair number"/>
 					<xs:enumeration value="secondary veins"/>
 					<xs:enumeration value="secretory structures"/>
@@ -3465,6 +3535,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="seed number"/>
 					<xs:enumeration value="seed number per carpel"/>
 					<xs:enumeration value="seed number per cell"/>
+					<xs:enumeration value="seed number per fruit"/>
 					<xs:enumeration value="seed number per locule"/>
 					<xs:enumeration value="seed-bearing flowers"/>
 					<xs:enumeration value="seed-bearing part"/>
@@ -3503,6 +3574,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="short stem leaves"/>
 					<xs:enumeration value="short stems"/>
 					<xs:enumeration value="shorter anther pair"/>
+					<xs:enumeration value="shorter filaments"/>
 					<xs:enumeration value="shorter pair"/>
 					<xs:enumeration value="shorter stamen pair"/>
 					<xs:enumeration value="shorter stamens"/>
@@ -3541,6 +3613,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="smallest leaf lamina"/>
 					<xs:enumeration value="smallest lobes"/>
 					<xs:enumeration value="soboles"/>
+					<xs:enumeration value="solitary inflorescences"/>
 					<xs:enumeration value="soral patches"/>
 					<xs:enumeration value="soral scales"/>
 					<xs:enumeration value="sori"/>
@@ -3581,6 +3654,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="staminal column"/>
 					<xs:enumeration value="staminal disc"/>
 					<xs:enumeration value="staminal phalanges"/>
+					<xs:enumeration value="staminal pockets"/>
 					<xs:enumeration value="staminal ring"/>
 					<xs:enumeration value="staminal whorls"/>
 					<xs:enumeration value="staminate bracts"/>
@@ -3603,6 +3677,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="stem tufts"/>
 					<xs:enumeration value="stemonozone"/>
 					<xs:enumeration value="stems"/>
+					<xs:enumeration value="stems and branches"/>
 					<xs:enumeration value="sterile anthers"/>
 					<xs:enumeration value="sterile bract number"/>
 					<xs:enumeration value="sterile bract pair number"/>
@@ -3620,6 +3695,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="sterile lateral pinnae"/>
 					<xs:enumeration value="sterile leaves"/>
 					<xs:enumeration value="sterile lemma"/>
+					<xs:enumeration value="sterile parts"/>
 					<xs:enumeration value="sterile pinnae"/>
 					<xs:enumeration value="sterile pinnules"/>
 					<xs:enumeration value="sterile pistil"/>
@@ -3630,14 +3706,22 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="sterile theca number"/>
 					<xs:enumeration value="sterile thecae"/>
 					<xs:enumeration value="stigma"/>
+					<xs:enumeration value="stigma lobes"/>
 					<xs:enumeration value="stigma number"/>
 					<xs:enumeration value="stigmaphores"/>
 					<xs:enumeration value="stigmatic arms"/>
 					<xs:enumeration value="stigmatic branch number"/>
+					<xs:enumeration value="stigmatic branch or lobe number"/>
+					<xs:enumeration value="stigmatic branches"/>
+					<xs:enumeration value="stigmatic branches or lobes"/>
+					<xs:enumeration value="stigmatic line number"/>
+					<xs:enumeration value="stigmatic lines"/>
 					<xs:enumeration value="stilt-roots"/>
 					<xs:enumeration value="stipe base"/>
 					<xs:enumeration value="stipels"/>
 					<xs:enumeration value="stipes"/>
+					<xs:enumeration value="stipitate gland number"/>
+					<xs:enumeration value="stipitate glands"/>
 					<xs:enumeration value="stipular appendages"/>
 					<xs:enumeration value="stipular glands"/>
 					<xs:enumeration value="stipular hoods"/>
@@ -3655,6 +3739,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="storage organs"/>
 					<xs:enumeration value="storage leaves"/>
 					<xs:enumeration value="strength"/>
+					<xs:enumeration value="striation number"/>
 					<xs:enumeration value="strobili"/>
 					<xs:enumeration value="strophioles"/>
 					<xs:enumeration value="stylar spines"/>
@@ -3743,6 +3828,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="tertiary branches"/>
 					<xs:enumeration value="tertiary veins"/>
 					<xs:enumeration value="testa"/>
+					<xs:enumeration value="testa pattern"/>
 					<xs:enumeration value="tetrads"/>
 					<xs:enumeration value="texture"/>
 					<xs:enumeration value="theca number"/>
@@ -3798,6 +3884,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="tube length"/>
 					<xs:enumeration value="tuber"/>
 					<xs:enumeration value="tubercles"/>
+					<xs:enumeration value="tuberous roots"/>
 					<xs:enumeration value="tuft domatia"/>
 					<xs:enumeration value="tufts"/>
 					<xs:enumeration value="turion"/>
@@ -3847,6 +3934,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="upper half of tube"/>
 					<xs:enumeration value="upper hypanthium"/>
 					<xs:enumeration value="upper internodes"/>
+					<xs:enumeration value="upper layer"/>
 					<xs:enumeration value="upper leaves"/>
 					<xs:enumeration value="upper lemma"/>
 					<xs:enumeration value="upper lip"/>
@@ -3897,10 +3985,12 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="vein endings"/>
 					<xs:enumeration value="veination base"/>
 					<xs:enumeration value="veinlets"/>
+					<xs:enumeration value="vein axils"/>
 					<xs:enumeration value="vein number"/>
 					<xs:enumeration value="vein number per side"/>
 					<xs:enumeration value="veins"/>
 					<xs:enumeration value="velamen"/>
+					<xs:enumeration value="ventral appendages"/>
 					<xs:enumeration value="ventral leaf lobes"/>
 					<xs:enumeration value="ventral lobes"/>
 					<xs:enumeration value="ventral pore"/>
@@ -4821,6 +4911,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:documentation>This element should only be used for notes on the nomenclature in general, not for single names or homotypes. Example: 'For more complete synonymy and references, see Meijer and Veldkamp...'</xs:documentation>
 				</xs:annotation>
 			</xs:element>
+			<xs:element name="footnoteRef" type="footnoteTypeRef" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:choice>
 		<xs:attribute name="class" use="required">
 			<xs:annotation>
@@ -5769,6 +5860,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="abaxial bracts"/>
 					<xs:enumeration value="abaxial lip"/>
 					<xs:enumeration value="abaxial petals"/>
+					<xs:enumeration value="abaxial surfaces"/>
 					<xs:enumeration value="abnormal small leaves"/>
 					<xs:enumeration value="aborted anthers"/>
 					<xs:enumeration value="aborted capsules"/>
@@ -5792,6 +5884,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="adaxial lip"/>
 					<xs:enumeration value="adaxial petals"/>
 					<xs:enumeration value="adaxial spathe-bracts"/>
+					<xs:enumeration value="adaxial surfaces"/>
 					<xs:enumeration value="additional bracts"/>
 					<xs:enumeration value="additional flower number"/>
 					<xs:enumeration value="additional glands"/>
@@ -5830,6 +5923,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="another-cells"/>
 					<xs:enumeration value="anterior and lateral lobes"/>
 					<xs:enumeration value="anterior bracts"/>
+					<xs:enumeration value="anterior inner sepals"/>
 					<xs:enumeration value="anterior lips"/>
 					<xs:enumeration value="anterior lobes"/>
 					<xs:enumeration value="anterior pair of stamens"/>
@@ -5850,6 +5944,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="antipetalous corona lobes"/>
 					<xs:enumeration value="ants"/>
 					<xs:enumeration value="ant-swellings"/>
+					<xs:enumeration value="anthesis"/>
 					<xs:enumeration value="aperture number"/>
 					<xs:enumeration value="apertures"/>
 					<xs:enumeration value="apex"/>
@@ -5914,6 +6009,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="axillary peduncles"/>
 					<xs:enumeration value="axillary shoots"/>
 					<xs:enumeration value="axillary spikes"/>
+					<xs:enumeration value="axillary thyrses"/>
 					<xs:enumeration value="axil leaves"/>
 					<xs:enumeration value="axils"/>
 					<xs:enumeration value="baculae"/>
@@ -6027,6 +6123,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="calyx lamina"/>
 					<xs:enumeration value="calyx lobes"/>
 					<xs:enumeration value="calyx remains"/>
+					<xs:enumeration value="calyx wings"/>
 					<xs:enumeration value="cambium"/>
 					<xs:enumeration value="canals"/>
 					<xs:enumeration value="cap"/>
@@ -6056,6 +6153,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="cavities"/>
 					<xs:enumeration value="cells"/>
 					<xs:enumeration value="cellular anatomy"/>
+					<xs:enumeration value="central appendages"/>
 					<xs:enumeration value="central cavity"/>
 					<xs:enumeration value="central column"/>
 					<xs:enumeration value="central cylinder"/>
@@ -6085,6 +6183,9 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="clinandrium"/>
 					<xs:enumeration value="clusters"/>
 					<xs:enumeration value="coastal biome"/>
+					<xs:enumeration value="cocci"/>
+					<xs:enumeration value="coccus number"/>
+					<xs:enumeration value="coccus number per fruit"/>
 					<xs:enumeration value="coenosori"/>
 					<xs:enumeration value="coleoptiles"/>
 					<xs:enumeration value="collars"/>
@@ -6112,11 +6213,13 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="cone scales"/>
 					<xs:enumeration value="cones"/>
 					<xs:enumeration value="connate part of the peduncle"/>
+					<xs:enumeration value="connation"/>
 					<xs:enumeration value="connecting veins"/>
 					<xs:enumeration value="connectival horn length"/>
 					<xs:enumeration value="connectival horns"/>
-					<xs:enumeration value="connective"/>
 					<xs:enumeration value="connectival outgrowths"/>
+					<xs:enumeration value="connective"/>
+					<xs:enumeration value="connective apex"/>
 					<xs:enumeration value="constriction"/>
 					<xs:enumeration value="continuation shoot"/>
 					<xs:enumeration value="contours"/>
@@ -6126,7 +6229,10 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="cork warts"/>
 					<xs:enumeration value="corms"/>
 					<xs:enumeration value="corolla"/>
+					<xs:enumeration value="corolla and androecium"/>
 					<xs:enumeration value="corolla and stamens"/>
+					<xs:enumeration value="corolla bud"/>
+					<xs:enumeration value="corolla bud apex"/>
 					<xs:enumeration value="corolla limb"/>
 					<xs:enumeration value="corolla lobes"/>
 					<xs:enumeration value="corona"/>
@@ -6182,6 +6288,8 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="diaphragm"/>
 					<xs:enumeration value="dichasia"/>
 					<xs:enumeration value="dichasia per axil"/>
+					<xs:enumeration value="dichasial branching point number"/>
+					<xs:enumeration value="dichasium number"/>
 					<xs:enumeration value="dilated frond bases"/>
 					<xs:enumeration value="dilated parts"/>
 					<xs:enumeration value="dimensions"/>
@@ -6197,11 +6305,17 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="dissected fronds"/>
 					<xs:enumeration value="dissection pattern"/>
 					<xs:enumeration value="distal adnate pinnae"/>
+					<xs:enumeration value="distal and medial leaflets"/>
 					<xs:enumeration value="distal bracts"/>
+					<xs:enumeration value="distal dichasia"/>
 					<xs:enumeration value="distal glands"/>
 					<xs:enumeration value="distal internodes"/>
+					<xs:enumeration value="distal leaflets"/>
 					<xs:enumeration value="distal part"/>
+					<xs:enumeration value="distal petiolule"/>
 					<xs:enumeration value="distal pinnae"/>
+					<xs:enumeration value="distal processes"/>
+					<xs:enumeration value="distal thyrses"/>
 					<xs:enumeration value="differential distance"/>
 					<xs:enumeration value="divergence"/>
 					<xs:enumeration value="division"/>
@@ -6418,6 +6532,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="flower number per bract"/>
 					<xs:enumeration value="flower number per bracteole"/>
 					<xs:enumeration value="flower number per branch"/>
+					<xs:enumeration value="flower number per cincinni"/>
 					<xs:enumeration value="flower number per cluster"/>
 					<xs:enumeration value="flower number per cyme"/>
 					<xs:enumeration value="flower number per cymule"/>
@@ -6457,6 +6572,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="foliole base"/>
 					<xs:enumeration value="foliole dimensions"/>
 					<xs:enumeration value="foliole length"/>
+					<xs:enumeration value="foliole number"/>
 					<xs:enumeration value="foliole texture"/>
 					<xs:enumeration value="folioles"/>
 					<xs:enumeration value="foliolules"/>
@@ -6471,6 +6587,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="free part of interfloral bracts"/>
 					<xs:enumeration value="free part of lower petals"/>
 					<xs:enumeration value="free part of the apex"/>
+					<xs:enumeration value="free part of the appendage"/>
 					<xs:enumeration value="free part of the drupe"/>
 					<xs:enumeration value="free part of the filaments"/>
 					<xs:enumeration value="free part of the large petals"/>
@@ -6527,6 +6644,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="funicles"/>
 					<xs:enumeration value="furrows"/>
 					<xs:enumeration value="fused flowers"/>
+					<xs:enumeration value="fusion"/>
 					<xs:enumeration value="gall-bearing flowers"/>
 					<xs:enumeration value="gall-bearing fruits"/>
 					<xs:enumeration value="galls"/>
@@ -6540,6 +6658,8 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="gland number"/>
 					<xs:enumeration value="gland number per patch"/>
 					<xs:enumeration value="glands"/>
+					<xs:enumeration value="glandular mark number"/>
+					<xs:enumeration value="glandular marks"/>
 					<xs:enumeration value="glochidium number"/>
 					<xs:enumeration value="glomerules"/>
 					<xs:enumeration value="glume arrangement"/>
@@ -6611,6 +6731,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="hypodermis"/>
 					<xs:enumeration value="hypogynium"/>
 					<xs:enumeration value="immature fruits"/>
+					<xs:enumeration value="immature mericarps"/>
 					<xs:enumeration value="immature pollen"/>
 					<xs:enumeration value="immature pollen cones"/>
 					<xs:enumeration value="immature seeds"/>
@@ -6804,6 +6925,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="later leaves"/>
 					<xs:enumeration value="lateral and upper petals"/>
 					<xs:enumeration value="lateral anthers"/>
+					<xs:enumeration value="lateral appendages"/>
 					<xs:enumeration value="lateral auxiliary buds"/>
 					<xs:enumeration value="lateral axes"/>
 					<xs:enumeration value="lateral bracts"/>
@@ -6820,6 +6942,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="lateral leaf apex"/>
 					<xs:enumeration value="lateral leaflets"/>
 					<xs:enumeration value="lateral leaves"/>
+					<xs:enumeration value="lateral lobe number"/>
 					<xs:enumeration value="lateral lobes"/>
 					<xs:enumeration value="lateral nectaries"/>
 					<xs:enumeration value="lateral nerves"/>
@@ -6874,6 +6997,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="leaf symmetry"/>
 					<xs:enumeration value="leaf texture"/>
 					<xs:enumeration value="leaf twigs"/>
+					<xs:enumeration value="leaflet number"/>
 					<xs:enumeration value="leaflet pair number"/>
 					<xs:enumeration value="leaflets"/>
 					<xs:enumeration value="leafy stems"/>
@@ -6930,6 +7054,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="long stamens"/>
 					<xs:enumeration value="longer anther pair"/>
 					<xs:enumeration value="longer buds"/>
+					<xs:enumeration value="longer filaments"/>
 					<xs:enumeration value="longer pair"/>
 					<xs:enumeration value="longer stamen pair"/>
 					<xs:enumeration value="longer stamens"/>
@@ -6940,6 +7065,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="longest pinnae"/>
 					<xs:enumeration value="longest pinnules"/>
 					<xs:enumeration value="longitudinal nerves"/>
+					<xs:enumeration value="longitudinal ridges"/>
 					<xs:enumeration value="longitudinal vein number"/>
 					<xs:enumeration value="longitudinal veins"/>
 					<xs:enumeration value="lower and intermediate pitchers"/>
@@ -6970,6 +7096,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="lower lateral petiolule"/>
 					<xs:enumeration value="lower lateral raceme number"/>
 					<xs:enumeration value="lower leaf blades"/>
+					<xs:enumeration value="lower leaflets"/>
 					<xs:enumeration value="lower leaves"/>
 					<xs:enumeration value="lower lemma"/>
 					<xs:enumeration value="lower lip"/>
@@ -7003,9 +7130,11 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="lower teeth"/>
 					<xs:enumeration value="lower tepals"/>
 					<xs:enumeration value="lower thecae"/>
+					<xs:enumeration value="lower vein axils"/>
 					<xs:enumeration value="lowermost bracts"/>
 					<xs:enumeration value="lowermost leaves"/>
 					<xs:enumeration value="lowest internodes of lateral shoots"/>
+					<xs:enumeration value="lowest leaf pair"/>
 					<xs:enumeration value="lowest lobe"/>
 					<xs:enumeration value="lowest node"/>
 					<xs:enumeration value="lowest pedicels"/>
@@ -7055,6 +7184,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="male structures"/>
 					<xs:enumeration value="male synflorescences"/>
 					<xs:enumeration value="margin type"/>
+					<xs:enumeration value="marginal appendages"/>
 					<xs:enumeration value="marginal cell number"/>
 					<xs:enumeration value="marginal cells"/>
 					<xs:enumeration value="marginal edges"/>
@@ -7121,6 +7251,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="mature rhytidome"/>
 					<xs:enumeration value="mature seed-bearing structures"/>
 					<xs:enumeration value="mature seeds"/>
+					<xs:enumeration value="medial leaflets"/>
 					<xs:enumeration value="median sepals"/>
 					<xs:enumeration value="median teeth"/>
 					<xs:enumeration value="median tepals"/>
@@ -7134,6 +7265,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="mentum"/>
 					<xs:enumeration value="mesophyll"/>
 					<xs:enumeration value="mesopygeum"/>
+					<xs:enumeration value="mericarp number"/>
 					<xs:enumeration value="mericarps"/>
 					<xs:enumeration value="merosity"/>
 					<xs:enumeration value="mesocarps"/>
@@ -7163,12 +7295,16 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="minuscule petals"/>
 					<xs:enumeration value="modified flowers"/>
 					<xs:enumeration value="monads"/>
+					<xs:enumeration value="monocarp number"/>
+					<xs:enumeration value="monocarps"/>
+					<xs:enumeration value="monochasial branch number"/>
 					<xs:enumeration value="monopodial rhizome"/>
 					<xs:enumeration value="morphology"/>
 					<xs:enumeration value="morphs"/>
 					<xs:enumeration value="mouth"/>
 					<xs:enumeration value="mucilage"/>
 					<xs:enumeration value="mucrons"/>
+					<xs:enumeration value="muri"/>
 					<xs:enumeration value="narrow-winged fruits"/>
 					<xs:enumeration value="narrower scales"/>
 					<xs:enumeration value="narrower wings"/>
@@ -7249,6 +7385,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="other shapes"/>
 					<xs:enumeration value="other spikes"/>
 					<xs:enumeration value="other wings"/>
+					<xs:enumeration value="outer and posterior sepals"/>
 					<xs:enumeration value="outer bark"/>
 					<xs:enumeration value="outer bracts"/>
 					<xs:enumeration value="outer cycle"/>
@@ -7317,6 +7454,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="pedicel-like region"/>
 					<xs:enumeration value="pedicel-like lower region"/>
 					<xs:enumeration value="pedicel-like upper region"/>
+					<xs:enumeration value="pedicel base"/>
 					<xs:enumeration value="pedicel spikelets"/>
 					<xs:enumeration value="pedicels"/>
 					<xs:enumeration value="pedoconnective"/>
@@ -7341,6 +7479,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="perigone lobes"/>
 					<xs:enumeration value="perigone tube"/>
 					<xs:enumeration value="perigone tube remains"/>
+					<xs:enumeration value="peripheral vascular cylinder number"/>
 					<xs:enumeration value="perisperm"/>
 					<xs:enumeration value="perispermatic canal"/>
 					<xs:enumeration value="perispores"/>
@@ -7349,6 +7488,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="persistent base fronds"/>
 					<xs:enumeration value="persistent disk"/>
 					<xs:enumeration value="persistent parts"/>
+					<xs:enumeration value="petal appendages"/>
 					<xs:enumeration value="petal interior"/>
 					<xs:enumeration value="petal lobes"/>
 					<xs:enumeration value="petal number"/>
@@ -7363,6 +7503,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="petiole and peduncle"/>
 					<xs:enumeration value="petiole and petiolules"/>
 					<xs:enumeration value="petiole and rachis"/>
+					<xs:enumeration value="petiole plus rachis"/>
 					<xs:enumeration value="petiole bases"/>
 					<xs:enumeration value="petiole glands"/>
 					<xs:enumeration value="petiole length"/>
@@ -7400,6 +7541,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="pits"/>
 					<xs:enumeration value="placenta"/>
 					<xs:enumeration value="placental masses"/>
+					<xs:enumeration value="placenta number"/>
 					<xs:enumeration value="placentation"/>
 					<xs:enumeration value="plank buttresses"/>
 					<xs:enumeration value="plant sexuality"/>
@@ -7432,7 +7574,9 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="position"/>
 					<xs:enumeration value="posterior bracts"/>
 					<xs:enumeration value="posterior lips"/>
+					<xs:enumeration value="posterior lobe number"/>
 					<xs:enumeration value="posterior lobes"/>
+					<xs:enumeration value="posterior petal appendages"/>
 					<xs:enumeration value="posterior segments"/>
 					<xs:enumeration value="posterior sepals"/>
 					<xs:enumeration value="posterior stamen thecae"/>
@@ -7470,12 +7614,14 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="probracts"/>
 					<xs:enumeration value="processes"/>
 					<xs:enumeration value="projection"/>
+					<xs:enumeration value="projection number"/>
 					<xs:enumeration value="prominent longitudinal veins"/>
 					<xs:enumeration value="prophyllum number"/>
 					<xs:enumeration value="prophyllum"/>
 					<xs:enumeration value="protandry"/>
 					<xs:enumeration value="protective bulbcoat-leaves"/>
 					<xs:enumeration value="prothallium"/>
+					<xs:enumeration value="proximal dichasia"/>
 					<xs:enumeration value="pseudanthia"/>
 					<xs:enumeration value="pseudoaxillary inflorescences"/>
 					<xs:enumeration value="pseudobulbs"/>
@@ -7503,6 +7649,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="quaternary veins"/>
 					<xs:enumeration value="raceme base"/>
 					<xs:enumeration value="raceme peduncle"/>
+					<xs:enumeration value="raceme number"/>
 					<xs:enumeration value="raceme rachises"/>
 					<xs:enumeration value="raceme shoots"/>
 					<xs:enumeration value="racemes"/>
@@ -7536,6 +7683,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="relative distance"/>
 					<xs:enumeration value="remaining flowers"/>
 					<xs:enumeration value="remaining lobes"/>
+					<xs:enumeration value="remaining sepals"/>
 					<xs:enumeration value="replaced fronds"/>
 					<xs:enumeration value="replum"/>
 					<xs:enumeration value="reproductive structures"/>
@@ -7578,9 +7726,12 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="rudimentary androecium"/>
 					<xs:enumeration value="rudimentary anthers"/>
 					<xs:enumeration value="rudimentary carpels"/>
+					<xs:enumeration value="rudimentary coccus number per fruit"/>
 					<xs:enumeration value="rudimentary flower number"/>
 					<xs:enumeration value="rudimentary flowers"/>
 					<xs:enumeration value="rudimentary folioles"/>
+					<xs:enumeration value="rudimentary leaflets"/>
+					<xs:enumeration value="rudimentary locules"/>
 					<xs:enumeration value="rudimentary ovary"/>
 					<xs:enumeration value="rudimentary petals"/>
 					<xs:enumeration value="rudimentary pinnae"/>
@@ -7593,6 +7744,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="sarcocarp"/>
 					<xs:enumeration value="sarcotesta"/>
 					<xs:enumeration value="scale leaves"/>
+					<xs:enumeration value="scale number"/>
 					<xs:enumeration value="scales"/>
 					<xs:enumeration value="scaly leaves"/>
 					<xs:enumeration value="scaly shoots"/>
@@ -7631,6 +7783,8 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="secondary pollen cone buds"/>
 					<xs:enumeration value="secondary racemes"/>
 					<xs:enumeration value="secondary scales"/>
+					<xs:enumeration value="secondary vein axils"/>
+					<xs:enumeration value="secondary vein number"/>
 					<xs:enumeration value="secondary vein pair number"/>
 					<xs:enumeration value="secondary veins"/>
 					<xs:enumeration value="secretory structures"/>
@@ -7646,6 +7800,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="seed number"/>
 					<xs:enumeration value="seed number per carpel"/>
 					<xs:enumeration value="seed number per cell"/>
+					<xs:enumeration value="seed number per fruit"/>
 					<xs:enumeration value="seed number per locule"/>
 					<xs:enumeration value="seed-bearing flowers"/>
 					<xs:enumeration value="seed-bearing part"/>
@@ -7684,6 +7839,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="short stem leaves"/>
 					<xs:enumeration value="short stems"/>
 					<xs:enumeration value="shorter anther pair"/>
+					<xs:enumeration value="shorter filaments"/>
 					<xs:enumeration value="shorter pair"/>
 					<xs:enumeration value="shorter stamen pair"/>
 					<xs:enumeration value="shorter stamens"/>
@@ -7722,6 +7878,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="smallest leaf lamina"/>
 					<xs:enumeration value="smallest lobes"/>
 					<xs:enumeration value="soboles"/>
+					<xs:enumeration value="solitary inflorescences"/>
 					<xs:enumeration value="soral patches"/>
 					<xs:enumeration value="soral scales"/>
 					<xs:enumeration value="sori"/>
@@ -7762,6 +7919,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="staminal column"/>
 					<xs:enumeration value="staminal disc"/>
 					<xs:enumeration value="staminal phalanges"/>
+					<xs:enumeration value="staminal pockets"/>
 					<xs:enumeration value="staminal ring"/>
 					<xs:enumeration value="staminal whorls"/>
 					<xs:enumeration value="staminate bracts"/>
@@ -7784,6 +7942,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="stem tufts"/>
 					<xs:enumeration value="stemonozone"/>
 					<xs:enumeration value="stems"/>
+					<xs:enumeration value="stems and branches"/>
 					<xs:enumeration value="sterile anthers"/>
 					<xs:enumeration value="sterile bract number"/>
 					<xs:enumeration value="sterile bract pair number"/>
@@ -7801,6 +7960,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="sterile lateral pinnae"/>
 					<xs:enumeration value="sterile leaves"/>
 					<xs:enumeration value="sterile lemma"/>
+					<xs:enumeration value="sterile parts"/>
 					<xs:enumeration value="sterile pinnae"/>
 					<xs:enumeration value="sterile pinnules"/>
 					<xs:enumeration value="sterile pistil"/>
@@ -7811,14 +7971,22 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="sterile theca number"/>
 					<xs:enumeration value="sterile thecae"/>
 					<xs:enumeration value="stigma"/>
+					<xs:enumeration value="stigma lobes"/>
 					<xs:enumeration value="stigma number"/>
 					<xs:enumeration value="stigmaphores"/>
 					<xs:enumeration value="stigmatic arms"/>
 					<xs:enumeration value="stigmatic branch number"/>
+					<xs:enumeration value="stigmatic branch or lobe number"/>
+					<xs:enumeration value="stigmatic branches"/>
+					<xs:enumeration value="stigmatic branches or lobes"/>
+					<xs:enumeration value="stigmatic line number"/>
+					<xs:enumeration value="stigmatic lines"/>
 					<xs:enumeration value="stilt-roots"/>
 					<xs:enumeration value="stipe base"/>
 					<xs:enumeration value="stipels"/>
 					<xs:enumeration value="stipes"/>
+					<xs:enumeration value="stipitate gland number"/>
+					<xs:enumeration value="stipitate glands"/>
 					<xs:enumeration value="stipular appendages"/>
 					<xs:enumeration value="stipular glands"/>
 					<xs:enumeration value="stipular hoods"/>
@@ -7836,6 +8004,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="storage organs"/>
 					<xs:enumeration value="storage leaves"/>
 					<xs:enumeration value="strength"/>
+					<xs:enumeration value="striation number"/>
 					<xs:enumeration value="strobili"/>
 					<xs:enumeration value="strophioles"/>
 					<xs:enumeration value="stylar spines"/>
@@ -7924,6 +8093,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="tertiary branches"/>
 					<xs:enumeration value="tertiary veins"/>
 					<xs:enumeration value="testa"/>
+					<xs:enumeration value="testa pattern"/>
 					<xs:enumeration value="tetrads"/>
 					<xs:enumeration value="texture"/>
 					<xs:enumeration value="theca number"/>
@@ -7979,6 +8149,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="tube length"/>
 					<xs:enumeration value="tuber"/>
 					<xs:enumeration value="tubercles"/>
+					<xs:enumeration value="tuberous roots"/>
 					<xs:enumeration value="tuft domatia"/>
 					<xs:enumeration value="tufts"/>
 					<xs:enumeration value="turion"/>
@@ -8028,6 +8199,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="upper half of tube"/>
 					<xs:enumeration value="upper hypanthium"/>
 					<xs:enumeration value="upper internodes"/>
+					<xs:enumeration value="upper layer"/>
 					<xs:enumeration value="upper leaves"/>
 					<xs:enumeration value="upper lemma"/>
 					<xs:enumeration value="upper lip"/>
@@ -8078,10 +8250,12 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="vein endings"/>
 					<xs:enumeration value="veination base"/>
 					<xs:enumeration value="veinlets"/>
+					<xs:enumeration value="vein axils"/>
 					<xs:enumeration value="vein number"/>
 					<xs:enumeration value="vein number per side"/>
 					<xs:enumeration value="veins"/>
 					<xs:enumeration value="velamen"/>
+					<xs:enumeration value="ventral appendages"/>
 					<xs:enumeration value="ventral leaf lobes"/>
 					<xs:enumeration value="ventral lobes"/>
 					<xs:enumeration value="ventral pore"/>
