@@ -13,7 +13,7 @@ V. Licensing
 
 I. Introduction
 
-The FdG_scripts.zip ZIP file contains the Perl scripts that were used to add 
+The Flore_du_Gabon_scripts.zip ZIP file contains the Perl scripts that were used to add 
 mark-up to Flore du Gabon. These scripts were created while doing the actual 
 production work for Flore du Gabon, and so evolved along the way.
 
