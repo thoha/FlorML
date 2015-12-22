@@ -1,4 +1,5 @@
-﻿README for Flora of the Guianas scripts - scripts will be added by the end of March 2016
+﻿README for Flora of the Guianas scripts - Last two scripts will be added by the 
+end of March 2016
 
 ================================================================================
 CONTENTS:
