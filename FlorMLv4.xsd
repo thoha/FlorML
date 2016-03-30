@@ -2363,6 +2363,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="female receptacle"/>
 					<xs:enumeration value="female scales"/>
 					<xs:enumeration value="female spadices"/>
+					<xs:enumeration value="female spathe"/>
 					<xs:enumeration value="female spikelets"/>
 					<xs:enumeration value="female spikes"/>
 					<xs:enumeration value="female stage"/>
@@ -3007,6 +3008,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="leaf axes"/>
 					<xs:enumeration value="leaf axils"/>
 					<xs:enumeration value="leaf bases"/>
+					<xs:enumeration value="leaf bearing shoots"/>
 					<xs:enumeration value="leaf blade margins"/>
 					<xs:enumeration value="leaf blades"/>
 					<xs:enumeration value="leaf buds"/>
@@ -3032,6 +3034,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="leaf surfaces"/>
 					<xs:enumeration value="leaf symmetry"/>
 					<xs:enumeration value="leaf texture"/>
+					<xs:enumeration value="leaf tip"/>
 					<xs:enumeration value="leaf twigs"/>
 					<xs:enumeration value="leaflet number"/>
 					<xs:enumeration value="leaflet pair number"/>
@@ -3266,6 +3269,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="male racemes"/>
 					<xs:enumeration value="male rachises"/>
 					<xs:enumeration value="male receptacle"/>
+					<xs:enumeration value="male spathe"/>
 					<xs:enumeration value="male spikelets"/>
 					<xs:enumeration value="male spikes"/>
 					<xs:enumeration value="male stage"/>
@@ -7825,6 +7829,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="leaf axes"/>
 					<xs:enumeration value="leaf axils"/>
 					<xs:enumeration value="leaf bases"/>
+					<xs:enumeration value="leaf bearing shoots"/>
 					<xs:enumeration value="leaf blade margins"/>
 					<xs:enumeration value="leaf blades"/>
 					<xs:enumeration value="leaf buds"/>
@@ -7850,6 +7855,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:enumeration value="leaf surfaces"/>
 					<xs:enumeration value="leaf symmetry"/>
 					<xs:enumeration value="leaf texture"/>
+					<xs:enumeration value="leaf tip"/>
 					<xs:enumeration value="leaf twigs"/>
 					<xs:enumeration value="leaflet number"/>
 					<xs:enumeration value="leaflet pair number"/>
