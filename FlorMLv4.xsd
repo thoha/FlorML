@@ -230,100 +230,10 @@
 			<xs:documentation>for any character classes not included in elements char and subChar</xs:documentation>
 		</xs:annotation>
 	</xs:element>
-	<xs:element name="charPart">
-		<xs:annotation>
-			<xs:documentation>child character part(s) (freetext field)</xs:documentation>
-		</xs:annotation>
-		<xs:complexType mixed="true">
-			<xs:choice maxOccurs="unbounded">
-				<xs:element name="footnoteRef" type="footnoteTypeRef" minOccurs="0" maxOccurs="unbounded"/>
-				<xs:element name="footnote" type="footnoteType" minOccurs="0" maxOccurs="unbounded"/>
-			</xs:choice>
-			<xs:attribute name="class">
-				<xs:simpleType>
-					<xs:restriction base="xs:string">
-						<xs:enumeration value="definition"/>
-						<xs:enumeration value="state"/>
-						<xs:enumeration value="value"/>
-					</xs:restriction>
-				</xs:simpleType>
-			</xs:attribute>
-			<xs:attribute name="doubtful" type="xs:boolean"/>
-		</xs:complexType>
-	</xs:element>
-	<xs:element name="childChar" type="childCharType">
-		<xs:annotation>
-			<xs:documentation>child character element for further atomisation of (sub)characters</xs:documentation>
-		</xs:annotation>
-	</xs:element>
 	<xs:element name="subChar" type="subCharType">
 		<xs:annotation>
 			<xs:documentation>sub-character</xs:documentation>
 		</xs:annotation>
-	</xs:element>
-	<xs:element name="collectionStatus">
-		<xs:annotation>
-			<xs:documentation>collection status</xs:documentation>
-		</xs:annotation>
-	</xs:element>
-	<xs:element name="collectionTypeStatus">
-		<xs:annotation>
-			<xs:documentation>collection type status</xs:documentation>
-		</xs:annotation>
-	</xs:element>
-	<xs:element name="collection">
-		<xs:annotation>
-			<xs:documentation>collection</xs:documentation>
-		</xs:annotation>
-		<xs:complexType mixed="true">
-			<xs:choice>
-				<xs:element ref="collectionTypeStatus" minOccurs="0">
-					<xs:annotation>
-						<xs:documentation>deprecated, use collectionAndType instead. </xs:documentation>
-					</xs:annotation>
-				</xs:element>
-				<xs:element ref="alternativeCollectionTypeStatus" minOccurs="0" maxOccurs="unbounded">
-					<xs:annotation>
-						<xs:documentation>deprecated, use collectionAndType instead. </xs:documentation>
-					</xs:annotation>
-				</xs:element>
-				<xs:element ref="subCollection" minOccurs="0" maxOccurs="unbounded"/>
-				<xs:element name="collectionAndType" minOccurs="0" maxOccurs="unbounded"/>
-			</xs:choice>
-			<xs:attribute name="status">
-				<xs:simpleType>
-					<xs:restriction base="xs:string">
-						<xs:enumeration value="epitype"/>
-						<xs:enumeration value="holotype"/>
-						<xs:enumeration value="iconotype"/>
-						<xs:enumeration value="isoepitype"/>
-						<xs:enumeration value="isolectotype"/>
-						<xs:enumeration value="isoneotype"/>
-						<xs:enumeration value="isosyntype"/>
-						<xs:enumeration value="isotype"/>
-						<xs:enumeration value="lectotype"/>
-						<xs:enumeration value="lectoholotype"/>
-						<xs:enumeration value="neotype"/>
-						<xs:enumeration value="original material"/>
-						<xs:enumeration value="paralectotype"/>
-						<xs:enumeration value="paraneotype"/>
-						<xs:enumeration value="paratype"/>
-						<xs:enumeration value="phototype"/>
-						<xs:enumeration value="second step lectotype"/>
-						<xs:enumeration value="second step neotype"/>
-						<xs:enumeration value="syntype"/>
-						<xs:enumeration value="uncertain"/>
-						<xs:enumeration value="unspecific"/>
-					</xs:restriction>
-				</xs:simpleType>
-			</xs:attribute>
-			<xs:attribute name="notSeen" type="xs:boolean" default="false"/>
-			<xs:attribute name="unknown" type="xs:boolean" default="false"/>
-			<xs:attribute name="destroyed" type="xs:boolean" default="false"/>
-			<xs:attribute name="lost" type="xs:boolean" default="false"/>
-			<xs:attribute name="notFound" type="xs:boolean" default="false"/>
-			<xs:attribute name="doubtful" type="xs:boolean" default="false"/>
-		</xs:complexType>
 	</xs:element>
 	<xs:element name="collector">
 		<xs:annotation>
@@ -656,11 +566,6 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					</xs:restriction>
 				</xs:simpleType>
 			</xs:attribute>
-			<xs:attribute name="isNotes" type="xs:boolean" default="false">
-				<xs:annotation>
-					<xs:documentation>[DEPRECATED] Use when something is a note with a particular subject  that is listed under class</xs:documentation>
-				</xs:annotation>
-			</xs:attribute>
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="fieldNum">
@@ -682,11 +587,6 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 	<xs:element name="figureLegend" type="figureLegendType">
 		<xs:annotation>
 			<xs:documentation>figure legend</xs:documentation>
-		</xs:annotation>
-	</xs:element>
-	<xs:element name="figureTitle">
-		<xs:annotation>
-			<xs:documentation>figure title</xs:documentation>
 		</xs:annotation>
 	</xs:element>
 	<xs:element name="fullDate">
@@ -1357,7 +1257,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 				<xs:element name="subHeading" type="subheadingType" minOccurs="0" maxOccurs="unbounded"/>
 				<xs:element name="taxontitle" type="taxontitleType" minOccurs="0">
 					<xs:annotation>
-						<xs:documentation>title of taxon treatment (e.g. family name, species, etc.), if present</xs:documentation>
+						<xs:documentation>(deprecated) title of taxon treatment (e.g. family name, species, etc.), if present</xs:documentation>
 					</xs:annotation>
 				</xs:element>
 				<xs:element name="writer" type="writerType" minOccurs="0" maxOccurs="unbounded"/>
@@ -1518,16 +1418,6 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 			<xs:documentation>table row</xs:documentation>
 		</xs:annotation>
 	</xs:element>
-	<xs:element name="typeStatus">
-		<xs:annotation>
-			<xs:documentation>type status</xs:documentation>
-		</xs:annotation>
-	</xs:element>
-	<xs:element name="url">
-		<xs:annotation>
-			<xs:documentation>figure location URL</xs:documentation>
-		</xs:annotation>
-	</xs:element>
 	<xs:element name="year" type="xs:gYear">
 		<xs:annotation>
 			<xs:documentation>year date (YYYY)</xs:documentation>
@@ -1595,11 +1485,6 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 			<xs:element ref="subChar" minOccurs="0" maxOccurs="unbounded">
 				<xs:annotation>
 					<xs:documentation>subcharacter</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element ref="childChar" minOccurs="0">
-				<xs:annotation>
-					<xs:documentation>child character element for further atomisation of (sub)characters (deprecated)</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 			<xs:element ref="charClass" minOccurs="0">
@@ -5377,11 +5262,6 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 		<xs:choice maxOccurs="unbounded">
 			<xs:element ref="collector" minOccurs="0"/>
 			<xs:element ref="alternativeCollector" minOccurs="0" maxOccurs="unbounded"/>
-			<xs:element ref="collection" minOccurs="0" maxOccurs="unbounded">
-				<xs:annotation>
-					<xs:documentation>collection/institution</xs:documentation>
-				</xs:annotation>
-			</xs:element>
 			<xs:element name="collectionAndType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="fieldNum" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="alternativeFieldNum" minOccurs="0" maxOccurs="unbounded">
@@ -5393,16 +5273,6 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 			<xs:element ref="locality" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="dates" type="datesType" minOccurs="0"/>
 			<xs:element name="string" type="stringType" minOccurs="0" maxOccurs="unbounded"/>
-			<xs:element ref="collectionStatus" minOccurs="0">
-				<xs:annotation>
-					<xs:documentation>deprecated, use collectionAndType instead. </xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element ref="collectionTypeStatus" minOccurs="0">
-				<xs:annotation>
-					<xs:documentation>deprecated, use collectionAndType instead.</xs:documentation>
-				</xs:annotation>
-			</xs:element>
 			<xs:element ref="alternativeCollectionTypeStatus" minOccurs="0" maxOccurs="unbounded">
 				<xs:annotation>
 					<xs:documentation>deprecated, use collectionAndType instead.</xs:documentation>
@@ -5411,11 +5281,6 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 			<xs:element ref="subCollection" minOccurs="0" maxOccurs="unbounded">
 				<xs:annotation>
 					<xs:documentation>subcollection, e.g. flowers, fruits, buds, leaves</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="subGathering" minOccurs="0" maxOccurs="unbounded">
-				<xs:annotation>
-					<xs:documentation>e.g. flowers, fruits, buds, leaves, often followed by a date. Deprecated, use subCollection instead and atomize the date.</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="typeNotes" type="notesType" minOccurs="0">
@@ -5524,17 +5389,11 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 			<xs:documentation>figure</xs:documentation>
 		</xs:annotation>
 		<xs:choice maxOccurs="unbounded">
-			<xs:element ref="figureTitle" minOccurs="0">
-				<xs:annotation>
-					<xs:documentation>deprecated - use figureLegend instead</xs:documentation>
-				</xs:annotation>
-			</xs:element>
 			<xs:element ref="num" minOccurs="0">
 				<xs:annotation>
 					<xs:documentation>figure number</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element ref="url" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="figureLegend" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:choice>
 		<xs:attribute name="id" type="xs:ID" use="required">
@@ -6657,13 +6516,6 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 			<xs:element name="subHeading" type="subheadingType" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:choice>
 	</xs:complexType>
-	<xs:complexType name="childCharType" mixed="true">
-		<xs:choice maxOccurs="unbounded">
-			<xs:element ref="charPart" minOccurs="0" maxOccurs="unbounded"/>
-		</xs:choice>
-		<xs:attribute name="class" type="xs:string"/>
-		<xs:attribute name="doubtful" type="xs:boolean"/>
-	</xs:complexType>
 	<xs:complexType name="literatureRefType" mixed="true">
 		<xs:choice maxOccurs="unbounded">
 			<xs:element name="refPart" type="refPartType" maxOccurs="unbounded"/>
@@ -6711,11 +6563,6 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 			<xs:element ref="subChar" minOccurs="0" maxOccurs="unbounded">
 				<xs:annotation>
 					<xs:documentation>subcharacter</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element ref="childChar" minOccurs="0">
-				<xs:annotation>
-					<xs:documentation>child character element for further atomisation of (sub)characters (deprecated)</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 			<xs:element ref="charClass" minOccurs="0">
