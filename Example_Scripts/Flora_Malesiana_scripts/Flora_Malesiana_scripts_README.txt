@@ -1,5 +1,4 @@
-﻿README for Flora Malesiana scripts (updated scripts will be added at the end of 
-March 2016)
+﻿README for Flora Malesiana scripts
 
 ================================================================================
 CONTENTS:
@@ -7,16 +6,17 @@ CONTENTS:
 I. Introduction
 II. Requirements and syntax used
 III. Running order for Flora Malesiana scripts
-IV. Additional script
-V. Licensing
+IV. Bugfix scripts
+V. Additional script
+VI. Licensing
 
 ================================================================================
 
 I. Introduction
 
-The Flora_Malesiana_scripts.zip ZIP file contains the Perl scripts that were used 
-to add mark-up to Flora Malesiana. These scripts were created while doing the actual 
-production work for Flora Malesiana, and so evolved along the way.
+The Flora_Malesiana_scripts.zip ZIP file contains the Perl scripts that were 
+used to add mark-up to Flora Malesiana. These scripts were created while doing 
+the actual production work for Flora Malesiana, and so evolved along the way.
 
 
 ================================================================================
@@ -39,46 +39,85 @@ II. Running order for Flora Malesiana scripts
 
 This was the running order for the Perl scripts for Flora Malesiana:
 
-1)	filecleaner.plx (clean-up)
-2)	ocrfix.plx (OCR fixing)
+1)	filecleaner.pl (clean-up)
+2)	ocrfix.pl (fixing OCR-errors)
 
 At this point, insert empty lines between taxa.
 
-3)	pubtags.plx (first and last publication and taxon tags, metadata base tags)
-4)	taxontags.plx (other taxon tags)
-5)	keytags.plx (keys)
+3)	pubtags.pl (first and last publication and taxon tags, metadata base tags)
+4)	taxontags.pl (other taxon tags)
+5)	keytags.pl (keys)
 
-At this point, manually insert tags for tables, lists and line breaks and 
-remove newlines after line breaks in descriptions and distributions.
+At this point, manually insert tags for tables, lists and line breaks (see 
+FlorML reference.doc) and remove newlines after line breaks in descriptions 
+and distributions. 
 
-6)	features.plx (features)
-7)	footnotes.plx (footnotes)
-8)	figures.plx (figures)
-9)	descriptions.plx (basic tags for descriptions)
-10)	characters.plx (character atomisation in descriptions)
-11)	taxontitles.plx (taxontitles)
-12)	nomenclature.plx (basic nomenclature tags)
-13)	nomatomizer.plx (nomenclature atomisation)
-14)	literature.plx (literature atomisation)
-15)	annotations.plx (author comments/annotations)
-16)	entities.plx (special symbols)
+6)	footnotes.pl (footnotes) 
+7)	featbasics.pl (features) 
+
+(If many descriptions are missed by the previous script, consider adding the 
+basic description mark-up before running the next script) 
+
+8)	figures.pl (figures) 
+9)	nombasics.pl (basic nomenclature tags) 
+10)	characters.pl (character atomisation in descriptions) 
+11)	nomatomizer.pl (nomenclature atomisation) 
+12)	atomizer.pl (new script for all remaining atomisation, incl. distributions) 
+13)	entities.pl (special symbols)
+
+(Compared to old mark-up scripts, several FM scripts have been merged into one; 
+order improved for better efficiency)
+
+Proofread the whole document.
 
 
 ================================================================================
 
-IV. Additional script
+IV. Bugfix scripts
+
+Two sets of bugfix scripts were created. These are run over proofread files and 
+are described below:
+
+1)
+serfixA.pl
+serfixB.pl
+(run in A, B order)
+
+These two scripts fix a bug in the citation and reference atomisation code that
+causes publication series and volume numbers to be marked up incorrectly as
+volume and issue numbers (respectively).
+
+
+2)
+parautfixA.pl 
+parautfixB.pl
+(run in A, B order) 
+
+These were created to fix an issue with the mark-up of the nomenclature in older 
+Flora Malesiana volumes (approximate publication dates 1950-1980). These volumes 
+use a non-standardtext format for the "auct. non NOT_THIS_AUTHOR: THAT_AUTHOR"-
+construction, which was marked up incorrectly by the atomisation script because 
+it was not discernable from another text format commonly used in nomenclature.
+
+
+================================================================================
+
+V. Additional script
 
 figurl_fr.plx (adds figure URLs to a mostly marked up file)
 
 
 ================================================================================
 
-V. Licensing
+VI. Licensing
 
 The Flora Malesiana mark-up scripts and this README are licensed under a 
 Creative Commons Attribution-ShareAlike 3.0 Unported license.
 
+You are free to use these scripts for your own purposes under the above license,
+but please credit the author appropriately.
 
-Copyright Thomas Hamann 2014
+
+Copyright Thomas Hamann 2010-2016
 
 ================================================================================

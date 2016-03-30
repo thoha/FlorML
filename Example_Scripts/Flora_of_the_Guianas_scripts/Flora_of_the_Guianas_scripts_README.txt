@@ -1,5 +1,4 @@
-﻿README for Flora of the Guianas scripts - Last two scripts will be added by the 
-end of March 2016
+﻿README for Flora of the Guianas scripts 
 
 ================================================================================
 CONTENTS:
@@ -81,6 +80,9 @@ IV. Licensing
 
 The Flora of the Guianas mark-up scripts and this README are licensed under a 
 Creative Commons Attribution-ShareAlike 3.0 Unported license.
+
+You are free to use these scripts for your own purposes under the above license,
+but please credit the author appropriately.
 
 
 Copyright Thomas Hamann 2015
