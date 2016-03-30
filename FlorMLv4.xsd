@@ -120,7 +120,6 @@
 		</xs:annotation>
 		<xs:complexType mixed="true">
 			<xs:choice minOccurs="0" maxOccurs="unbounded">
-				<xs:element name="annotation" type="annotationType" minOccurs="0"/>
 				<xs:element name="typeNotes" type="notesType" minOccurs="0">
 					<xs:annotation>
 						<xs:documentation>Notes on the type or the type status. DON'T put nomenclatural notes in here!</xs:documentation>
@@ -203,11 +202,6 @@
 				</xs:element>
 				<xs:element ref="translation" minOccurs="0" maxOccurs="unbounded"/>
 				<xs:element ref="locality" minOccurs="0" maxOccurs="unbounded"/>
-				<xs:element name="annotation" type="annotationType" minOccurs="0" maxOccurs="unbounded">
-					<xs:annotation>
-						<xs:documentation>comment by treatment author</xs:documentation>
-					</xs:annotation>
-				</xs:element>
 				<xs:element name="footnoteRef" type="footnoteTypeRef" minOccurs="0" maxOccurs="unbounded"/>
 				<xs:element ref="fullName" minOccurs="0" maxOccurs="unbounded">
 					<xs:annotation>
@@ -242,11 +236,6 @@
 		</xs:annotation>
 		<xs:complexType mixed="true">
 			<xs:choice maxOccurs="unbounded">
-				<xs:element name="annotation" type="annotationType" minOccurs="0" maxOccurs="unbounded">
-					<xs:annotation>
-						<xs:documentation>annotation by the treatment's author</xs:documentation>
-					</xs:annotation>
-				</xs:element>
 				<xs:element name="footnoteRef" type="footnoteTypeRef" minOccurs="0" maxOccurs="unbounded"/>
 				<xs:element name="footnote" type="footnoteType" minOccurs="0" maxOccurs="unbounded"/>
 			</xs:choice>
@@ -680,7 +669,6 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 		</xs:annotation>
 		<xs:complexType mixed="true">
 			<xs:choice minOccurs="0" maxOccurs="unbounded">
-				<xs:element name="annotation" type="annotationType" minOccurs="0"/>
 				<xs:element name="typeNotes" type="notesType" minOccurs="0">
 					<xs:annotation>
 						<xs:documentation>Notes on the type or the type status. DON'T put nomenclatural notes in here!</xs:documentation>
@@ -785,6 +773,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 						<xs:enumeration value="subform"/>
 						<xs:enumeration value="special form"/>
 						<xs:enumeration value="nothogenus"/>
+						<xs:enumeration value="nothomorph"/>
 						<xs:enumeration value="nothospecies"/>
 						<xs:enumeration value="group"/>
 						<xs:enumeration value="subgroup"/>
@@ -924,6 +913,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 						<xs:enumeration value="fruiting"/>
 						<xs:enumeration value="flowering and fruiting"/>
 						<xs:enumeration value="both"/>
+						<xs:enumeration value="leaves"/>
 					</xs:restriction>
 				</xs:simpleType>
 			</xs:attribute>
@@ -967,7 +957,6 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 				<xs:element ref="fieldNum" minOccurs="0" maxOccurs="unbounded"/>
 				<xs:element name="footnote" type="footnoteType" minOccurs="0" maxOccurs="unbounded"/>
 				<xs:element name="references" type="referencesType" minOccurs="0" maxOccurs="unbounded"/>
-				<xs:element name="annotation" type="annotationType" minOccurs="0" maxOccurs="unbounded"/>
 			</xs:choice>
 		</xs:complexType>
 	</xs:element>
@@ -981,11 +970,6 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 				<xs:element name="coordinates" type="coordinatesType" minOccurs="0">
 					<xs:annotation>
 						<xs:documentation>geographical coordinates</xs:documentation>
-					</xs:annotation>
-				</xs:element>
-				<xs:element name="annotation" type="annotationType" minOccurs="0" maxOccurs="unbounded">
-					<xs:annotation>
-						<xs:documentation>comment by treatment author</xs:documentation>
 					</xs:annotation>
 				</xs:element>
 				<xs:element name="footnoteRef" type="footnoteTypeRef" minOccurs="0" maxOccurs="unbounded"/>
@@ -1040,11 +1024,6 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 		</xs:annotation>
 		<xs:complexType mixed="true">
 			<xs:choice minOccurs="0" maxOccurs="unbounded">
-				<xs:element name="annotation" type="annotationType" minOccurs="0" maxOccurs="unbounded">
-					<xs:annotation>
-						<xs:documentation>annotation by the treatment's author</xs:documentation>
-					</xs:annotation>
-				</xs:element>
 				<xs:element name="footnoteRef" type="footnoteTypeRef" minOccurs="0"/>
 			</xs:choice>
 			<xs:attribute name="class" use="required">
@@ -1110,6 +1089,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 						<xs:enumeration value="cultivar"/>
 						<xs:enumeration value="vernacular"/>
 						<xs:enumeration value="year"/>
+						<xs:enumeration value="type information"/>
 					</xs:restriction>
 				</xs:simpleType>
 			</xs:attribute>
@@ -1249,11 +1229,6 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 		<xs:complexType mixed="true">
 			<xs:choice maxOccurs="unbounded">
 				<xs:element ref="fullType" minOccurs="0"/>
-				<xs:element ref="typeStatus" minOccurs="0">
-					<xs:annotation>
-						<xs:documentation>deprecated, use collectionAndType instead.</xs:documentation>
-					</xs:annotation>
-				</xs:element>
 				<xs:element name="gathering" type="gatheringType" minOccurs="0"/>
 				<xs:element ref="originalDetermination" minOccurs="0"/>
 				<xs:element ref="specimenType" minOccurs="0">
@@ -1264,11 +1239,6 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 				<xs:element name="citation" type="citationType" minOccurs="0" maxOccurs="unbounded">
 					<xs:annotation>
 						<xs:documentation>one citation</xs:documentation>
-					</xs:annotation>
-				</xs:element>
-				<xs:element name="annotation" type="annotationType" minOccurs="0" maxOccurs="unbounded">
-					<xs:annotation>
-						<xs:documentation>annotation by treatment author</xs:documentation>
 					</xs:annotation>
 				</xs:element>
 				<xs:element name="typeNotes" type="notesType" minOccurs="0">
@@ -1476,7 +1446,6 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 			<xs:choice minOccurs="0" maxOccurs="unbounded">
 				<xs:element name="footnoteRef" type="footnoteTypeRef" minOccurs="0" maxOccurs="unbounded"/>
 				<xs:element name="footnote" type="footnoteType" minOccurs="0" maxOccurs="unbounded"/>
-				<xs:element name="annotation" type="annotationType" minOccurs="0" maxOccurs="unbounded"/>
 				<xs:element name="figureRef" type="figureRefType" minOccurs="0" maxOccurs="unbounded"/>
 				<xs:element name="nom" type="nomType" minOccurs="0" maxOccurs="unbounded">
 					<xs:annotation>
@@ -1609,26 +1578,6 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 			</xs:element>
 		</xs:choice>
 	</xs:complexType>
-	<xs:complexType name="annotationType" mixed="true">
-		<xs:annotation>
-			<xs:documentation>annotations</xs:documentation>
-		</xs:annotation>
-		<xs:choice maxOccurs="unbounded">
-			<xs:element name="annotation" type="annotationType" minOccurs="0" maxOccurs="unbounded"/>
-			<xs:element ref="literatureRef" minOccurs="0" maxOccurs="unbounded"/>
-			<xs:element name="references" type="referencesType" minOccurs="0" maxOccurs="unbounded"/>
-			<xs:element ref="fullName" minOccurs="0" maxOccurs="unbounded"/>
-			<xs:element ref="name" minOccurs="0" maxOccurs="unbounded"/>
-			<xs:element name="nom" type="nomType" minOccurs="0" maxOccurs="unbounded"/>
-			<xs:element ref="acceptedName" minOccurs="0"/>
-			<xs:element name="citation" type="citationType" minOccurs="0" maxOccurs="unbounded"/>
-			<xs:element ref="nameType" minOccurs="0" maxOccurs="unbounded"/>
-			<xs:element ref="specimenType" minOccurs="0"/>
-			<xs:element name="gathering" type="gatheringType" minOccurs="0" maxOccurs="unbounded"/>
-			<xs:element name="figureRef" type="figureRefType" minOccurs="0" maxOccurs="unbounded"/>
-			<xs:element name="figure" type="figureType" minOccurs="0" maxOccurs="unbounded"/>
-		</xs:choice>
-	</xs:complexType>
 	<xs:complexType name="bibliographyType">
 		<xs:annotation>
 			<xs:documentation>biography text string</xs:documentation>
@@ -1667,11 +1616,6 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 			<xs:element name="gathering" type="gatheringType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="footnoteRef" type="footnoteTypeRef" minOccurs="0"/>
 			<xs:element name="footnote" type="footnoteType" minOccurs="0" maxOccurs="unbounded"/>
-			<xs:element name="annotation" type="annotationType" minOccurs="0" maxOccurs="unbounded">
-				<xs:annotation>
-					<xs:documentation>treatment author comment (deprecated; see comments on square bracket use in documentation)</xs:documentation>
-				</xs:annotation>
-			</xs:element>
 			<xs:element ref="br" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="table" type="tableType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="ol" type="orderedListType" minOccurs="0" maxOccurs="unbounded">
@@ -5420,6 +5364,11 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 				<xs:documentation>Use for citations that refer to a homonym</xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
+		<xs:attribute name="excluded" type="xs:boolean">
+			<xs:annotation>
+				<xs:documentation>Use for citations that are explictly indicated to be excluded</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
 	</xs:complexType>
 	<xs:complexType name="gatheringType" mixed="true">
 		<xs:annotation>
@@ -5482,7 +5431,6 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 			</xs:element>
 			<xs:element name="footnoteRef" type="footnoteTypeRef" minOccurs="0"/>
 			<xs:element name="references" type="referencesType" minOccurs="0"/>
-			<xs:element name="annotation" type="annotationType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="citation" type="citationType" minOccurs="0" maxOccurs="unbounded">
 				<xs:annotation>
 					<xs:documentation>one citation</xs:documentation>
@@ -5789,11 +5737,6 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 			<xs:element ref="br" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="sub" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="sup" minOccurs="0" maxOccurs="unbounded"/>
-			<xs:element name="annotation" type="annotationType" minOccurs="0" maxOccurs="unbounded">
-				<xs:annotation>
-					<xs:documentation>comment by treatment author</xs:documentation>
-				</xs:annotation>
-			</xs:element>
 			<xs:element ref="literatureRef" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="references" type="referencesType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="figureRef" type="figureRefType" minOccurs="0" maxOccurs="unbounded"/>
@@ -5854,11 +5797,6 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:documentation>name citations</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element name="annotation" type="annotationType" minOccurs="0" maxOccurs="unbounded">
-				<xs:annotation>
-					<xs:documentation>annotation by treatment author</xs:documentation>
-				</xs:annotation>
-			</xs:element>
 			<xs:element name="nomenclaturalNotes" type="notesType" minOccurs="0" maxOccurs="unbounded">
 				<xs:annotation>
 					<xs:documentation>This element should only be used for notes on the nomenclature in general, not for single names or homotypes. Example: 'For more complete synonymy and references, see Meijer and Veldkamp...'</xs:documentation>
@@ -5894,6 +5832,11 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 		<xs:attribute name="doubtful" type="xs:boolean">
 			<xs:annotation>
 				<xs:documentation>Use for names that are indicated to be problematic by use of square brackets (old nomenclatural codes)</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="misidentification" type="xs:boolean">
+			<xs:annotation>
+				<xs:documentation>Use for misidentified names as per Recommendation 50D (Melbourne Code).</xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
 	</xs:complexType>
@@ -5982,11 +5925,6 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 			<xs:documentation>reference atomization</xs:documentation>
 		</xs:annotation>
 		<xs:choice maxOccurs="unbounded">
-			<xs:element name="annotation" type="annotationType" minOccurs="0" maxOccurs="unbounded">
-				<xs:annotation>
-					<xs:documentation>annotation by the treatment's author</xs:documentation>
-				</xs:annotation>
-			</xs:element>
 			<xs:element name="footnoteRef" type="footnoteTypeRef" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="footnote" type="footnoteType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="b" minOccurs="0" maxOccurs="unbounded"/>
@@ -6060,6 +5998,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 							<xs:documentation>For any citations/references where instead of a single year a specific date or range of years or similar is given.</xs:documentation>
 						</xs:annotation>
 					</xs:enumeration>
+					<xs:enumeration value="homonyms"/>
 					<xs:enumeration value="namestatus">
 						<xs:annotation>
 							<xs:documentation>Use this for nomenclatural name statusses that are appended to a citation of reference instead of the name itself.</xs:documentation>
@@ -6103,11 +6042,6 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 			<xs:element ref="literatureRef" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="references" type="referencesType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="vernacularNames" minOccurs="0" maxOccurs="unbounded"/>
-			<xs:element name="annotation" type="annotationType" minOccurs="0" maxOccurs="unbounded">
-				<xs:annotation>
-					<xs:documentation>comment by treatment author</xs:documentation>
-				</xs:annotation>
-			</xs:element>
 			<xs:element ref="distributionLocality" minOccurs="0" maxOccurs="unbounded">
 				<xs:annotation>
 					<xs:documentation>distribution locality. Only valid in feature[class="distribution"] context</xs:documentation>
@@ -6218,11 +6152,6 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 			<xs:element ref="sub" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="sup" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="br" minOccurs="0" maxOccurs="unbounded"/>
-			<xs:element name="annotation" type="annotationType" minOccurs="0" maxOccurs="unbounded">
-				<xs:annotation>
-					<xs:documentation>comment by treatment author</xs:documentation>
-				</xs:annotation>
-			</xs:element>
 			<xs:element ref="literatureRef" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="nom" type="nomType" minOccurs="0" maxOccurs="unbounded">
 				<xs:annotation>
@@ -6368,11 +6297,6 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 			<xs:element ref="sub" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="sup" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="br" minOccurs="0" maxOccurs="unbounded"/>
-			<xs:element name="annotation" type="annotationType" minOccurs="0" maxOccurs="unbounded">
-				<xs:annotation>
-					<xs:documentation>comment by treatment author</xs:documentation>
-				</xs:annotation>
-			</xs:element>
 			<xs:element name="nom" type="nomType" minOccurs="0" maxOccurs="unbounded">
 				<xs:annotation>
 					<xs:documentation>name parts, citations, homonyms, and basionyms, also author comments</xs:documentation>
@@ -6497,7 +6421,6 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 			<xs:element ref="fullName" minOccurs="0"/>
 			<xs:element ref="name" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="citation" type="citationType" minOccurs="0" maxOccurs="unbounded"/>
-			<xs:element name="annotation" type="annotationType" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:choice>
 	</xs:complexType>
 	<xs:complexType name="figureLegendType" mixed="true">
@@ -6518,11 +6441,6 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 			<xs:element name="references" type="referencesType" minOccurs="0" maxOccurs="unbounded">
 				<xs:annotation>
 					<xs:documentation>literature references</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="annotation" type="annotationType" minOccurs="0" maxOccurs="unbounded">
-				<xs:annotation>
-					<xs:documentation>annotation by author of taxon treatment</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="figureRef" type="figureRefType" minOccurs="0" maxOccurs="unbounded">
@@ -6554,11 +6472,6 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:documentation>actual footnote</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element name="annotation" type="annotationType" minOccurs="0" maxOccurs="unbounded">
-				<xs:annotation>
-					<xs:documentation>annotation by treatment author</xs:documentation>
-				</xs:annotation>
-			</xs:element>
 			<xs:element name="figureRef" type="figureRefType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="figure" type="figureType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="br" minOccurs="0" maxOccurs="unbounded"/>
@@ -6586,9 +6499,6 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 		</xs:sequence>
 	</xs:complexType>
 	<xs:complexType name="toCoupletType" mixed="true">
-		<xs:sequence minOccurs="0">
-			<xs:element name="annotation" type="annotationType" minOccurs="0" maxOccurs="unbounded"/>
-		</xs:sequence>
 		<xs:attribute name="keyRef" type="xs:IDREFS">
 			<xs:annotation>
 				<xs:documentation>Used when linking to another couplet in another key than the current one.</xs:documentation>
@@ -6602,7 +6512,6 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 	</xs:complexType>
 	<xs:complexType name="toTaxonType" mixed="true">
 		<xs:choice minOccurs="0" maxOccurs="unbounded">
-			<xs:element name="annotation" type="annotationType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="footnoteRef" type="footnoteTypeRef" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="figureRef" type="figureRefType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="keynotes" minOccurs="0" maxOccurs="unbounded"/>
@@ -6635,7 +6544,6 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 					<xs:documentation>go to taxon</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element name="annotation" type="annotationType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="footnoteRef" type="footnoteTypeRef" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:choice>
 		<xs:attribute name="num" type="xs:string" use="optional">
@@ -6670,7 +6578,6 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 				</xs:annotation>
 			</xs:element>
 			<xs:element ref="keynotes" minOccurs="0" maxOccurs="unbounded"/>
-			<xs:element name="annotation" type="annotationType" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:choice>
 		<xs:attribute name="num" type="xs:string" use="required">
 			<xs:annotation>
@@ -6733,11 +6640,6 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 			</xs:element>
 			<xs:element ref="nameType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="specimenType" minOccurs="0"/>
-			<xs:element name="annotation" type="annotationType" minOccurs="0" maxOccurs="unbounded">
-				<xs:annotation>
-					<xs:documentation>annotation by treatment author, may contain a variety of things.</xs:documentation>
-				</xs:annotation>
-			</xs:element>
 			<xs:element name="nomenclaturalNotes" type="notesType" minOccurs="0">
 				<xs:annotation>
 					<xs:documentation>This element should only be used for notes on the nomenclature in general, not for single names or homotypes. Example: 'For more complete synonymy and references, see Meijer and Veldkamp...'</xs:documentation>
@@ -6774,13 +6676,9 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 			<xs:element ref="fullName" minOccurs="0"/>
 			<xs:element ref="name" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="citation" type="citationType" minOccurs="0" maxOccurs="unbounded"/>
-			<xs:element name="annotation" type="annotationType" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:choice>
 	</xs:complexType>
 	<xs:complexType name="toQuestionType" mixed="true">
-		<xs:sequence>
-			<xs:element name="annotation" type="annotationType" minOccurs="0" maxOccurs="unbounded"/>
-		</xs:sequence>
 		<xs:attribute name="num" type="xs:string" use="required"/>
 	</xs:complexType>
 	<xs:complexType name="subCharType" mixed="true">
@@ -6794,7 +6692,6 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 			</xs:element>
 			<xs:element name="footnoteRef" type="footnoteTypeRef" minOccurs="0"/>
 			<xs:element name="footnote" type="footnoteType" minOccurs="0" maxOccurs="unbounded"/>
-			<xs:element name="annotation" type="annotationType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="br" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="table" type="tableType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="ol" type="orderedListType" minOccurs="0" maxOccurs="unbounded"/>
