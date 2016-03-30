@@ -700,6 +700,11 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 			<xs:documentation>unatomized name (atomized name is preferred)</xs:documentation>
 		</xs:annotation>
 		<xs:complexType mixed="true">
+			<xs:attribute name="descriptiveName" type="xs:boolean">
+				<xs:annotation>
+					<xs:documentation>Use if a name is not a real taxonomic name but a descriptive placeholder name (e.g. Borneo form)</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
 			<xs:attribute name="doubtful" type="xs:boolean">
 				<xs:annotation>
 					<xs:documentation>Use if name doubtful</xs:documentation>
