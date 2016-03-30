@@ -633,12 +633,14 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 						<xs:enumeration value="speciation"/>
 						<xs:enumeration value="specific delimitation"/>
 						<xs:enumeration value="specimens"/>
+						<xs:enumeration value="spelling notes"/>
 						<xs:enumeration value="sporangia morphology"/>
 						<xs:enumeration value="spore morphology"/>
 						<xs:enumeration value="spot characters"/>
 						<xs:enumeration value="systematics"/>
 						<xs:enumeration value="taxon list"/>
 						<xs:enumeration value="taxonomic changes"/>
+						<xs:enumeration value="taxonomic history"/>
 						<xs:enumeration value="taxonomy"/>
 						<xs:enumeration value="taxonomy and phylogeny"/>
 						<xs:enumeration value="tendrils"/>
@@ -660,7 +662,7 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 			</xs:attribute>
 			<xs:attribute name="isNotes" type="xs:boolean" default="false">
 				<xs:annotation>
-					<xs:documentation>Use when something is a note with a particular subject  that is listed under class</xs:documentation>
+					<xs:documentation>[DEPRECATED] Use when something is a note with a particular subject  that is listed under class</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
 		</xs:complexType>
@@ -709,6 +711,17 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 			<xs:documentation>unatomized name (atomized name is preferred)</xs:documentation>
 		</xs:annotation>
 		<xs:complexType mixed="true">
+			<xs:attribute name="hybridClass">
+				<xs:annotation>
+					<xs:documentation>Use for marking up hybrids</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="hybrid"/>
+						<xs:enumeration value="hybrid formula"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
 			<xs:attribute name="descriptiveName" type="xs:boolean">
 				<xs:annotation>
 					<xs:documentation>Use if a name is not a real taxonomic name but a descriptive placeholder name (e.g. Borneo form)</xs:documentation>
@@ -766,7 +779,6 @@ Example: West, East and North Africa. If you want to markup West Africa as a sep
 						<xs:enumeration value="special form"/>
 						<xs:enumeration value="nothogenus"/>
 						<xs:enumeration value="nothospecies"/>
-						<xs:enumeration value="hybrid"/>
 						<xs:enumeration value="group"/>
 						<xs:enumeration value="subgroup"/>
 						<xs:enumeration value="grex"/>
