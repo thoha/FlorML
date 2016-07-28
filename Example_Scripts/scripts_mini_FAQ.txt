@@ -1,0 +1,65 @@
+FlorML XML insertion Perl scripts: Mini FAQ
+
+Revision date: July 28, 2016
+Author: Thomas Hamann
+
+=========================================================================================
+Q: In what order should I run the scripts?
+
+A: See the documentation on script running.
+=========================================================================================
+Q: Why is there a repository update titled "Sanitized perl script comments"?
+
+A: Simply put, because I sometimes forgot to edit the comments after fixing bugs in the code. This 
+led to illogicalities where the comments seemingly indicates a problem with the code, while the code
+is correct. I also sometimes made notes in the comments that without context appear to now be 
+meaningless. Finally, sometimes there were comments present for code that was never written. These 
+things have now been cleaned out, together with excessive empty lines. However, I've left in some 
+TODO's, so people can know when something potentially important isn't implemented. I've also used 
+this update to provide the scripts properly, instead of as ZIP archives.
+=========================================================================================
+Q: Are there any things that are known to be broken and/or incorrect in the scripts?
+
+A: Yes. One of the formats used in floras for basionyms, homonyms, and "correct names" is exactly 
+the same for all three types of contents, with no obvious clues as to what is what. The editor of 
+the flora likely knows this best and will be able to tell what the format means *in the context of 
+that particular flora*. However, I only realized this problem was present fairly late in the mark-up
+process, when I encountered a case that exposed the contradictions between the different 
+explanations I had received on the subject from different people, and had to manually correct each 
+of those cases directly in the XML files. The Flore du Gabon and Flora of the Guianas scripts will 
+erroneously mark up these up using the <acceptedName>-tag (an older, deprecated tag that 
+effectively means "basionym"). XML files using that tag need to be manually edited to use the proper
+tag, otherwise they won't validate under the current FlorML schema version.
+A2: Beyond that particular case, the scripts do not aim at perfect mark-up, but at ensuring that 
+80-90% or more of the mark-up is correctly inserted, so everything will be broken up to a certain 
+degree, as there are always exceptions that require manual intervention, especially in older floras 
+(<1980).
+=========================================================================================
+Q: Why are there sometimes large chunks of code commented out?
+
+A: There are several possible answers here. Firstly, and most importantly, not all processed flora 
+volumes required exactly the same processing. Some volumes had specific quirks or very divergent 
+formats that required a one-time solution (see for a good example Flore du Gabon volume 5a). These 
+solutions were then commented out, especially when they tended to interfere with more generally used
+formats, in case I would need them again later on. Another reason for large chunks of code that are 
+still present, but commented out is simply the evolution of my coding abilities. Some sections of 
+code were rewritten to be more efficient or less error-prone in their results. The old code sections
+were then commented out, but not removed, lest I still need part of them one day.
+=========================================================================================
+Q: Why are the comments in the Flore du Gabon scripts mostly in French?
+
+A: When I first created the Flore du Gabon scripts, I thought I had to choose between doing the 
+comments in English or in French, and finally chose French because the people working on that flora 
+usually were Francophone, meaning that the chance of any successors being more at ease with working 
+in French was pretty high. Only later I read on a coding site (StackOverflow, I think...) that 
+comments in programming scripts usually should be made in the language the programming language was 
+based on (i.e. English), even if the coder's native or preferred language was a different one. 
+However, by that point changing all of the comments would have been a lot of work, for which I had 
+no time, so I left it as is.
+=========================================================================================
+Q: Why are there comments in the other scripts that are in French?
+
+A: Because those code sections were literally copied out of the Flore du Gabon scripts and I didn't 
+change the comments.
+=========================================================================================
+Copyright Thomas Hamann 2016.
