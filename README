@@ -11,8 +11,9 @@ https://github.com/naturalis/FlorML
 ================================================================================
 
 DOCUMENTATION:
-Documentation is available on request. Basic instructions are included in the 
-XML schema, and in the README files for each of the Perl script archives.
+Documentation is available in the "Documentation"-folder in the repository. 
+Basic instructions are included in the XML schema, and in the README files for 
+each of the Perl script archives.
 
 ================================================================================
 
@@ -34,6 +35,6 @@ LICENSE:
 FlorML is licensed under a Creative Commons Attribution-ShareAlike 3.0 Unported 
 license.
 
-Copyright Thomas Hamann 2010-2015. 
+Copyright Thomas Hamann 2010-2016. 
 
 ================================================================================
